@@ -11,7 +11,7 @@ export class ListarArticulosComponent implements OnInit {
   public Articulos:any;
   private categoria: any;
   private pagina: any;
-  public cantidadPaginas!: any[]; 
+  public cantidadPaginas = new Array<number>(); 
 
   /**
    * 
@@ -29,26 +29,30 @@ export class ListarArticulosComponent implements OnInit {
         // Show loading indicator
         //console.log('Route change detected');
         this.cargarArticulos();
-        this.cantidadDePaginas();
+        this.cargarPaginado();
     }
     })
   }
 
   ngOnInit(): void {
     this.cargarArticulos();
-    this.cantidadDePaginas();
+    this.cargarPaginado();
   }
 
-  cantidadDePaginas(articulosPorPagina: number = 10):void{
+  cargarPaginado(articulosPorPagina: number = 10):void{
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     if(this.categoria == "todos"){
       this.categoria = "";
     }
     this.crudArticuloService.ObtenerCantidadPaginas(this.categoria).subscribe( respuesta => {
-      console.log(respuesta);
+      //console.log(respuesta);
       var cantidadArticulos = parseInt(respuesta.cantidad);
-      console.log(Math.ceil(cantidadArticulos/articulosPorPagina));
-      this.cantidadPaginas = new Array(Math.ceil(cantidadArticulos/articulosPorPagina));
+      //console.log(Math.ceil(cantidadArticulos/articulosPorPagina));
+      var numPaginas = Math.ceil(cantidadArticulos/articulosPorPagina);
+      this.cantidadPaginas = new Array<number>();
+      for(let i = 1; i <= numPaginas; i++){
+        this.cantidadPaginas.push(i);
+      }
     });
   }
 
