@@ -3,10 +3,10 @@
         <span>Página: </span>
       </div>
       <div class="col">
-        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selectPaginado">
-          <option *ngFor="let pagina of cantidadPaginas" value="{{pagina}}" routerLink="{{pagina}}">
-            {{ pagina }}
-          </option>-->
+        <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selectPaginado" (change)="redirigir($event)">
+          <option *ngFor="let pagina of cantidadPaginas" value="{{pagina}}" >
+              {{ pagina }}
+          </option>
         </select>
       </div>
 </div>

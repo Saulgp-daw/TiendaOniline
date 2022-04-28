@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
@@ -10,8 +11,9 @@ import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 export class PaginadoComponent implements OnInit {
   private categoria: any;
   public cantidadPaginas = new Array<number>();
+  public id: number = 2;
   
-  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router) { 
+  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
         // Show loading indicator
@@ -50,6 +52,13 @@ export class PaginadoComponent implements OnInit {
     }
    
 
+  }
+
+  redirigir(event: any){
+    this.categoria = this.ruta.snapshot.paramMap.get('categoria');
+    this.id = event.target.value;
+    console.log(this.id);
+    this.router.navigate(["/tienda/categoria/"+this.categoria+"/"+this.id]);
   }
 
 }
