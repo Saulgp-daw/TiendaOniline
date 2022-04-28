@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Index</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS v5.0.2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/CSS/estilo.css">
+    <link rel="stylesheet" href="assets/CSS/modal.css">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img id="MTGLogo" src="assets/img/MTG-logo.png" alt="logo de magic the gathering">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./MyDeck.html">My Deck</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Packs recomendados
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" id="packs">
+                            <li><a class="dropdown-item" href="https://api.scryfall.com/cards/search?order=set&q=e%3Augin&unique=prints">"Welcome Deck 2016"</a></li>
+                            <li><a class="dropdown-item" href="https://api.scryfall.com/cards/search?order=set&q=e%3Aw16&unique=prints">"Ugin's Fate"</a></li>
+                            <li><a class="dropdown-item" href="https://api.scryfall.com/cards/search?order=set&q=e%3Aw17&unique=prints">"Welcome Deck 2017"</a></li>
+                            <li><a class="dropdown-item" href="https://api.scryfall.com/cards/search?order=set&q=e%3Azne&unique=prints">"Zendikar Rising Expeditions"</a></li>
+                            <li><a class="dropdown-item" href="https://api.scryfall.com/cards/search?order=set&q=e%3Aitp&unique=prints">"Introductory Two-Player"</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar una carta" aria-label="Search">
+                    <button class="btn btn-success" type="submit" style="width:auto;">Search</button>
+                </form>
+                <button id="btnLogin" class="btn btn-primary" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+                <button id="btnLogout" class="btn btn-warning">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <div id="id01" class="modal">
+                    <form class="modal-content animate login" action="" method="post">
+                      <div class="imgcontainer">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                      </div>
+                  
+                      <div class="container">
+                        <label for="uname"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username [admin]" name="usuario" id="in_username" required>
+                  
+                        <label for="psw"><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password [admin]" name="contrasenia" id="in_password" required>
+                          
+                        <button class="btn btn-success" type="submit">Login</button>
+                      </div>
+                  
+                      <div class="container" style="background-color:#f1f1f1">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-danger cancelbtn">Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <h4>Cards: </h4>
+                <div class="row" id="cards"></div>
+            </div>
+            <div class="col-4">
+				<h4>Seleccionadas: </h4>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th scope="col">Name</th>
+							<th scope="col">Price</th>
+							<th scope="col">Quantity</th>
+							<th scope="col">Action</th>
+							<th scope="col">Total</th>
+						</tr>
+					</thead>
+					<tbody id="items"></tbody>
+					<tfoot>
+						<tr id="footer">
+							<th scope="row" colspan="5" id="info">Empty list - Start selecting cards!</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+        </div>
+        <!-- PLANTILLAS-->
+        <template id="plantilla-carta">
+            <div class="col-2">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Precio</p>
+                      <div class="bottom-right">
+                          <button class="btn btn-skip" id="">Agregar</button>
+                      </div> 
+                    </div>
+                  </div>
+            </div>
+        </template>
+        <template id="plantilla-seleccionados">
+            <tr>
+                <th scope="row" id="">carta1</td>
+                <td>5€</td>
+                <td>2</td>
+                <td>
+                    <button class="btn sumar btn-sm">+</button>
+					<button class="btn restar btn-sm">-</button>
+                </td>
+                <td><span>10</span>€</td>
+            </tr>
+        </template>
+        <template id="plantilla-inferior">
+			<!-- Posible template-->
+		</template>
+        
+    </div>
+
+    <!-- Bootstrap JavaScript Libraries -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <!-- Mi Javascript-->
+    <script type="module" src="assets/JS/Funcionalidad.js"></script>
+    <script src="assets/JS/login.js"></script>
+</body>
+
+</html>

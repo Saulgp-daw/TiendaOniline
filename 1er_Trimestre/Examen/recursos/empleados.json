@@ -1,0 +1,6 @@
+{ "dni":"12345678Z", "nombre":"Jorge" , "ap1":"Pérez", "ap2":"Mesa", "edad":28 , "telef": "922334455", "ciudad":"Barcelona"}
+{ "dni":"23456789D", "nombre":"Luisa" , "ap1":"Martínez", "ap2":"López", "edad":25 , "telef": "922445566", "ciudad":"Santa Cruz de Tenerife"}
+{ "dni":"34567890V", "nombre":"Antonia" , "ap1":"García", "ap2":"Rodríguez", "edad":33 , "telef": "922334455", "ciudad":"Madrid"}
+{ "dni":"45678901H", "nombre":"Enrique" , "ap1":"Fernández", "ap2":"Martínez", "edad":44 , "telef": "922334455", "ciudad":"Murcia"}
+{ "dni":"56789012H", "nombre":"Juana" , "ap1":"López", "ap2":"García", "edad":22 , "telef": "922334455", "ciudad":"Alicante"}
+{ "dni":"67890123B", "nombre":"Fernando" , "ap1":"Rodríguez", "ap2":"Pérez", "edad":19 , "telef": "922334455", "ciudad":"Puerto de la Cruz"}

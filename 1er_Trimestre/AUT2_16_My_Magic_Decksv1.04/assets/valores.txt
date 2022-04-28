@@ -1,0 +1,2 @@
+El nombre de usuario es: admin
+La contraseña es: admin
