@@ -9,6 +9,7 @@ import { EditarArticulosComponent } from './componentes/editar-articulos/editar-
 import { HttpClientModule } from '@angular/common/http';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
 import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
+import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ListarCategoriasComponent } from './componentes/listar-categorias/lista
     ListarArticulosComponent,
     EditarArticulosComponent,
     MostrarArticuloComponent,
-    ListarCategoriasComponent
+    ListarCategoriasComponent,
+    PaginaTiendaComponent
   ],
   imports: [
     BrowserModule,

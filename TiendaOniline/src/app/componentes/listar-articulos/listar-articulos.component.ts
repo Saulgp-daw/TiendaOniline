@@ -54,6 +54,16 @@ export class ListarArticulosComponent implements OnInit {
         this.cantidadPaginas.push(i);
       }
     });
+
+    var selectPaginado = document.getElementById("selectPaginado");
+    console.log(document.location.href);
+    if(selectPaginado != null){
+      selectPaginado.addEventListener("change", function() {
+        console.log("cambio de pagina")
+    });
+    }
+   
+
   }
 
   cargarArticulos():void{
