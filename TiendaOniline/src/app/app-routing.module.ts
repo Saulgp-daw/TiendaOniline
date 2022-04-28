@@ -10,9 +10,8 @@ const routes: Routes = [
   {path: 'tienda', pathMatch:'full', redirectTo:'tienda/categoria/todos'},
   {path: 'tienda/categoria', pathMatch:'full', redirectTo:'tienda/categoria/todos'},
   {path: 'tienda/categoria/:categoria', component: PaginaTiendaComponent},
-  {path: 'tienda/categoria/:categoria/:pag', component: ListarArticulosComponent},
-  {path: 'tienda/mostrar-articulo/:id', component: MostrarArticuloComponent},
-  {path: 'comprar', component: PaginaTiendaComponent}
+  {path: 'tienda/categoria/:categoria/:pag', component: PaginaTiendaComponent},
+  {path: 'tienda/mostrar-articulo/:id', component: MostrarArticuloComponent}
   //{path: 'perfil', component: }
 ];
 

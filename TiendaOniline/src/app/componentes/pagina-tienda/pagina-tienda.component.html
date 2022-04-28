@@ -1,16 +1,7 @@
 <div class="row">
     <div class="col-2">
         <div class="row">
-          <div class="col">
-            <span>Página: </span>
-          </div>
-            <div class="col">
-                <!--<select class="form-select form-select-sm" aria-label=".form-select-sm example" id="selectPaginado">
-                    <option *ngFor="let pagina of cantidadPaginas" value="{{pagina}}" routerLink="{{pagina}}">
-                      {{ pagina }}
-                     </option>
-                  </select>-->
-            </div>
+            <app-paginado></app-paginado>
             <div class="col-12">
               <app-listar-categorias></app-listar-categorias>  
             </div>

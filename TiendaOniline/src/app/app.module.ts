@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
 import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
+import { PaginadoComponent } from './componentes/paginado/paginado.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda
     EditarArticulosComponent,
     MostrarArticuloComponent,
     ListarCategoriasComponent,
-    PaginaTiendaComponent
+    PaginaTiendaComponent,
+    PaginadoComponent
   ],
   imports: [
     BrowserModule,
