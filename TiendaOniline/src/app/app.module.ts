@@ -11,6 +11,8 @@ import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar
 import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
 import { PaginadoComponent } from './componentes/paginado/paginado.component';
+import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
+import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PaginadoComponent } from './componentes/paginado/paginado.component';
     MostrarArticuloComponent,
     ListarCategoriasComponent,
     PaginaTiendaComponent,
-    PaginadoComponent
+    PaginadoComponent,
+    BarraNavegacionComponent,
+    PaginaCarritoComponent
   ],
   imports: [
     BrowserModule,

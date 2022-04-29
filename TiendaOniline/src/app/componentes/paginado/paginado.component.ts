@@ -11,7 +11,7 @@ import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 export class PaginadoComponent implements OnInit {
   private categoria: any;
   public cantidadPaginas = new Array<number>();
-  public id: number = 2;
+  public pag: number = 2;
   
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
@@ -56,9 +56,9 @@ export class PaginadoComponent implements OnInit {
 
   redirigir(event: any){
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
-    this.id = event.target.value;
-    console.log(this.id);
-    this.router.navigate(["/tienda/categoria/"+this.categoria+"/"+this.id]);
+    this.pag = event.target.value;
+    console.log(this.pag);
+    this.router.navigate(["/tienda/categoria/"+this.categoria+"/"+this.pag]);
   }
 
 }
