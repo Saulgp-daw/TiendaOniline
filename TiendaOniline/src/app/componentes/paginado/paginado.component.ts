@@ -13,7 +13,7 @@ export class PaginadoComponent implements OnInit {
   public cantidadPaginas = new Array<number>();
   public pag: number = 0;
   public paginaActual !: number;
-  private ARTICULOSPORPAGINA: number = 20;
+  private ARTICULOSPORPAGINA: number = 10;
   
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
