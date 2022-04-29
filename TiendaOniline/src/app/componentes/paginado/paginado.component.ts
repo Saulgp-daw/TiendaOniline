@@ -13,13 +13,14 @@ export class PaginadoComponent implements OnInit {
   public cantidadPaginas = new Array<number>();
   public pag: number = 0;
   public paginaActual !: number;
+  private ARTICULOSPORPAGINA: number = 20;
   
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
         // Show loading indicator
         //console.log('Route change detected');
-        this.cargarPaginado();
+        this.cargarPaginado(this.ARTICULOSPORPAGINA);
       }
     });
 
@@ -28,7 +29,7 @@ export class PaginadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cargarPaginado(articulosPorPagina: number = 10):void{
+  cargarPaginado(ARTICULOSPORPAGINA: number):void{
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     if(this.categoria == "todos"){
       this.categoria = "";
@@ -36,8 +37,8 @@ export class PaginadoComponent implements OnInit {
     this.crudArticuloService.ObtenerCantidadPaginas(this.categoria).subscribe( respuesta => {
       //console.log(respuesta);
       var cantidadArticulos = parseInt(respuesta.cantidad);
-      //console.log(Math.ceil(cantidadArticulos/articulosPorPagina));
-      var numPaginas = Math.ceil(cantidadArticulos/articulosPorPagina);
+      //console.log(Math.ceil(cantidadArticulos/ARTICULOSPORPAGINA));
+      var numPaginas = Math.ceil(cantidadArticulos/ARTICULOSPORPAGINA);
       this.cantidadPaginas = new Array<number>();
       for(let i = 1; i <= numPaginas; i++){
         this.cantidadPaginas.push(i);
