@@ -5,7 +5,7 @@
       <div class="card-body">
         <h5 class="card-title">{{articulo.nombre}}</h5>
         <p class="card-text text-muted">{{articulo.precio}} €</p>
-        <a class="btn btn-primary" routerLink="/">Comprar</a>
+        <a class="btn btn-primary" (click)="agregarAlCarrito(articulo)">Añadir al carrito</a>
       </div>
     </div>
   </div>

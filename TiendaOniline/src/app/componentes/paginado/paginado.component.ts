@@ -11,7 +11,8 @@ import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 export class PaginadoComponent implements OnInit {
   private categoria: any;
   public cantidadPaginas = new Array<number>();
-  public pag: number = 2;
+  public pag: number = 0;
+  public paginaActual !: number;
   
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
@@ -42,23 +43,14 @@ export class PaginadoComponent implements OnInit {
         this.cantidadPaginas.push(i);
       }
     });
-
-    var selectPaginado = document.getElementById("selectPaginado");
-    console.log(document.location.href);
-    if(selectPaginado != null){
-      selectPaginado.addEventListener("change", function() {
-        console.log("cambio de pagina")
-    });
-    }
-   
-
   }
 
   redirigir(event: any){
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pag = event.target.value;
-    console.log(this.pag);
+    //console.log(this.pag);
     this.router.navigate(["/tienda/categoria/"+this.categoria+"/"+this.pag]);
+    this.paginaActual = this.pag;
   }
 
 }

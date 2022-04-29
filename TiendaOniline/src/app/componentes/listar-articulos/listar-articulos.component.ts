@@ -49,4 +49,8 @@ export class ListarArticulosComponent implements OnInit {
     });
   }
 
+  agregarAlCarrito(articulo: any = null):void{
+    console.log(articulo);
+  }
+
 }
