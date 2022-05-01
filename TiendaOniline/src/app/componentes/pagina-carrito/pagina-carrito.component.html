@@ -1,12 +1,44 @@
-<div class="container">
-    <div class="card">
-        <h5 class="card-title">Mi Carrito</h5>
-        <div class="center">
-            <img src="" alt="">
-            <h4>¡Tu carrito está vacío!</h4>
-            <h6>Añade algún producto.</h6>
-            <button class="btn btn-primary">Comprar</button>
-        </div>
+<ng-container *ngIf="true">
+  <div class="container">
+    <div class="card-table">
+      <div class="cart-product">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>Nombre Producto</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Precio total</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>sfdsd</td>
+              <td>sdfsd</td>
+              <td>sdfsd</td>
+              <td>sdfsd</td>
+              <td>sdfsafd</td>
+              <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    
-</div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="false">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">Mi Carrito</h5>
+      <div class="center">
+        <img src="" alt="">
+        <h4>¡Tu carrito está vacío!</h4>
+        <h6>Añade algún producto.</h6>
+        <button class="btn btn-primary">Comprar</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

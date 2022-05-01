@@ -50,6 +50,7 @@ export class ListarArticulosComponent implements OnInit {
 
   agregarAlCarrito(articulo: Articulo = null!):void{
     //articulo['cantidad'] = 1;
+    //articulo['otro'] = "sdsd";
     console.log(articulo);
   }
 
