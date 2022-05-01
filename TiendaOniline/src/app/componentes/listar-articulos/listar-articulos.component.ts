@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Articulo } from 'src/app/model/articulo';
 
 @Component({
   selector: 'app-listar-articulos',
@@ -11,8 +12,6 @@ export class ListarArticulosComponent implements OnInit {
   public Articulos: any;
   private categoria: any;
   private pagina: any;
- 
-
   /**
    * 
    * @param crudArticuloService 
@@ -44,12 +43,13 @@ export class ListarArticulosComponent implements OnInit {
     //console.log(this.categoria);
     //console.log(this.pagina);
     this.crudArticuloService.ObtenerArticulosCategoria(this.categoria, this.pagina).subscribe(respuesta => {
-      //console.log(respuesta);
+      console.log(respuesta);
       this.Articulos = respuesta;
     });
   }
 
-  agregarAlCarrito(articulo: any = null):void{
+  agregarAlCarrito(articulo: Articulo = null!):void{
+    //articulo['cantidad'] = 1;
     console.log(articulo);
   }
 

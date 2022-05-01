@@ -7,4 +7,5 @@ export interface Articulo{
     categoria: string;
     estado: string;
     stock: number;
+    [key: string]: any;
 }
