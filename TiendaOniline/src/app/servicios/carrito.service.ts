@@ -25,9 +25,7 @@ export class CarritoService {
 
   agregarACarrito(articulo: any): void{
     if(this.buscarArticulo(articulo.id)){
-      console.log("Encontrado");
-      this.listaProductos.next(this.carrito);
-      
+      this.listaProductos.next(this.carrito); 
     }else{
       articulo['cantidad'] = 1;
       articulo['precioCantidad'] = (articulo['cantidad'] * articulo.precio).toFixed(2);
@@ -83,7 +81,7 @@ export class CarritoService {
     this.carrito.map( (articuloEnCarrito: any) => {
       granTotal += parseFloat(articuloEnCarrito.precioCantidad);
     });
-    return granTotal;
+    return parseFloat(granTotal.toFixed(2));
   }
 
   restarUnidades(articulo: Articulo): void{

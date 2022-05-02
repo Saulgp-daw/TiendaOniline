@@ -1,4 +1,4 @@
-<ng-container *ngIf="true">
+<ng-container *ngIf="carrito.length > 0">
   <div class="container">
     <div class="card-table">
       <div class="cart-product">
@@ -49,7 +49,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="false">
+<ng-container *ngIf="carrito.length == 0">
   <div class="container">
     <div class="card">
       <h5 class="card-title">Mi Carrito</h5>
@@ -57,7 +57,7 @@
         <img src="" alt="">
         <h4>¡Tu carrito está vacío!</h4>
         <h6>Añade algún producto.</h6>
-        <button class="btn btn-primary">Comprar</button>
+        <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">¡Compra ahora!</button>
       </div>
     </div>
   </div>
