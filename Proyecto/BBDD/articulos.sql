@@ -63,9 +63,10 @@ CREATE TABLE usuarios (
   edad int(3) unsigned not null,
   direccion varchar(90) not null,
   codigo_postal int(5) unsigned not null,
+  telefono_fijo int(9) unsigned not null,
   pais varchar(40) not null,
   PRIMARY KEY(nick)
 ) ENGINE=InnoDB;
 
 insert into usuarios values 
-('Saul123', '1234', 'Saul', 'Gonzalez Perez', 25, 'Los Realejos', 38410, 'España');
+('Saul123', '1234', 'Saul', 'Gonzalez Perez', 25, 'Los Realejos', 38410, 922202122, 'España');

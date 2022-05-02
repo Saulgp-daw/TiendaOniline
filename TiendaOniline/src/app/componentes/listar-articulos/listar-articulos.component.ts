@@ -50,7 +50,7 @@ export class ListarArticulosComponent implements OnInit {
   }
 
   agregarAlCarrito(articulo: Articulo = null!):void{
-    this.carritoService.addToCart(articulo);
+    this.carritoService.agregarACarrito(articulo);
   }
 
 }

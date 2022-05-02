@@ -6,15 +6,15 @@ import { Articulo } from '../model/articulo';
   providedIn: 'root'
 })
 export class CarritoService {
-  cantidadTotal: number = 0;
 
   public carrito: any = [];
   public listaProductos = new BehaviorSubject<any>([]);
+  private usuario: string = "invitado";
   
   constructor() { }
 
 
-  getProducts(): any{
+  devolverProductos(): any{
     return this.listaProductos.asObservable();
   }
 
@@ -23,7 +23,7 @@ export class CarritoService {
     this.listaProductos.next(articulo);
   }
 
-  addToCart(articulo: any, usuario: string = "invitado"): void{
+  agregarACarrito(articulo: any): void{
     if(this.buscarArticulo(articulo.id)){
       console.log("Encontrado");
       this.listaProductos.next(this.carrito);
@@ -35,28 +35,31 @@ export class CarritoService {
       this.listaProductos.next(this.carrito);
     }
     //console.log(this.carrito);
-    localStorage.setItem(usuario, JSON.stringify(this.carrito));
+    localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
   }
 
-  removeCartItem(articulo: any): void{
+  borrarArticulo(articulo: any): void{
     this.carrito.map( (articuloCarrito: any, index: number) => {
       if(articuloCarrito.id == articulo.id){
         this.carrito.splice(index, 1);
+        this.listaProductos.next(this.carrito);
+        localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
       }
     });
   }
 
-  removeAllCart(): void{
+  borrarTodo(): void{
     this.carrito = [];
     this.listaProductos.next(this.carrito);
+    localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
   }
 
-  cargarCarrito(usuario: string = "invitado"){
-    if(localStorage.getItem(usuario)){
-      this.carrito = JSON.parse(localStorage.getItem(usuario)!);
+  cargarCarrito(){
+    if(localStorage.getItem(this.usuario)){
+      this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
       this.listaProductos.next(this.carrito);
       //console.log(this.carrito);
-    };
+    }
   }
 
   buscarArticulo(id: number): Boolean{
@@ -69,5 +72,13 @@ export class CarritoService {
       }
     });
     return encontrado;
+  }
+
+  calcularTotal(): number{
+    let granTotal = 0;
+    this.carrito.map( (articuloEnCarrito: any) => {
+      granTotal += parseFloat(articuloEnCarrito.precioCantidad);
+    });
+    return granTotal;
   }
 }

@@ -8,15 +8,25 @@ import { CarritoService } from 'src/app/servicios/carrito.service';
   styleUrls: ['./pagina-carrito.component.css']
 })
 export class PaginaCarritoComponent implements OnInit {
-  carrito: Array<Articulo> = [];
+  public carrito: Array<Articulo> = [];
+  public granTotal: number = 0;
 
 
   constructor(private servicioCarrito: CarritoService) { }
 
   ngOnInit(): void {
-    this.servicioCarrito.getProducts().subscribe( (respuesta: any) => {
+    this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
       this.carrito = respuesta;
+      this.granTotal = this.servicioCarrito.calcularTotal();
     });
+  }
+
+  borrarArticulo(articulo: Articulo): void{
+    this.servicioCarrito.borrarArticulo(articulo);
+  }
+
+  borrarTodos(): void{
+    this.servicioCarrito.borrarTodo();
   }
 
 }

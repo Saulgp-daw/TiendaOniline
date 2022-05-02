@@ -13,7 +13,7 @@ import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda
 import { PaginadoComponent } from './componentes/paginado/paginado.component';
 import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
-import { AddToCartComponent } from './componentes/add-to-cart/add-to-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -25,8 +25,7 @@ import { AddToCartComponent } from './componentes/add-to-cart/add-to-cart.compon
     PaginaTiendaComponent,
     PaginadoComponent,
     BarraNavegacionComponent,
-    PaginaCarritoComponent,
-    AddToCartComponent
+    PaginaCarritoComponent
   ],
   imports: [
     BrowserModule,

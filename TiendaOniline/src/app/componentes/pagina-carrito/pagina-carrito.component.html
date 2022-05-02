@@ -22,9 +22,23 @@
               <td>{{ articulo.precio }} €</td>
               <td>{{ articulo['cantidad'] }}</td>
               <td>{{ articulo['precioCantidad'] }} €</td>
-              <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+              <td><button class="btn btn-danger" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button></td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr>
+              <td>
+                <button class="btn btn-danger" (click)="borrarTodos()">Limpiar Carrito</button>
+              </td>
+              <td>
+                <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">Seguir comprando</button>
+              </td>
+              <td></td>
+              <td></td>
+              <td>Total: </td>
+              <td>{{granTotal}} €</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

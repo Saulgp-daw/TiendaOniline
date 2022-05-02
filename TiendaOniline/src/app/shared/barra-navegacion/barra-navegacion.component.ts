@@ -11,7 +11,7 @@ export class BarraNavegacionComponent implements OnInit {
   constructor(private servicioCarrito: CarritoService) { }
 
   ngOnInit(): void {
-    this.servicioCarrito.getProducts().subscribe( (respuesta: any) => {
+    this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
       this.totalArticulos = respuesta.length;
     })
     
