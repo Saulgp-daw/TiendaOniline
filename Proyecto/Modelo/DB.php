@@ -41,7 +41,7 @@ class DB{
         if($categoria == "todos"){
             $resultado = self::consulta("Select * from articulos limit $comienzo, $tamPag");
         }else{
-            $resultado = self::consulta("Select * from articulos where categoria='$categoria'");
+            $resultado = self::consulta("Select * from articulos where categoria='$categoria' limit $comienzo, $tamPag");
         }
         
         $listaProductos = [];

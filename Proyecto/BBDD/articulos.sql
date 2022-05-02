@@ -48,7 +48,12 @@ INSERT INTO articulos VALUES
 (0, 'Cuero de material sintético y resistente','Sillón de cuero',143.99,'https://i.imgur.com/vYRyYMr.jpg','Hogar', 'Disponible',20),
 (0, 'Contiene 2 cajones y espacio para torreta de ordenador y monitor','Escritorio de Oficina',100.0,'https://i.imgur.com/9y1DI0X.jpg','Hogar', 'Disponible',10),
 (0, 'Consumo: A. Lavados rápidos y eficaces','Vajilla de porcelana',214.7,'https://i.imgur.com/Hlbx4hv.jpg','Hogar', 'Disponible',54),
-(0, 'Pack de 3 toallas de 1,5m de altura','Toalla de baño',31.0,'https://i.imgur.com/NoW9Euj.jpg','Hogar', 'Agotado',0);
+(0, 'Pack de 3 toallas de 1,5m de altura','Toalla de baño',31.0,'https://i.imgur.com/NoW9Euj.jpg','Hogar', 'Agotado',0),
+(0, 'Botella individual de 100ml','Cerveza Sin Alcohol',3.0,'https://i.imgur.com/cqBSsis.png','Bebidas', 'Disponible',10),
+(0, '100% zumo de manzana con gaseosa. 200ml','Appleteiser',2.4,'https://i.imgur.com/PBu5O2j.jpg','Bebidas', 'Agotado',0),
+(0, 'Botella individual de 300ml','Tónica',31.0,'https://i.imgur.com/ibfYSjJ.jpg','Bebidas', 'Disponible',20),
+(0, 'Delicioso refresco de fresa 400ml','Refresco de fresa',31.0,'https://i.imgur.com/acGk5N4.png','Bebidas', 'Disponible',40),
+(0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23);
 
 CREATE TABLE usuarios (
   nick varchar(20) not null,
