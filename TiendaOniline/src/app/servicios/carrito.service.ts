@@ -7,38 +7,53 @@ import { Articulo } from '../model/articulo';
 export class CarritoService {
   carrito: Array<Articulo> = [];
   cantidadTotal: number = 0;
+
+  public cartItemList 
   
   constructor() { }
 
   cargarCarrito(usuario: string = "invitado"){
-    if(this.carrito.length > 0)
-      localStorage.setItem(usuario, JSON.stringify(this.carrito));
+    if(localStorage.getItem(usuario)){
+      this.carrito = JSON.parse(localStorage.getItem(usuario)!);
+      console.log(this.carrito);
+    };
   }
 
-  agregarACarrito(articulo: Articulo): void{
+  agregarACarrito(articulo: Articulo, usuario: string = "invitado"): void{
       console.log(articulo);
-      if(this.carrito.length > 0){
-        this.carrito.map( (articuloEnCarrito: any) => {
-          if(articuloEnCarrito.id == articulo.id){
-            articuloEnCarrito.cantidad += 1;
-          }else{
-            articulo['cantidad'] = 1;
-            this.carrito.push(articulo);
-          }
-        });
+      if(this.buscarArticulo(articulo.id)){
+        console.log("Encontrado");
+        
       }else{
         articulo['cantidad'] = 1;
+        articulo['precioCantidad'] = articulo['cantidad'] * articulo.precio;
         this.carrito.push(articulo);
       }
 
-
-    this.devolverTodosArticulos();
+    localStorage.setItem(usuario, JSON.stringify(this.carrito));
   }
+
+  buscarArticulo(id: number): Boolean{
+    var encontrado = false;
+    this.carrito.map( (articuloEnCarrito: any) => {
+      if(articuloEnCarrito.id == id){
+        articuloEnCarrito.cantidad += 1;
+        articuloEnCarrito.precioCantidad = articuloEnCarrito.cantidad * articuloEnCarrito.precio;
+        encontrado = true;
+      }
+    });
+    return encontrado;
+  }
+
+  devolverTodosArticulos(): Array<Articulo>{
+    return this.carrito;
+  }
+
+  devolverCantidadArticulos(): any{
+    return this.carrito;
+  }
+
   
-
-  devolverTodosArticulos(){
-    console.log(this.carrito);
-  }
 
 
 }
