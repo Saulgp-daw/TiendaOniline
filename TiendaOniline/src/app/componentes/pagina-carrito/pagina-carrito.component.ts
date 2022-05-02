@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Articulo } from 'src/app/model/articulo';
 import { CarritoService } from 'src/app/servicios/carrito.service';
+import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 
 @Component({
   selector: 'app-pagina-carrito',
@@ -27,6 +28,21 @@ export class PaginaCarritoComponent implements OnInit {
 
   borrarTodos(): void{
     this.servicioCarrito.borrarTodo();
+  }
+
+  restarUnidades(articulo: Articulo): void{
+      this.servicioCarrito.restarUnidades(articulo);
+      if(articulo['cantidad'] <= 0){
+        this.servicioCarrito.borrarArticulo(articulo);
+      }
+  }
+
+  aumentarUnidades(articulo: Articulo): void{
+    if(articulo['cantidad'] <= articulo.stock){
+      this.servicioCarrito.aumentarUnidades(articulo);
+    }else{
+      alert("Has superado el límite de stock de este producto!");
+    }
   }
 
 }

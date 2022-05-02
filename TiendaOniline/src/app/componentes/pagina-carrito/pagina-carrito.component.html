@@ -20,7 +20,11 @@
               <td> <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" style="height: 100px; width: 100px;"></td>
               <td>{{ articulo.descripcion }}</td>
               <td>{{ articulo.precio }} €</td>
-              <td>{{ articulo['cantidad'] }}</td>
+              <td>
+                <button class="btn" (click)="restarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">-</button>
+                {{ articulo['cantidad'] }}
+                <button class="btn" (click)="aumentarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">+</button>
+              </td>
               <td>{{ articulo['precioCantidad'] }} €</td>
               <td><button class="btn btn-danger" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button></td>
             </tr>
