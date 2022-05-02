@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./barra-navegacion.component.css']
 })
 export class BarraNavegacionComponent implements OnInit {
-
-  constructor() { }
+  public totalArticulos: number = 0;
+  constructor(private servicioCarrito: CarritoService) { }
 
   ngOnInit(): void {
+    this.servicioCarrito.getProducts().subscribe( (respuesta: any) => {
+      this.totalArticulos = respuesta.length;
+    })
+    
   }
 
 }

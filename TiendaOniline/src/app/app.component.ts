@@ -9,7 +9,7 @@ import { CarritoService } from './servicios/carrito.service';
 export class AppComponent implements OnInit{
 
   ngOnInit(): void {
-    this.carritoService
+    this.carritoService.cargarCarrito();
   }
 
   constructor(private carritoService: CarritoService) {

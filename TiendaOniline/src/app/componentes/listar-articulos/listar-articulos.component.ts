@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Articulo } from 'src/app/model/articulo';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 
 @Component({
   selector: 'app-listar-articulos',
@@ -22,7 +23,7 @@ export class ListarArticulosComponent implements OnInit {
    * puesto que si solo hacemos uso del onInit los datos se cargarían solo la primera vez que entramos y lo que nos interesa es hacer otra request a nuestra api
    * metemos en el constructor una condición de si el evento es una instancia de fin de navegación haremos otra llamada a la api
    */
-  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router) {
+  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private carritoService: CarritoService) {
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
         // Show loading indicator
@@ -51,7 +52,9 @@ export class ListarArticulosComponent implements OnInit {
   agregarAlCarrito(articulo: Articulo = null!):void{
     //articulo['cantidad'] = 1;
     //articulo['otro'] = "sdsd";
-    console.log(articulo);
+    //this.carritoService.agregarACarrito(articulo);
+    //console.log(articulo);
+    this.carritoService.addToCart(articulo);
   }
 
 }
