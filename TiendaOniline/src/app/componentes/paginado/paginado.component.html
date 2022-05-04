@@ -1,15 +1,12 @@
 <div class="row">
-    <div class="col">
-        <span>Página: </span>
-      </div>
-      <div class="col">
-        <select class="form-select form-select-sm selectpicker show-tick" aria-label=".form-select-sm example" id="selectPaginado" (change)="redirigir($event)">
-          <option value="" disabled>Página</option>
-          <option *ngFor="let pagina of cantidadPaginas" value="{{pagina}}">
-              {{ pagina }}
-          </option>
-        </select>
-      </div>
+  <div class="col">
+    <div class="form-floating">
+      <select class="form-select" id="floatingSelect" aria-label="Floating label select example" id="selectPaginado" (change)="redirigir($event)">
+        <option *ngFor="let pagina of cantidadPaginas" value="{{pagina}}">
+          {{ pagina }}
+        </option>
+      </select>
+      <label for="floatingSelect">Página</label>
+    </div>
+  </div>
 </div>
-
-

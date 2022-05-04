@@ -56,7 +56,7 @@ INSERT INTO articulos VALUES
 (0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23);
 
 CREATE TABLE usuarios (
-  nick varchar(20) not null,
+  email varchar(20) not null,
   contrasenha varchar(150) not null,
   nombre varchar(200) not null,
   apellidos varchar(40) UNIQUE not null,
@@ -65,8 +65,8 @@ CREATE TABLE usuarios (
   codigo_postal int(5) unsigned not null,
   telefono_fijo int(9) unsigned not null,
   pais varchar(40) not null,
-  PRIMARY KEY(nick)
+  PRIMARY KEY(email)
 ) ENGINE=InnoDB;
 
 insert into usuarios values 
-('Saul123', '1234', 'Saul', 'Gonzalez Perez', 25, 'Los Realejos', 38410, 922202122, 'España');
+('saulgp1@gmail.com', '1234', 'Saul', 'Gonzalez Perez', 25, 'Los Realejos', 38410, 922202122, 'España');

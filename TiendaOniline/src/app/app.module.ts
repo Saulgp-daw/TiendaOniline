@@ -13,6 +13,7 @@ import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda
 import { PaginadoComponent } from './componentes/paginado/paginado.component';
 import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
+import { LoginRegistroComponent } from './componentes/login-registro/login-registro.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carr
     PaginaTiendaComponent,
     PaginadoComponent,
     BarraNavegacionComponent,
-    PaginaCarritoComponent
+    PaginaCarritoComponent,
+    LoginRegistroComponent
   ],
   imports: [
     BrowserModule,
