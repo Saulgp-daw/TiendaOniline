@@ -60,7 +60,6 @@ CREATE TABLE usuarios (
   contrasenha varchar(150) not null,
   nombre varchar(200) not null,
   apellidos varchar(40) UNIQUE not null,
-  edad int(3) unsigned not null,
   direccion varchar(90) not null,
   codigo_postal int(5) unsigned not null,
   telefono_fijo int(9) unsigned not null,
@@ -69,4 +68,4 @@ CREATE TABLE usuarios (
 ) ENGINE=InnoDB;
 
 insert into usuarios values 
-('saulgp1@gmail.com', '1234', 'Saul', 'Gonzalez Perez', 25, 'Los Realejos', 38410, 922202122, 'España');
+('saulgp1@gmail.com', '1234', 'Saul', 'Gonzalez Perez', 'Los Realejos', 38410, 922202122, 'España');

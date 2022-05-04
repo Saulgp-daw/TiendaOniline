@@ -81,6 +81,20 @@ class DB{
         echo "<br><span style='color:red; font-size: 3em'>$mensaje</span>";
     }
 
+    public static function loginUsuario(string $email, string $contrasenha): string{
+        $sql = "select * from usuarios where email=$email and contrasenha=$contrasenha";
+        $resultado = self::consulta($sql);
+        while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
+            return json_encode($usuario);
+        }
+    }
+
+    public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
+            $sql = "insert into usuarios values ($email, $contrsenha, $nombre, $apellidos, $direccion, $codigo_postal, $telefono_fijo, $pais)";
+            self::consulta($sql);
+            
+    }
+
 }
 
 //fcrinav@gobiernodecanarias.org

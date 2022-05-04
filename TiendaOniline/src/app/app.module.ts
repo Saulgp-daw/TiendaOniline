@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { ListarArticulosComponent } from './componentes/listar-articulos/listar-articulos.component';
 import { EditarArticulosComponent } from './componentes/editar-articulos/editar-articulos.component';
-
-import { HttpClientModule } from '@angular/common/http';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
 import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
@@ -32,7 +32,9 @@ import { LoginRegistroComponent } from './componentes/login-registro/login-regis
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

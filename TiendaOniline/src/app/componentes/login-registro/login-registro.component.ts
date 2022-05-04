@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login-registro',
@@ -6,10 +7,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-registro.component.css']
 })
 export class LoginRegistroComponent implements OnInit {
+  formularioDeRegistro: FormGroup;
 
-  constructor() { }
+  constructor(public formulario: FormBuilder) { 
+    this.formularioDeRegistro = this.formulario.group({
+      email:[''],
+      contrasenha:[''],
+      nombre:[''],
+      apellidos:[''],
+      direccion:[''],
+      codigo_postal:[''],
+      telefono_fijo:[''],
+      pais:[''],
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  nuevoRegistro(): any{
+    console.log("Prueba");
+    console.log(this.formularioDeRegistro.value);
   }
 
 }
