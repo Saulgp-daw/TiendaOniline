@@ -23,7 +23,7 @@ export class ListarCategoriasComponent implements OnInit {
     this.crudArticuloService.ObtenerCategorias().subscribe( respuesta => {
       this.Categorias = respuesta;
     });
-
+    
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pagina = this.ruta.snapshot.paramMap.get('pag');
     //console.log(this.categoria);

@@ -44,7 +44,7 @@ export class ListarArticulosComponent implements OnInit {
     //console.log(this.categoria);
     //console.log(this.pagina);
     this.crudArticuloService.ObtenerArticulosCategoria(this.categoria, this.pagina).subscribe(respuesta => {
-      console.log(respuesta);
+      //console.log(respuesta);
       this.Articulos = respuesta;
     });
   }

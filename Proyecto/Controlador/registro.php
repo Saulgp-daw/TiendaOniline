@@ -13,9 +13,7 @@ if(isset($postdata) && !empty($postdata)){
     $pais = trim($request->pais);
     $resultadoOperacion = DB::registroUsuario($email, $contrasenha, $nombre, $apellidos,$direccion, $codigo_postal, $telefono_fijo, $pais);
     if($resultadoOperacion){
-        echo '{ "resultado" : true }';
-    }else{
-        echo '{ "resultado" : false }';
+        echo '{ "resultado" : "'. $resultadoOperacion.'" }';
     }
     
 }

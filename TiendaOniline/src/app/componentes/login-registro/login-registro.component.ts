@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 
 @Component({
@@ -10,6 +11,7 @@ import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 })
 export class LoginRegistroComponent implements OnInit {
   formularioDeRegistro: FormGroup;
+  public resultadoRegistro: any;
 
   constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) { 
     this.formularioDeRegistro = this.formulario.group({
@@ -27,12 +29,28 @@ export class LoginRegistroComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  nuevoRegistro(): any{
+  async nuevoRegistro(): Promise<void>{
     console.log("Prueba");
     console.log(this.formularioDeRegistro.value);
-    var resultado = this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value).subscribe( respuesta => {
-      console.log(respuesta);
-    });
+    //this.resultadoRegistro = await this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value).toPromise(); deprecated
+    this.resultadoRegistro = await lastValueFrom(this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value));
+    console.log(this.resultadoRegistro);
+
+    /*switch(this.resultadoRegistro.resultado){
+      case("exito"):
+          alert("Usuario Registrado con éxito");
+          break;
+      case("campos_vacios"):
+          alert("Uno o más campos están vacíos");
+          break;
+      case("usuario_existente"):
+          alert("Este usuario ya está registrado, inténtelo de nuevo");
+          break;
+      case("num_argumentos"):
+          alert("El número de argumentos pasados es menor de lo posible");
+          break;
+      
+      }*/
     
   }
 

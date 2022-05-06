@@ -93,18 +93,18 @@ class DB{
         if(func_num_args() == 8){
             foreach(func_get_args() as $arg){
                 if(empty($arg) || $arg == null){
-                    return false;
+                    return "campos_vacios";
                 }
             }
             $articuloABuscar = self::consulta("select * from usuarios where email='".$email."'");
             if($articuloABuscar->fetch(PDO::FETCH_ASSOC) != null){
-                return false;
+                return "usuario_existente";
             }
             $sql = "insert into usuarios values ('$email', '$contrasenha', '$nombre', '$apellidos', '$direccion', $codigo_postal, $telefono_fijo, '$pais')";
             self::consulta($sql);
-            return true;
+            return "exito";
         }else{
-            return false;
+            return "num_argumentos";
         }
     }
 
