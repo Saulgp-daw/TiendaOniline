@@ -82,7 +82,7 @@ class DB{
     }
 
     public static function loginUsuario(string $email, string $contrasenha): string{
-        $sql = "select * from usuarios where email=$email and contrasenha=$contrasenha";
+        $sql = "select * from usuarios where email='$email' and contrasenha='$contrasenha'";
         $resultado = self::consulta($sql);
         while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
             return json_encode($usuario);
@@ -90,9 +90,22 @@ class DB{
     }
 
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
-            $sql = "insert into usuarios values ($email, $contrsenha, $nombre, $apellidos, $direccion, $codigo_postal, $telefono_fijo, $pais)";
+        if(func_num_args() == 8){
+            foreach(func_get_args() as $arg){
+                if(empty($arg) || $arg == null){
+                    return false;
+                }
+            }
+            $articuloABuscar = self::consulta("select * from usuarios where email='".$email."'");
+            if($articuloABuscar->fetch(PDO::FETCH_ASSOC) != null){
+                return false;
+            }
+            $sql = "insert into usuarios values ('$email', '$contrasenha', '$nombre', '$apellidos', '$direccion', $codigo_postal, $telefono_fijo, '$pais')";
             self::consulta($sql);
-            
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

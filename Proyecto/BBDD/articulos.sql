@@ -59,7 +59,7 @@ CREATE TABLE usuarios (
   email varchar(20) not null,
   contrasenha varchar(150) not null,
   nombre varchar(200) not null,
-  apellidos varchar(40) UNIQUE not null,
+  apellidos varchar(40) not null,
   direccion varchar(90) not null,
   codigo_postal int(5) unsigned not null,
   telefono_fijo int(9) unsigned not null,
