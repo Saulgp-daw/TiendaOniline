@@ -13,7 +13,8 @@ import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda
 import { PaginadoComponent } from './componentes/paginado/paginado.component';
 import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
-import { LoginRegistroComponent } from './componentes/login-registro/login-registro.component';
+import { LoginComponent } from './componentes/login/login.component';
+import { RegistroComponent } from './componentes/registro/registro.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { LoginRegistroComponent } from './componentes/login-registro/login-regis
     PaginadoComponent,
     BarraNavegacionComponent,
     PaginaCarritoComponent,
-    LoginRegistroComponent
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

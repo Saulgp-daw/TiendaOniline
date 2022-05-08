@@ -1,5 +1,6 @@
 <?php
 require_once("../Modelo/Articulo.php");
+require_once("../Modelo/Usuario.php");
 
 class DB{
     private static PDO $conexion;
@@ -70,11 +71,15 @@ class DB{
     }
 
     public static function convertirAObjeto($array){
-        $id = $array['id'];
-        $fecha = $array['fecha'];
-        $titulo = $array['titulo'];
-        $contenido = $array['contenido'];
-        return $articulo = new Articulo($id, $titulo, $fecha, $contenido);
+        $email = $array['email'];
+        $contrasenha = $array['contrasenha'];
+        $nombre = $array['nombre'];
+        $apellidos = $array['apellidos'];
+        $direccion = $array['direccion'];
+        $codigo_postal = $array['codigo_postal'];
+        $telefono_fijo = $array['telefono_fijo'];
+        $pais = $array['pais'];
+        return new Usuario($email, $contrasenha, $nombre, $apellidos, $direccion, $codigo_postal, $telefono_fijo, $pais);
     }
 
     public static function mensajeError($mensaje){
@@ -82,11 +87,16 @@ class DB{
     }
 
     public static function loginUsuario(string $email, string $contrasenha): string{
-        $sql = "select * from usuarios where email='$email' and contrasenha='$contrasenha'";
+        $sql = "select * from usuarios where email='".$email."'";
         $resultado = self::consulta($sql);
         while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
-            return json_encode($usuario);
+            $objetoUsuario = self::convertirAObjeto($usuario);
+            if(password_verify($contrasenha, $objetoUsuario->contrasenha)){
+                 return json_encode($usuario);
+            }
         }
+
+        return '{"resultado": "not_found"}';
     }
 
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){

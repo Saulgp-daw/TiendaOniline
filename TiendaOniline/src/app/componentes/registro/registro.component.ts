@@ -2,22 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
-/**
- * importamos formgroup y formbuilder para recoger los valores de los inputs
- * lastvalue from es una promesa que recogerá de la api el último los valores que nos devuelva
- */
 
 @Component({
-  selector: 'app-login-registro',
-  templateUrl: './login-registro.component.html',
-  styleUrls: ['./login-registro.component.css']
+  selector: 'app-registro',
+  templateUrl: './registro.component.html',
+  styleUrls: ['./registro.component.css']
 })
-/**
- * en el contructor ponemos el nombre de los campos que vayamos a recibir
- */
-export class LoginRegistroComponent implements OnInit {
+export class RegistroComponent implements OnInit {
   formularioDeRegistro: FormGroup;
+
   public resultadoRegistro: any;
+  public resultadoLogin: any;
 
   constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) { 
     this.formularioDeRegistro = this.formulario.group({
@@ -60,7 +55,6 @@ export class LoginRegistroComponent implements OnInit {
           alert("El número de argumentos pasados es menor de lo posible");
           break;
       }
-    
   }
 
 }

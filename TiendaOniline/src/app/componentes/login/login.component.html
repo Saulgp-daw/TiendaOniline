@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+              <div class="card-header">
+                <h4>Login</h4>
+              </div>
+              <div class="card-body">
+                <form [formGroup]="formularioLogin" (ngSubmit)="nuevoLogin()">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="email-login" placeholder="name@example.com"
+                      formControlName="email">
+                    <label for="email">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="contrasenha-login" placeholder="Password"
+                      formControlName="contrasenha">
+                    <label for="contrasenha">Contraseña</label>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Loggeate</button>
+                </form>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

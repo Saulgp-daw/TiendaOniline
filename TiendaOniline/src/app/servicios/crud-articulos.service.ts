@@ -8,6 +8,10 @@ import { Usuario } from '../model/usuario';
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Aquí es donde hacemos las peticiones a nuestra api localizada en la carpeta proyecto, hacemos uso de los módulos de angular para conectarnos
+ * y devolver la respuesta
+ */
 export class CrudArticulosService {
   API: string="http://localhost/PHP/DWES/Proyecto/"; //api de php en crudo que devuelve un json
   constructor(private clienteHttp:HttpClient) { }
@@ -30,6 +34,11 @@ export class CrudArticulosService {
 
   agregarUsuario(datosUsuario: Usuario):Observable<any>{
     return this.clienteHttp.post(this.API+"Controlador/registro.php", datosUsuario);
+  }
+
+  comprobarLogin(datosUsuario: Usuario): Observable<any>{
+    console.log(datosUsuario);
+    return this.clienteHttp.post(this.API+"Controlador/login.php", datosUsuario);
   }
 
   
