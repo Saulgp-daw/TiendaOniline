@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Usuario } from '../model/usuario';
+import { Articulo } from '../model/articulo';
 
 
 @Injectable({
@@ -38,6 +39,10 @@ export class CrudArticulosService {
 
   comprobarLogin(datosUsuario: Usuario): Observable<any>{
     return this.clienteHttp.post(this.API+"Controlador/login.php", datosUsuario);
+  }
+
+  actualizarArticulo(articulo: Articulo): Observable<any>{
+    return this.clienteHttp.get(this.API+"Controlador/actualizarArticulo.php?id="+articulo.id+"&cantidad="+articulo['cantidad']);
   }
 
   

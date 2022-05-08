@@ -13,7 +13,7 @@ export class PaginaCarritoComponent implements OnInit {
   public granTotal: number = 0;
 
 
-  constructor(private servicioCarrito: CarritoService) { }
+  constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService) { }
 
   ngOnInit(): void {
     this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
@@ -43,6 +43,13 @@ export class PaginaCarritoComponent implements OnInit {
     }else{
       alert("Has superado el límite de stock de este producto!");
     }
+  }
+
+  finalizarCompra(): void{
+    this.carrito.forEach(articulo => {
+      this.servicioArticulos.actualizarArticulo(articulo);
+    });
+    //this.servicioCarrito.borrarTodo();
   }
 
 }

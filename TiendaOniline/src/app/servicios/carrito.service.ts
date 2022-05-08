@@ -33,6 +33,12 @@ export class CarritoService {
     localStorage.setItem("usuarioConectado", JSON.stringify(this.usuario));
   }
 
+  limpiarSesion():void{
+    localStorage.removeItem("usuarioConectado");
+    this.usuario = "invitado";
+    this.usuarioBehaviour.next(this.usuario);
+  }
+
 
   devolverProductos(): any{
     return this.listaProductos.asObservable();
@@ -131,4 +137,6 @@ export class CarritoService {
       this.guardarCarrito();
     }
   }
+
+  
 }

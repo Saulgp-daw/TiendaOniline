@@ -66,11 +66,11 @@ class DB{
         $sql = "Select * from articulos where id=$id";
         $resultado = self::consulta($sql);
         while($articulo = $resultado->fetch(PDO::FETCH_ASSOC)){
-            return json_encode($articulo);
+            return $articulo;
         }
     }
 
-    public static function convertirAObjeto($array){
+    public static function convertirAObjetoUsuario($array): Usuario{
         $email = $array['email'];
         $contrasenha = $array['contrasenha'];
         $nombre = $array['nombre'];
@@ -82,6 +82,18 @@ class DB{
         return new Usuario($email, $contrasenha, $nombre, $apellidos, $direccion, $codigo_postal, $telefono_fijo, $pais);
     }
 
+    public static function convertirAObjetoArticulo($array){
+        $id = $array['id'];
+        $descripcion= $array['descripcion'];
+        $nombre= $array['nombre'];
+        $precio= $array['precio'];
+        $imagen= $array['imagen'];
+        $categoria= $array['categoria'];
+        $estado= $array['estado'];
+        $stock= $array['stock'];
+        return new Articulo($id, $descripcion, $nombre, $precio, $imagen, $categoria, $estado, $stock);
+    }
+
     public static function mensajeError($mensaje){
         echo "<br><span style='color:red; font-size: 3em'>$mensaje</span>";
     }
@@ -90,7 +102,7 @@ class DB{
         $sql = "select * from usuarios where email='".$email."'";
         $resultado = self::consulta($sql);
         while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
-            $objetoUsuario = self::convertirAObjeto($usuario);
+            $objetoUsuario = self::convertirAObjetoUsuario($usuario);
             if(password_verify($contrasenha, $objetoUsuario->contrasenha)){
                  return json_encode($usuario);
             }
@@ -106,8 +118,8 @@ class DB{
                     return "campos_vacios";
                 }
             }
-            $articuloABuscar = self::consulta("select * from usuarios where email='".$email."'");
-            if($articuloABuscar->fetch(PDO::FETCH_ASSOC) != null){
+            $usuarioABuscar = self::consulta("select * from usuarios where email='".$email."'");
+            if($usuarioABuscar->fetch(PDO::FETCH_ASSOC) != null){
                 return "usuario_existente";
             }
             $sql = "insert into usuarios values ('$email', '$contrasenha', '$nombre', '$apellidos', '$direccion', $codigo_postal, $telefono_fijo, '$pais')";
@@ -115,6 +127,22 @@ class DB{
             return "exito";
         }else{
             return "num_argumentos";
+        }
+    }
+
+    public static function actualizarArticulo(int $id, int $cantidad = 0){
+        if(!empty($id) && $id != null){
+            $articulo = self::convertirAObjetoArticulo(self::devolverArticulo($id));
+            if($articulo){
+                $estado = "Disponible";
+                if($cantidad >= $articulo->stock){
+                    $cantidad = $articulo->stock;
+                    $estado = "Agotado";
+                }
+                $cantidad = $articulo->stock - $cantidad; 
+                $sql = "update articulos set stock=$cantidad, estado='".$estado."' where id=$id";
+                return self::consulta($sql)->rowCount();
+            }
         }
     }
 

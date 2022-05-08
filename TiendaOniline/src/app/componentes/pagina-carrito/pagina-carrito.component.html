@@ -37,7 +37,11 @@
               <td>
                 <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">Seguir comprando</button>
               </td>
-              <td></td>
+              <td>
+                <button class="btn btn-secondary" (click)="finalizarCompra()">
+                  Finalizar compra
+                </button>
+              </td>
               <td></td>
               <td>Total: </td>
               <td>{{granTotal}} €</td>

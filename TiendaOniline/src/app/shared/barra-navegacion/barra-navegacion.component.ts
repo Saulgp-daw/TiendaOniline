@@ -39,6 +39,8 @@ export class BarraNavegacionComponent implements OnInit {
   }
 
   finalizarSesion():void{
-    localStorage.removeItem("usuarioConectado");
+    this.servicioCarrito.limpiarSesion();
+    this.servicioCarrito.cargarCarrito();
+    
   }
 }

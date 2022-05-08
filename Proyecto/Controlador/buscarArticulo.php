@@ -11,7 +11,7 @@
         $id = intval($_GET['id']);
     }
 
-    $articulo = DB::devolverArticulo($id);
+    $articulo = json_encode(DB::devolverArticulo($id)) ;
     require_once("../Vista/vistaArticuloUnico.php");
 
 
