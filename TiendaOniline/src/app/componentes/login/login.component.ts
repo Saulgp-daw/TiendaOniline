@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { Usuario } from 'src/app/model/usuario';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 
 @Component({
   selector: 'app-login',
@@ -11,8 +13,9 @@ import { firstValueFrom, lastValueFrom } from 'rxjs';
 export class LoginComponent implements OnInit {
   formularioLogin: FormGroup;
   public resultadoLogin: any;
+  public usuario!: Usuario;
 
-  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) { 
+  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService, private carritoService: CarritoService) { 
     this.formularioLogin = this.formulario.group({
       email:[''],
       contrasenha:['']
@@ -24,8 +27,14 @@ export class LoginComponent implements OnInit {
 
   async nuevoLogin(): Promise<void>{
     console.log("Prueba");
-    console.log(this.formularioLogin.value);
     this.resultadoLogin = await lastValueFrom(this.crudArticuloService.comprobarLogin(this.formularioLogin.value));
-    console.log(this.resultadoLogin);
+    this.usuario = this.resultadoLogin;
+    if(this.resultadoLogin.resultado){
+      alert("Usuario o contraseña incorrectos")
+    }else{
+      this.carritoService.setUsuario(this.usuario);
+      this.carritoService.cargarCarrito();
+    }
+    
   }
 }

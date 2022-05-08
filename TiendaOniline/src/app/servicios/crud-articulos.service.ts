@@ -37,7 +37,6 @@ export class CrudArticulosService {
   }
 
   comprobarLogin(datosUsuario: Usuario): Observable<any>{
-    console.log(datosUsuario);
     return this.clienteHttp.post(this.API+"Controlador/login.php", datosUsuario);
   }
 

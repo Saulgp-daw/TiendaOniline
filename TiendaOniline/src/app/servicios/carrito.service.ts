@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Articulo } from '../model/articulo';
+import { Usuario } from '../model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,28 @@ export class CarritoService {
 
   public carrito: any = [];
   public listaProductos = new BehaviorSubject<any>([]);
-  private usuario: string = "invitado";
+  public usuario: any = "invitado";
+  public usuarioBehaviour = new BehaviorSubject<any>("invitado");
   
   constructor() { }
+
+  setUsuario(usuario: any){
+    this.usuario = usuario;
+    this.usuarioBehaviour.next(this.usuario);
+    this.guardarUsuario();
+  }
+
+  devolverUsuario(): any{
+    if(localStorage.getItem("usuarioConectado")){
+      this.usuario = JSON.parse(localStorage.getItem("usuarioConectado")!);
+      this.usuarioBehaviour.next(this.usuario);
+    }
+    return this.usuarioBehaviour.asObservable();
+  }
+
+  guardarUsuario(): void{
+    localStorage.setItem("usuarioConectado", JSON.stringify(this.usuario));
+  }
 
 
   devolverProductos(): any{
@@ -53,15 +73,29 @@ export class CarritoService {
   }
 
   cargarCarrito(){
-    if(localStorage.getItem(this.usuario)){
-      this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
-      this.listaProductos.next(this.carrito);
-      //console.log(this.carrito);
+    if(this.usuario == "invitado"){
+      if(localStorage.getItem(this.usuario)){
+        this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
+        this.listaProductos.next(this.carrito);
+        //console.log(this.carrito);
+      }
+    }else{
+      if(localStorage.getItem(this.usuario.nombre)){
+        this.carrito = JSON.parse(localStorage.getItem(this.usuario.nombre)!);
+        this.listaProductos.next(this.carrito);
+        //console.log(this.carrito);
+      }
     }
+     
   }
 
   guardarCarrito(): void{
-    localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
+    if(this.usuario == "invitado"){
+      localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
+    }else{
+      localStorage.setItem(this.usuario.nombre, JSON.stringify(this.carrito));
+    }
+    
   }
 
   buscarArticulo(id: number, cantidad: number = 1): Boolean{

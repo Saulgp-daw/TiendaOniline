@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col" *ngFor="let articulo of Articulos; let iControl=index">
+  <div class="col" *ngFor="let articulo of articulos; let iControl=index">
     <div class="card" style="width: 16rem;">
       <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" height="200px" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
       <div class="card-body">

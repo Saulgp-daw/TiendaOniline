@@ -10,7 +10,7 @@ import { CarritoService } from 'src/app/servicios/carrito.service';
   styleUrls: ['./listar-articulos.component.css']
 })
 export class ListarArticulosComponent implements OnInit {
-  public Articulos: any;
+  public articulos: any;
   private categoria: any;
   private pagina: any;
   /**
@@ -45,7 +45,7 @@ export class ListarArticulosComponent implements OnInit {
     //console.log(this.pagina);
     this.crudArticuloService.ObtenerArticulosCategoria(this.categoria, this.pagina).subscribe(respuesta => {
       //console.log(respuesta);
-      this.Articulos = respuesta;
+      this.articulos = respuesta;
     });
   }
 

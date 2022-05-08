@@ -37,16 +37,29 @@
       </form>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" routerLink="/registro">
-              Signup
-            </a>
+          <a class="nav-link" routerLink="/registro">
+            Signup
+          </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="/login">
-              Login
-            </a>
+        <li class="nav-item" *ngIf="nombreUsuario == 'invitado'; else logout">
+          <a class="nav-link" routerLink="/login">
+            Login
+          </a>
+
         </li>
-    </ul>
+        <ng-template #logout>
+          <a class="nav-link">
+            <button class="btn btn-dark" (click)="finalizarSesion()">
+              Logout
+            </button>
+          </a>
+          <button class="btn btn-dark">
+            {{nombreUsuario}}
+            <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 24px; color: azure; margin-top:6px"></i>
+          </button>
+        </ng-template>
+      </ul>
+     
       <button class="btn btn-dark" routerLink="carrito">
         <i class="fa fa-shopping-cart" style="font-size: 24px; color: azure;"></i>
         <div class="badge bg-danger">{{totalArticulos}}</div>

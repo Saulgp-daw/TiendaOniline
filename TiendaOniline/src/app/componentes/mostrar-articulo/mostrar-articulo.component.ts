@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { ActivatedRoute } from '@angular/router';
+import { Articulo } from 'src/app/model/articulo';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 
 @Component({
   selector: 'app-mostrar-articulo',
@@ -12,7 +14,7 @@ export class MostrarArticuloComponent implements OnInit {
   public Articulo: any;
   Categorias: any;
   
-  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute) { }
+  constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private carritoService: CarritoService) { }
 
   ngOnInit(): void {
     this.id = this.ruta.snapshot.paramMap.get('id');
@@ -26,6 +28,10 @@ export class MostrarArticuloComponent implements OnInit {
       //console.log(respuesta);
       this.Categorias = respuesta;
     });
+  }
+
+  agregarAlCarrito(articulo: Articulo = null!):void{
+    this.carritoService.agregarACarrito(articulo);
   }
 
 }
