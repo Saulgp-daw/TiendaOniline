@@ -8,6 +8,7 @@ import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 
 const routes: Routes = [
   {path: 'tienda', pathMatch:'full', redirectTo:'tienda/categoria/todos'},
@@ -17,8 +18,8 @@ const routes: Routes = [
   {path: 'tienda/mostrar-articulo/:id', component: MostrarArticuloComponent},
   {path: 'carrito', component: PaginaCarritoComponent},
   {path: 'registro', component: RegistroComponent},
-  {path: 'login', component: LoginComponent}
-  //{path: 'perfil', component: }
+  {path: 'login', component: LoginComponent},
+  {path: 'perfil', component: PerfilUsuarioComponent}
 ];
 
 @NgModule({

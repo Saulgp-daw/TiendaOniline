@@ -80,14 +80,17 @@ export class CarritoService {
 
   cargarCarrito(){
     if(this.usuario == "invitado"){
+      console.log("soy invitado");
       if(localStorage.getItem(this.usuario)){
         this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
         this.listaProductos.next(this.carrito);
         //console.log(this.carrito);
+      }else{
+        this.borrarTodo();
       }
     }else{
-      if(localStorage.getItem(this.usuario.nombre)){
-        this.carrito = JSON.parse(localStorage.getItem(this.usuario.nombre)!);
+      if(localStorage.getItem(this.usuario.email)){
+        this.carrito = JSON.parse(localStorage.getItem(this.usuario.email)!);
         this.listaProductos.next(this.carrito);
         //console.log(this.carrito);
       }
@@ -99,7 +102,7 @@ export class CarritoService {
     if(this.usuario == "invitado"){
       localStorage.setItem(this.usuario, JSON.stringify(this.carrito));
     }else{
-      localStorage.setItem(this.usuario.nombre, JSON.stringify(this.carrito));
+      localStorage.setItem(this.usuario.email, JSON.stringify(this.carrito));
     }
     
   }

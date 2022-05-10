@@ -32,7 +32,7 @@ export class BarraNavegacionComponent implements OnInit {
       if(respuesta == "invitado"){
         this.nombreUsuario = respuesta;
       }else{
-        this.nombreUsuario = respuesta.nombre;
+        this.nombreUsuario = respuesta.email;
       }
     });
     this.servicioCarrito.cargarCarrito();

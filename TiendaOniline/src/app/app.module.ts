@@ -14,7 +14,8 @@ import { PaginadoComponent } from './componentes/paginado/paginado.component';
 import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
 import { LoginComponent } from './componentes/login/login.component';
-import { RegistroComponent } from './componentes/registro/registro.component'; 
+import { RegistroComponent } from './componentes/registro/registro.component';
+import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component'; 
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { RegistroComponent } from './componentes/registro/registro.component';
     BarraNavegacionComponent,
     PaginaCarritoComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
