@@ -6,7 +6,7 @@
             <h4>Mi perfil</h4>
           </div>
           <div class="card-body">
-            <form [formGroup]="formularioDeModificacion">
+            <form [formGroup]="formularioDeModificacion" (ngSubmit)="actualizarUsuario()">
               <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="email" placeholder="name@example.com"
                   formControlName="email" readonly='readonly' value="{{usuarioConectado.email}}">

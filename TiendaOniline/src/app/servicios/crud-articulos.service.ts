@@ -45,6 +45,10 @@ export class CrudArticulosService {
     return this.clienteHttp.get(this.API+"Controlador/actualizarArticulo.php?id="+articulo.id+"&cantidad="+articulo['cantidad']);
   }
 
+  actualizarUsuario(datosUsuario: Usuario):Observable<any>{
+    return this.clienteHttp.post(this.API+"Controlador/actualizarUsuario.php?actualizar", datosUsuario);
+  }
+
   
 
 

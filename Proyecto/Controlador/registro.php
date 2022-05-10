@@ -1,5 +1,5 @@
 <?php
-include_once("header.php");
+require_once("header.php");
 /**
  * recogemos los valores enviados desde angular para tratar con los datos, comprobando antes si se encuentran datos en estos
  * llamaremos luego a la BBDD y dependiendo del resultado de la operación devolveremos un JSON.

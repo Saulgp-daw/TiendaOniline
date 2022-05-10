@@ -55,5 +55,4 @@ export class RegistroComponent implements OnInit {
           break;
       }
   }
-
 }

@@ -34,8 +34,7 @@ export class LoginComponent implements OnInit {
     }else{
       this.carritoService.setUsuario(this.usuario);
       this.carritoService.cargarCarrito();
-      this.router.navigate(["carrito"]);
+      this.router.navigate(["tienda/categoria/todos/1"]);
     }
-    
   }
 }

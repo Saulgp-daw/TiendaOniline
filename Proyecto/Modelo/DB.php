@@ -5,7 +5,8 @@ require_once("../Modelo/Usuario.php");
 class DB{
     private static PDO $conexion;
 
-    public static function consulta(string $sql){
+    //Si falla alguna consulta es por el Object
+    public static function consulta(string $sql): Object{
         try{
             [$host, $user, $pwd, $db] = ["localhost", "admin", "admin", "proyecto"];
             self::$conexion = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pwd);
@@ -70,6 +71,14 @@ class DB{
         }
     }
 
+    public static function devolverUsuario(string $email): Usuario{
+        $sql = "select * from usuarios where email='".$email."'";
+        $resultado = self::consulta($sql);
+        while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
+            return self::convertirAObjetoUsuario($usuario);
+        }
+    }
+
     public static function convertirAObjetoUsuario($array): Usuario{
         $email = $array['email'];
         $contrasenha = $array['contrasenha'];
@@ -111,6 +120,10 @@ class DB{
         return '{"resultado": "not_found"}';
     }
 
+    public static function comprobarContrasenha(string $sql): bool{
+
+    }
+
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
         if(func_num_args() == 8){
             foreach(func_get_args() as $arg){
@@ -125,6 +138,29 @@ class DB{
             $sql = "insert into usuarios values ('$email', '$contrasenha', '$nombre', '$apellidos', '$direccion', $codigo_postal, $telefono_fijo, '$pais')";
             self::consulta($sql);
             return "exito";
+        }else{
+            return "num_argumentos";
+        }
+    }
+
+    public static function actualizarUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais): string{
+        if(func_num_args() == 8){
+            foreach(func_get_args() as $arg){
+                if(empty($arg) || $arg == null){
+                    return "campos_vacios";
+                }
+            }
+            $usuario = self::devolverUsuario($email);
+            if(password_verify($contrasenha, $usuario->contrasenha)){
+                $sql = "update usuarios set nombre='".$nombre.
+                "', apellidos='".$apellidos.
+                "', direccion='".$direccion.
+                "', codigo_postal='".$codigo_postal.
+                "', telefono_fijo='".$telefono_fijo.
+                "', pais='".$pais."' where email='".$email."'";
+                self::consulta($sql);
+                return "exito";
+           }
         }else{
             return "num_argumentos";
         }
