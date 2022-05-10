@@ -80,7 +80,6 @@ export class CarritoService {
 
   cargarCarrito(){
     if(this.usuario == "invitado"){
-      console.log("soy invitado");
       if(localStorage.getItem(this.usuario)){
         this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
         this.listaProductos.next(this.carrito);

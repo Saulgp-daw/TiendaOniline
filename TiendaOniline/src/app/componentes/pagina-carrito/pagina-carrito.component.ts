@@ -11,6 +11,7 @@ import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 export class PaginaCarritoComponent implements OnInit {
   public carrito: Array<Articulo> = [];
   public granTotal: number = 0;
+  public usuario: any;
 
 
   constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService) { }
@@ -19,6 +20,9 @@ export class PaginaCarritoComponent implements OnInit {
     this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
       this.carrito = respuesta;
       this.granTotal = this.servicioCarrito.calcularTotal();
+    });
+    this.servicioCarrito.devolverUsuario().subscribe( (respuesta: any) => {
+      this.usuario = respuesta;
     });
   }
 
@@ -38,7 +42,7 @@ export class PaginaCarritoComponent implements OnInit {
   }
 
   aumentarUnidades(articulo: Articulo): void{
-    if(articulo['cantidad'] <= articulo.stock){
+    if(articulo['cantidad'] < articulo.stock){
       this.servicioCarrito.aumentarUnidades(articulo);
     }else{
       alert("Has superado el límite de stock de este producto!");
@@ -47,7 +51,7 @@ export class PaginaCarritoComponent implements OnInit {
 
   finalizarCompra(): void{
     this.carrito.forEach(articulo => {
-      this.servicioArticulos.actualizarArticulo(articulo);
+      this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { console.log(respuesta)}); //quitar el console log cuando salga a produccion
     });
     //this.servicioCarrito.borrarTodo();
   }

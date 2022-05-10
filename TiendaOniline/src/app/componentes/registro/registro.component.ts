@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +15,7 @@ export class RegistroComponent implements OnInit {
   public resultadoRegistro: any;
   public resultadoLogin: any;
 
-  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) { 
+  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService, private router: Router) { 
     this.formularioDeRegistro = this.formulario.group({
       email:[''],
       contrasenha:[''],
@@ -35,15 +36,13 @@ export class RegistroComponent implements OnInit {
    * se le mostrará un mensaje con el resultado
    */
   async nuevoRegistro(): Promise<void>{
-    console.log("Prueba");
-    console.log(this.formularioDeRegistro.value);
     //this.resultadoRegistro = await this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value).toPromise(); deprecated
     this.resultadoRegistro = await lastValueFrom(this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value));
-    console.log(this.resultadoRegistro);
 
     switch(this.resultadoRegistro.resultado){
       case("exito"):
           alert("Usuario Registrado con éxito");
+          this.router.navigate(["login"]);
           break;
       case("campos_vacios"):
           alert("Uno o más campos están vacíos");

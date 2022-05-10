@@ -38,9 +38,12 @@
                 <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">Seguir comprando</button>
               </td>
               <td>
-                <button class="btn btn-secondary" (click)="finalizarCompra()">
+                <button class="btn btn-secondary" (click)="finalizarCompra()" *ngIf="usuario != 'invitado'; else pedirRegistro">
                   Finalizar compra
                 </button>
+                <ng-template #pedirRegistro>
+                  Debes estar registrado para finalizar la compra
+                </ng-template>
               </td>
               <td></td>
               <td>Total: </td>

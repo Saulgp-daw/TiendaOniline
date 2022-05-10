@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col" *ngFor="let articulo of articulos; let iControl=index">
-    <div class="card" style="width: 16rem;">
-      <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" height="200px" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
+    <div class="card" style="width: 16rem;" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
+      <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" height="200px" >
       <div class="card-body">
         <h5 class="card-title">{{articulo.nombre}}</h5>
         <span>Estado: {{articulo.estado}}</span>
         <p class="card-text text-muted">{{articulo.precio}} €</p>
 
-        <button class="btn btn-primary" (click)="agregarAlCarrito(articulo)" *ngIf="articulo.estado == 'Disponible'; else notAvailable">Añadir al carrito <i class="fa fa-cart-plus" style="font-size: 24px;"></i> </button>
+        <button class="btn btn-primary" (click)="agregarAlCarrito(articulo);$event.preventDefault();$event.stopPropagation()" *ngIf="articulo.estado == 'Disponible'; else notAvailable">Añadir al carrito <i class="fa fa-cart-plus" style="font-size: 24px;"></i> </button>
         <ng-template #notAvailable>
           <button class="btn btn-secondary" disabled>Sin stock</button>
         </ng-template>
