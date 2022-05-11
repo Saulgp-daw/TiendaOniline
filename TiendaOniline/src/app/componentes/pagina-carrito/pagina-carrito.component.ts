@@ -15,13 +15,13 @@ export class PaginaCarritoComponent implements OnInit {
   public carrito: Array<Articulo> = [];
   public factura: Array<Articulo> = [];
   public granTotal: number = 0;
+  public granTotalFactura: number = 0;
   public usuario: any;
   public invoice: number = 0;
   public fechaCompra: any;
   public gastosEnvio: number = 15.32;
   public gastosTotales: string = "0";
   public finalizadaCompra: boolean = false;
-
 
   constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService, private ruta: ActivatedRoute, private router: Router) {
    }
@@ -70,6 +70,7 @@ export class PaginaCarritoComponent implements OnInit {
       this.factura.push(articulo);
     });
     this.finalizadaCompra = true;
+    this.granTotalFactura = this.granTotal;
     this.borrarTodos();
   }
 
@@ -96,8 +97,6 @@ export class PaginaCarritoComponent implements OnInit {
     }).then((docResult) => {
       docResult.save(`Factura_Tienda_Oniline_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
     });
-
-    this.finalizadaCompra = false;
   }
 
 }
