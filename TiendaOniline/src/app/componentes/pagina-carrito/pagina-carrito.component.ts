@@ -4,6 +4,7 @@ import { CarritoService } from 'src/app/servicios/carrito.service';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import jsPDF from 'jspdf'; 
 import html2canvas from 'html2canvas';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-carrito',
@@ -12,16 +13,18 @@ import html2canvas from 'html2canvas';
 })
 export class PaginaCarritoComponent implements OnInit {
   public carrito: Array<Articulo> = [];
+  public factura: Array<Articulo> = [];
   public granTotal: number = 0;
   public usuario: any;
   public invoice: number = 0;
   public fechaCompra: any;
   public gastosEnvio: number = 15.32;
-  public gastosTotales: number = 0;
+  public gastosTotales: string = "0";
   public finalizadaCompra: boolean = false;
 
 
-  constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService) { }
+  constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService, private ruta: ActivatedRoute, private router: Router) {
+   }
 
   ngOnInit(): void {
     this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
@@ -35,7 +38,7 @@ export class PaginaCarritoComponent implements OnInit {
     this.invoice = Math.floor(100000 + Math.random() * 900000);
     let hoy = new Date();
     this.fechaCompra = hoy.getFullYear()+'-'+(hoy.getMonth()+1)+'-'+hoy.getDate();
-    this.gastosTotales = this.granTotal+this.gastosEnvio;
+    this.gastosTotales = (this.granTotal+this.gastosEnvio).toFixed(2);
   }
 
   borrarArticulo(articulo: Articulo): void{
@@ -64,20 +67,10 @@ export class PaginaCarritoComponent implements OnInit {
   finalizarCompra(): void{
     this.carrito.forEach(articulo => {
       this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { console.log(respuesta)}); //quitar el console log cuando salga a produccion
+      this.factura.push(articulo);
     });
-    //this.servicioCarrito.borrarTodo();
-    this.gastosTotales = this.granTotal+this.gastosEnvio;
     this.finalizadaCompra = true;
-   
-    setTimeout(() => {
-      this.generarFactura();
-    }, 3000);
-    setTimeout(() => {
-      this.servicioCarrito.borrarTodo();
-      this.finalizadaCompra = false;
-    }, 3000);
-    
-    
+    this.borrarTodos();
   }
 
   generarFactura(): void {
@@ -103,6 +96,8 @@ export class PaginaCarritoComponent implements OnInit {
     }).then((docResult) => {
       docResult.save(`Factura_Tienda_Oniline_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
     });
+
+    this.finalizadaCompra = false;
   }
 
 }

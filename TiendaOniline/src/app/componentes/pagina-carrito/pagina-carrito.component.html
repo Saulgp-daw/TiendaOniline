@@ -59,7 +59,7 @@
     </div>
   </div>
 </ng-container>
-<ng-container *ngIf="finalizadaCompra == true" >
+<ng-container *ngIf="finalizadaCompra == true">
   <div class="container">
     <div id="htmlData">
       <div class="row justify-content-center">
@@ -94,7 +94,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let articulo of carrito">
+            <tr *ngFor="let articulo of factura">
               <td></td>
               <td>{{articulo['cantidad']}}</td>
               <td>{{articulo.nombre}}</td>
@@ -118,6 +118,9 @@
         </table>
       </div>
     </div>
+    <button class="btn btn-secondary" (click)="generarFactura()">
+      Imprimir factura
+    </button>
   </div>
 
 </ng-container>

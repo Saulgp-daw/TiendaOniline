@@ -16,7 +16,6 @@ import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carr
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
-import { CompraFinalizadaComponent } from './componentes/compra-finalizada/compra-finalizada.component'; 
 
 
 @NgModule({
@@ -32,8 +31,7 @@ import { CompraFinalizadaComponent } from './componentes/compra-finalizada/compr
     PaginaCarritoComponent,
     LoginComponent,
     RegistroComponent,
-    PerfilUsuarioComponent,
-    CompraFinalizadaComponent
+    PerfilUsuarioComponent
   ],
   imports: [
     BrowserModule,
