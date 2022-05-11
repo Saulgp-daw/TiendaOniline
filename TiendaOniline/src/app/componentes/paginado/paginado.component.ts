@@ -31,14 +31,11 @@ export class PaginadoComponent implements OnInit {
 
   cargarPaginado(ARTICULOSPORPAGINA: number):void{
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
-    console.log(this.categoria);
     if(this.categoria == "todos"){
       this.categoria = "";
     }
     this.crudArticuloService.ObtenerCantidadPaginas(this.categoria).subscribe( respuesta => {
-      console.log(respuesta);
       var cantidadArticulos = parseInt(respuesta.cantidad);
-      //console.log(Math.ceil(cantidadArticulos/ARTICULOSPORPAGINA));
       var numPaginas = Math.ceil(cantidadArticulos/ARTICULOSPORPAGINA);
       this.cantidadPaginas = new Array<number>();
       for(let i = 1; i <= numPaginas; i++){
