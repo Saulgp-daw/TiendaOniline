@@ -18,35 +18,35 @@ export class CrudArticulosService {
   constructor(private clienteHttp:HttpClient) { }
 
   ObtenerArticulosCategoria(categoria:string = "todos", pagina:number=1, tamPag:number=10): Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/listadoArticulos.php?pag="+pagina+"&tamPag="+tamPag+"&categoria="+categoria);
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?listar&pag="+pagina+"&tamPag="+tamPag+"&categoria="+categoria);
   }
 
   ObtenerCategorias(): Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/listadoCategorias.php");
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?nombres_categorias");
   }
 
   ObtenerArticulo(id: any): Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/buscarArticulo.php?id="+id);
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?id="+id);
   }
 
   ObtenerCantidadPaginas(categoria: string):Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/devolverCantidadArticulos.php?categoria="+categoria);
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?categorias="+categoria);
+  }
+  
+  actualizarArticulo(articulo: Articulo): Observable<any>{
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?id="+articulo.id+"&cantidad="+articulo['cantidad']);
   }
 
   agregarUsuario(datosUsuario: Usuario):Observable<any>{
-    return this.clienteHttp.post(this.API+"Controlador/registro.php", datosUsuario);
+    return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?registro", datosUsuario);
   }
 
   comprobarLogin(datosUsuario: Usuario): Observable<any>{
-    return this.clienteHttp.post(this.API+"Controlador/login.php", datosUsuario);
-  }
-
-  actualizarArticulo(articulo: Articulo): Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/actualizarArticulo.php?id="+articulo.id+"&cantidad="+articulo['cantidad']);
+    return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?login", datosUsuario);
   }
 
   actualizarUsuario(datosUsuario: Usuario):Observable<any>{
-    return this.clienteHttp.post(this.API+"Controlador/actualizarUsuario.php?actualizar", datosUsuario);
+    return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?actualizar", datosUsuario);
   }
 
   

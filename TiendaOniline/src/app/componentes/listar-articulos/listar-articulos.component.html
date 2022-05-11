@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col" *ngFor="let articulo of articulos; let iControl=index">
-    <div class="card" style="width: 16rem;" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
+  <div class="col-xs-4 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-center align-items-stretch"  *ngFor="let articulo of articulos; let iControl=index">
+    <div class="card m-1" style="width: 16rem;" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
       <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" height="200px" >
       <div class="card-body">
-        <h5 class="card-title">{{articulo.nombre}}</h5>
+        <h5 class="card-title" height="20px">{{articulo.nombre}}</h5>
         <span>Estado: {{articulo.estado}}</span>
         <p class="card-text text-muted">{{articulo.precio}} €</p>
 

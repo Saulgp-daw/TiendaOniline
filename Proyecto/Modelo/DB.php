@@ -120,10 +120,6 @@ class DB{
         return '{"resultado": "not_found"}';
     }
 
-    public static function comprobarContrasenha(string $sql): bool{
-
-    }
-
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
         if(func_num_args() == 8){
             foreach(func_get_args() as $arg){

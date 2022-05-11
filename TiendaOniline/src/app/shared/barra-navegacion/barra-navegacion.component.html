@@ -13,23 +13,6 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="tienda/categoria/todos/1">Tienda</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Carrito
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" routerLink="carrito">Ver carrito</a></li>
-            <li><a class="dropdown-item" routerLink="finalizar-compra">Finalizar compra</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" routerLink="perfil" tabindex="-1" aria-disabled="true">Perfil</a>
-        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -45,25 +28,28 @@
           <a class="nav-link" routerLink="/login">
             Login
           </a>
-
         </li>
         <ng-template #logout>
-          <a class="nav-link">
-            <button class="btn btn-dark" (click)="finalizarSesion()">
-              Logout
-            </button>
-          </a>
-          <button class="btn btn-dark" routerLink="/perfil">
-            {{nombreUsuario}}
-            <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 24px; color: azure; margin-top:6px"></i>
-          </button>
+          <li class="nav-item">
+            <a class="nav-link" (click)="finalizarSesion()">
+                Logout
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/perfil">
+                {{nombreUsuario}}
+                <i class="fa fa-user-circle-o" aria-hidden="true"
+                  style="font-size: 24px; color: azure;"></i>
+            </a>
+          </li>
         </ng-template>
       </ul>
-     
-      <button class="btn btn-dark" routerLink="carrito">
+      <li class="nav-item">
+      <button class="btn btn-dark" routerLink="carrito" style="margin-left: -20px;">
         <i class="fa fa-shopping-cart" style="font-size: 24px; color: azure;"></i>
         <div class="badge bg-danger">{{totalArticulos}}</div>
       </button>
+      </li>
     </div>
   </div>
 </nav>
