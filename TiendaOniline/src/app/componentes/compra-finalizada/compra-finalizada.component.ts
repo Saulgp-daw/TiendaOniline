@@ -61,6 +61,7 @@ export class CompraFinalizadaComponent implements OnInit {
     }).then((docResult) => {
       docResult.save(`Factura_Tienda_Oniline_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
     });
+   
   }
 
 }
