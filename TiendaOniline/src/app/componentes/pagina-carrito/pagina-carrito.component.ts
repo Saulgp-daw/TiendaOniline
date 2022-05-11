@@ -4,7 +4,6 @@ import { CarritoService } from 'src/app/servicios/carrito.service';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import jsPDF from 'jspdf'; 
 import html2canvas from 'html2canvas';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-carrito',
@@ -19,9 +18,10 @@ export class PaginaCarritoComponent implements OnInit {
   public fechaCompra: any;
   public gastosEnvio: number = 15.32;
   public gastosTotales: number = 0;
+  public finalizadaCompra: boolean = false;
 
 
-  constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService, private router: Router) { }
+  constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService) { }
 
   ngOnInit(): void {
     this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
@@ -31,6 +31,11 @@ export class PaginaCarritoComponent implements OnInit {
     this.servicioCarrito.devolverUsuario().subscribe( (respuesta: any) => {
       this.usuario = respuesta;
     });
+
+    this.invoice = Math.floor(100000 + Math.random() * 900000);
+    let hoy = new Date();
+    this.fechaCompra = hoy.getFullYear()+'-'+(hoy.getMonth()+1)+'-'+hoy.getDate();
+    this.gastosTotales = this.granTotal+this.gastosEnvio;
   }
 
   borrarArticulo(articulo: Articulo): void{
@@ -61,9 +66,43 @@ export class PaginaCarritoComponent implements OnInit {
       this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { console.log(respuesta)}); //quitar el console log cuando salga a produccion
     });
     //this.servicioCarrito.borrarTodo();
-    this.router.navigate(["compra-finalizada"]);
+    this.gastosTotales = this.granTotal+this.gastosEnvio;
+    this.finalizadaCompra = true;
+   
+    setTimeout(() => {
+      this.generarFactura();
+    }, 3000);
+    setTimeout(() => {
+      this.servicioCarrito.borrarTodo();
+      this.finalizadaCompra = false;
+    }, 3000);
+    
+    
   }
 
-  
+  generarFactura(): void {
+    // Extraemos el
+    const DATA = document.getElementById('htmlData');
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(DATA!, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 15;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`Factura_Tienda_Oniline_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
+    });
+  }
 
 }
