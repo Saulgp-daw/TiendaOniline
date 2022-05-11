@@ -15,7 +15,8 @@ import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navega
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component'; 
+import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
+import { CompraFinalizadaComponent } from './componentes/compra-finalizada/compra-finalizada.component'; 
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
     PaginaCarritoComponent,
     LoginComponent,
     RegistroComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    CompraFinalizadaComponent
   ],
   imports: [
     BrowserModule,

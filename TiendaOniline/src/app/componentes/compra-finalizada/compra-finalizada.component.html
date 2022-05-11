@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="htmlData">
+                <div class="row justify-content-center">
+                  <div class="col m-4">
+                    <h3>Oniline-Store S.L.</h3>
+                  </div>
+                </div>
+                <div class="row justify-content-between" *ngIf="usuario != 'invitado'">
+                  <div class="col-4">
+                    <p>{{usuario.nombre}} {{usuario.apellidos}}</p>
+                    <p>{{usuario.direccion}}, CP: {{usuario.codigo_postal}}</p>
+                    <p>+34 {{usuario.telefono_fijo}}</p>
+                    <p>{{usuario.pais}}</p>
+                    <p>{{usuario.email}}</p>
+                  </div>
+                  <div class="col-4">
+                    <p><span class="metadatos">Pedido Nº:</span> {{invoice}}</p>
+                    <p><span class="metadatos">Fecha Compra:</span> {{fechaCompra}}</p>
+                    <p>+34 922420690</p>
+                    <p>Calle Las Cabezas Nº23, Puerto de la Cruz, Tenerife</p>
+                    <p>Si tiene alguna duda sobre su pedido contacte con: customer-support@onilinestore.com</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <table class="table table-responsive">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Cantidad</th>
+                        <th>Nombre Artículo</th>
+                        <th colspan="1">Precio (€)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let articulo of carrito">
+                          <td></td>
+                        <td>{{articulo['cantidad']}}</td>
+                        <td>{{articulo.nombre}}</td>
+                        <td colspan="1">{{articulo['precioCantidad']}} €</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="2"></td>
+                        <td>Total productos: {{granTotal}} €</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"></td>
+                        <td>Gastos de Envío: {{gastosEnvio}} €</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2"></td>
+                        <td>Nuevo total: {{gastosTotales}} €</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>

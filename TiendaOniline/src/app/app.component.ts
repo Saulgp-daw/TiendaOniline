@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from './servicios/carrito.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.carritoService.cargarCarrito();
+    
   }
 
   constructor(private carritoService: CarritoService) {

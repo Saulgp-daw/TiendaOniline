@@ -17,16 +17,20 @@
           <tbody>
             <tr *ngFor="let articulo of carrito" routerLink="/tienda/mostrar-articulo/{{articulo.id}}">
               <td>{{ articulo.nombre }}</td>
-              <td> <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}" style="height: 100px; width: 100px;"></td>
+              <td> <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}"
+                  style="height: 100px; width: 100px;"></td>
               <td>{{ articulo.descripcion }}</td>
               <td>{{ articulo.precio }} €</td>
               <td>
-                <button class="btn" (click)="restarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">-</button>
+                <button class="btn"
+                  (click)="restarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">-</button>
                 {{ articulo['cantidad'] }}
-                <button class="btn" (click)="aumentarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">+</button>
+                <button class="btn"
+                  (click)="aumentarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">+</button>
               </td>
               <td>{{ articulo['precioCantidad'] }} €</td>
-              <td><button class="btn btn-danger" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button></td>
+              <td><button class="btn btn-danger" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button>
+              </td>
             </tr>
           </tbody>
           <tfoot>
@@ -37,17 +41,17 @@
               <td>
                 <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">Seguir comprando</button>
               </td>
-              <td>
-                <button class="btn btn-secondary" (click)="finalizarCompra()" *ngIf="usuario != 'invitado'; else pedirRegistro">
+              <td colspan="2">
+                <button class="btn btn-secondary" (click)="finalizarCompra()"
+                  *ngIf="usuario != 'invitado'; else pedirRegistro">
                   Finalizar compra
                 </button>
                 <ng-template #pedirRegistro>
                   Debes estar registrado para finalizar la compra
                 </ng-template>
               </td>
-              <td></td>
               <td>Total: </td>
-              <td>{{granTotal}} €</td>
+              <td>{{granTotal}} € + {{gastosEnvio}} de gastos de envío</td>
             </tr>
           </tfoot>
         </table>
