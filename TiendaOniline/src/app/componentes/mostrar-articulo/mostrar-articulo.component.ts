@@ -32,6 +32,15 @@ export class MostrarArticuloComponent implements OnInit {
 
   agregarAlCarrito(articulo: Articulo = null!):void{
     this.carritoService.agregarACarrito(articulo);
+    this.mostrarNotificacion();
+  }
+
+  mostrarNotificacion() {
+    var notificacion = document.getElementById('notificacionAgregado')!;
+    notificacion.className = 'mostrar';
+    setTimeout(() => {
+      notificacion.className = 'aaaa';
+    }, 2000);
   }
 
 }

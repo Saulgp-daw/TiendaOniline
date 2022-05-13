@@ -8,20 +8,11 @@
 }
 
 .mostrar {
-  animation-duration: 2s;
+  animation-duration: 3s;
   animation-name: subir;
   animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function: ease;
-}
-
-#notificacion{
-    position: fixed;
-    width: 300px;
-    border: 3px solid #73AD21;
-    padding: 7px 15px;
-    border-width: 0px 0px 0px 10px;
-    background-color: rgb(206, 255, 255);
 }
 
 @keyframes subir {
@@ -31,7 +22,7 @@
     left: 3vw;
   }
 
-  50% {
+  25% {
     opacity: 1;
     bottom: 3vh;
     left: 3vw;
@@ -39,7 +30,5 @@
 
   100% {
     opacity: 0;
-    bottom: -10vh;
-    left: 3vw;
   }
 }
