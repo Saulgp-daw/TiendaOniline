@@ -53,4 +53,25 @@ export class ListarArticulosComponent implements OnInit {
     this.carritoService.agregarACarrito(articulo);
   }
 
+  cambiarClase(){
+    var notificacion = document.getElementById("notificacionAgregado")!;
+    notificacion.className = 'aa';
+    notificacion.className = 'mostrar';
+    setTimeout(() => {
+      notificacion.className = '';
+    }, 2000);
+  }
+
+  agregarNotificacion(): void{
+    $("#notificacion").remove();
+    var div = document.createElement('div');
+    $(div).attr('id', 'notificacion');
+    $('body').append(div);
+    var node = document.querySelector('#notificacion')!;
+    node.innerHTML = "(1) producto añadido";
+    var newNode = node.cloneNode(true);
+    node.parentNode!.replaceChild(newNode, node);
+    $('#notificacion').bind('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function(e) { $(this).remove(); });
+  }
+
 }

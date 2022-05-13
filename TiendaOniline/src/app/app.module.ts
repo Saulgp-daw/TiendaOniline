@@ -16,6 +16,8 @@ import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carr
 import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
+import { ProductoNotificacionDirective } from './shared/producto-notificacion.directive';
+import { NotificacionComponent } from './componentes/notificacion/notificacion.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
     PaginaCarritoComponent,
     LoginComponent,
     RegistroComponent,
-    PerfilUsuarioComponent
+    PerfilUsuarioComponent,
+    ProductoNotificacionDirective,
+    NotificacionComponent
   ],
   imports: [
     BrowserModule,
