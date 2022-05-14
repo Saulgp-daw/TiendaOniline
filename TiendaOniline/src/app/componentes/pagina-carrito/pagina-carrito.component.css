@@ -1,0 +1,20 @@
+.table{
+    background-color: black;
+    color: white;
+
+}
+
+td{
+    width: 20px;
+}
+tr:nth-child(even){
+    background-color: rgb(31, 30, 30);
+}
+.container{
+    margin-top: 200px;
+}
+
+.btn{
+    background-color: rgb(165, 0, 0);
+    color: white;
+}
