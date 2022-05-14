@@ -27,6 +27,7 @@
         require_once("../Vista/vistaCategorias.php");
     }
 
+    //muestra los productos relacionados con la categoria, pagina actual y numero de productos que queremos en dicha página
     if(isset($_GET['listar'])){
         $pagActual=1; $tamPag=10; $categoria="todos";
         if(isset($_GET['pag'])){
@@ -51,6 +52,11 @@
     
         $listaDeArticulos = DB::listaArticulos($pagActual, $tamPag, $categoria);
         require_once("../Vista/vistaArticulos.php");
+    }
+
+    if(isset($_GET['random'])){
+        $cantidadDeAleatorios = $_GET['random'];
+        echo DB::listarArticulosAleatorios($cantidadDeAleatorios);
     }
 
    

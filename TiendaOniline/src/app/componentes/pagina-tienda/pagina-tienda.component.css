@@ -1,4 +1,4 @@
-.fixed-top{
-    margin-top: 70px;
-    width: 280px;
+#elementos-tienda{
+    margin-top: 150px;
+    z-index: 3;
 }

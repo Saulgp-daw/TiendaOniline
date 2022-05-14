@@ -178,6 +178,18 @@ class DB{
         }
     }
 
+    public static function listarArticulosAleatorios(int $cantidad){
+        if(!empty($cantidad) && $cantidad != null){
+            $resultado = self::consulta("Select * from articulos order by rand() limit $cantidad");
+        
+            $listaProductos = [];
+            while($p=$resultado->fetch(PDO::FETCH_ASSOC)){
+                $listaProductos[]=$p;
+            }
+            return json_encode($listaProductos);
+        }
+    }
+
 }
 
 //fcrinav@gobiernodecanarias.org
