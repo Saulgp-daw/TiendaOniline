@@ -2,4 +2,6 @@
     position: fixed;
     top: 200px;
     z-index: 4;
+    min-width: 100px;
+    width: calc(100vw/6);
 }
