@@ -1,3 +1,4 @@
+<img src="assets/img/navbar.png" alt="ink-navbar" id="ink-navbar" class="fixed-top">
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar" >
   <div class="container-fluid" >
     <a class="navbar-brand" routerLink="/">Oniline-Store</a>
@@ -14,10 +15,6 @@
           <a class="nav-link" routerLink="tienda/categoria/todos/1">Tienda</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/registro">
@@ -45,7 +42,7 @@
         </ng-template>
       </ul>
       <li class="nav-item">
-      <button class="btn btn-dark" routerLink="carrito" style="margin-left: -20px;">
+      <button class="btn" routerLink="carrito" style="margin-left: -20px;">
         <i class="fa fa-shopping-cart" style="font-size: 24px; color: azure;"></i>
         <div class="badge bg-danger">{{totalArticulos}}</div>
       </button>
@@ -54,6 +51,5 @@
   </div>
 </nav>
 
-<img src="assets/img/navbar.png" alt="ink-navbar" id="ink-navbar">
 
 
