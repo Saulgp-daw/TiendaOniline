@@ -14,7 +14,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="tienda/categoria/todos/1">Tienda</a>
         </li>
+        <li class="nav-item dropdown d-block d-sm-none">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+            <li><a class="dropdown-item" routerLink="/tienda/categoria/todos/1">Todos</a></li>
+            <li><a class="dropdown-item" *ngFor="let categoria of categorias" routerLink="/tienda/categoria/{{categoria.categoria}}/1">{{categoria.categoria}}</a></li>
+          </ul>
+        </li>
       </ul>
+      
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/registro">

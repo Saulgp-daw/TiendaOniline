@@ -1,5 +1,15 @@
-#categorias{
-    position: fixed;
-    top: 280px;
-    
+#categorias {
+  position: fixed;
+  top: 280px;
+  cursor: pointer;
+  background: transparent;
 }
+.list-group-item{
+    transition: 1s;
+}
+.list-group-item:hover{
+    background-color: black;
+    color: white;
+}
+
+

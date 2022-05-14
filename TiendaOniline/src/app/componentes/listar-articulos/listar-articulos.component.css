@@ -1,5 +1,6 @@
 #notificacionAgregado {
   position: fixed;
+  opacity: 0;
   width: 300px;
   border: 3px solid #73AD21;
   padding: 7px 15px;
@@ -38,7 +39,6 @@
   transform: translateY(30%);
   animation: dropIn 2s ease forwards;
   animation-delay: calc(var(--order) * 200ms);
-  
 }
 
 @keyframes dropIn {

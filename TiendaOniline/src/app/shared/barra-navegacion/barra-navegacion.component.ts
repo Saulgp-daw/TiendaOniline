@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { CarritoService } from 'src/app/servicios/carrito.service';
+import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 
 @Component({
   selector: 'app-barra-navegacion',
@@ -9,8 +10,9 @@ import { CarritoService } from 'src/app/servicios/carrito.service';
 })
 export class BarraNavegacionComponent implements OnInit {
   public totalArticulos: number = 0;
-  public nombreUsuario: any = "invitado"
-  constructor(private servicioCarrito: CarritoService, private ruta: ActivatedRoute, private router: Router) { 
+  public nombreUsuario: any = "invitado";
+  public categorias: any;
+  constructor(private servicioCarrito: CarritoService, private ruta: ActivatedRoute, private router: Router, private crudArticuloService: CrudArticulosService) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
         // Show loading indicator
@@ -25,6 +27,13 @@ export class BarraNavegacionComponent implements OnInit {
       this.totalArticulos = respuesta.length;
     });
     this.cargarSesion();
+    this.cargarCategorias();
+  }
+
+  cargarCategorias(){
+    this.crudArticuloService.ObtenerCategorias().subscribe( respuesta => {
+      this.categorias = respuesta;
+    });
   }
 
   cargarSesion():void{
