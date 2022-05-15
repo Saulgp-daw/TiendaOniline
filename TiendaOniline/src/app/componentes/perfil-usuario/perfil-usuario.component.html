@@ -34,13 +34,13 @@
                 <label for="direccion">Dirección</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="codigo_postal" placeholder="cp"
-                  formControlName="codigo_postal" value="{{usuarioConectado.codigo_postal}}">
+                <input type="tel" class="form-control" id="codigo_postal" placeholder="cp"
+                  formControlName="codigo_postal" value="{{usuarioConectado.codigo_postal}}" minlength="5" maxlength="5" required>
                 <label for="codigo_postal">Código Postal</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="number" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
-                  formControlName="telefono_fijo" value="{{usuarioConectado.telefono_fijo}}">
+                <input type="tel" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
+                  formControlName="telefono_fijo" value="{{usuarioConectado.telefono_fijo}}" minlength="9" maxlength="9">
                 <label for="telefono_fijo">Teléfono Fijo</label>
               </div>
               <div class="form-floating mb-3">

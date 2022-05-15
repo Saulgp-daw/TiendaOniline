@@ -14,47 +14,137 @@ export class PerfilUsuarioComponent implements OnInit {
   formularioDeModificacion: any;
   public resultado: any;
 
-  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) { 
-   
+  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) {
+
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem("usuarioConectado")){
+    if (localStorage.getItem("usuarioConectado")) {
       this.usuarioConectado = JSON.parse(localStorage.getItem("usuarioConectado")!);
     }
     console.log(this.usuarioConectado);
     this.cargarFormulario();
   }
 
-  cargarFormulario():void{
+  cargarFormulario(): void {
     this.formularioDeModificacion = this.formulario.group({
-      email:[this.usuarioConectado.email],
-      contrasenha:[''],
-      nombre:[this.usuarioConectado.nombre, [Validators.required, Validators.minLength(3)]],
-      apellidos:[this.usuarioConectado.apellidos],
-      direccion:[this.usuarioConectado.direccion],
-      codigo_postal:[this.usuarioConectado.codigo_postal],
-      telefono_fijo:[this.usuarioConectado.telefono_fijo],
-      pais:[this.usuarioConectado.pais]
+      email: [this.usuarioConectado.email],
+      contrasenha: [''],
+      nombre: [this.usuarioConectado.nombre, [Validators.required, Validators.minLength(3)]],
+      apellidos: [this.usuarioConectado.apellidos],
+      direccion: [this.usuarioConectado.direccion],
+      codigo_postal: [this.usuarioConectado.codigo_postal],
+      telefono_fijo: [this.usuarioConectado.telefono_fijo],
+      pais: [this.usuarioConectado.pais]
     });
   }
 
-  async actualizarUsuario(): Promise<void>{
+  async actualizarUsuario(): Promise<void> {
     //console.log(this.formularioDeModificacion.value);
-    this.resultado = await lastValueFrom(this.crudArticuloService.actualizarUsuario(this.formularioDeModificacion.value));
-    switch(this.resultado.resultado){
-      case("exito"):
-          alert("Datos modificados con éxito");
-          break;
-      case("campos_vacios"):
-          alert("Uno o más campos están vacíos");
-          break;
-      case("usuario_existente"):
-          alert("Este usuario ya está registrado, inténtelo de nuevo");
-          break;
-      case("num_argumentos"):
-          alert("El número de argumentos pasados es menor de lo posible");
-          break;
-      }
+    if (this.validarCampos()) {
+      this.resultado = await lastValueFrom(this.crudArticuloService.actualizarUsuario(this.formularioDeModificacion.value));
+      this.mensajeDelServidor();
+    }
+  }
+
+  mensajeDelServidor() {
+    switch (this.resultado.resultado) {
+      case ("exito"):
+        alert("Datos modificados con éxito");
+        break;
+      case ("campos_vacios"):
+        alert("Uno o más campos están vacíos");
+        break;
+      case ("usuario_existente"):
+        alert("Este usuario ya está registrado, inténtelo de nuevo");
+        break;
+      case ("num_argumentos"):
+        alert("El número de argumentos pasados es menor de lo posible");
+        break;
+    }
+  }
+
+  validarCampos(): boolean {
+    var email = document.getElementById("email");
+    var contrasenha = document.getElementById("contrasenha");
+    var confirmar_contrasenha = document.getElementById("confirmar_contrasenha");
+    var nombre = document.getElementById("nombre");
+    var apellidos = document.getElementById("apellidos");
+    var direccion = document.getElementById("direccion");
+    var codigo_postal = document.getElementById("codigo_postal");
+    var telefono_fijo = document.getElementById("telefono_fijo");
+    var pais = document.getElementById("pais");
+
+    var mensaje = "";
+    var camposValidos = true;
+    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value) {
+      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden", contrasenha);
+      camposValidos = false;
+    }
+
+    if (!(<HTMLInputElement>email).value.match(this.expresionesRegulares.expRegEmail)) {
+      this.agregarMensajeError("mensaje_email", "El email no es válido", email);
+      camposValidos = false;
+    }
+    if (!(<HTMLInputElement>nombre).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
+      this.agregarMensajeError("mensaje_nombre", "El nombre no es válido", nombre);
+      camposValidos = false;
+    }
+
+    if (!(<HTMLInputElement>apellidos).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
+      this.agregarMensajeError("mensaje_apellidos", "Estos apellidos no son válidos", apellidos);
+      camposValidos = false;
+    }
+
+    if ((<HTMLInputElement>direccion).value.trim() == "") {
+      this.agregarMensajeError("mensaje_direccion", "Su dirección no puede quedar vacía", direccion);
+      camposValidos = false;
+    }
+
+    if (!(<HTMLInputElement>codigo_postal).value.match(this.expresionesRegulares.expRegCP)) {
+      this.agregarMensajeError("mensaje_cp", "El código postal es incorrecto", codigo_postal);
+      camposValidos = false;
+    }
+
+    if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
+      this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
+      camposValidos = false;
+    }
+
+    if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
+      this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
+      camposValidos = false;
+    }
+
+    if ((<HTMLInputElement>pais).value.trim() == "") {
+      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de páis vacío", pais);
+      camposValidos = false;
+    }
+
+    return camposValidos;
+  }
+
+  agregarMensajeError(idMensaje: string, mensaje: string, elementoErroneo: any) {
+    var elemento = document.getElementById(idMensaje);
+    elemento?.remove();
+    var mensaje_error = document.createElement("p");
+    mensaje_error.textContent = mensaje;
+    mensaje_error.id = idMensaje;
+    mensaje_error.style.color = "red";
+    this.insertAfter(mensaje_error, elementoErroneo);
+    elementoErroneo.style.borderColor = "red";
+  }
+
+  insertAfter(newNode, existingNode) {
+    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+
+  }
+
+  //Nuestras expresiones regulares
+  readonly expresionesRegulares = {
+    expRegNombreApellidos: "^[A-ZÁÉÍÓÚÑ][a-zA-Záéíóúñ ]+$",
+    expRegCP: "^[0-4][0-9]{4}|5[0-2][0-9]{3}$",
+    expRegEmail: "^.+@[a-z]+[\.][a-z]{2,3}$",
+    expRegTelFijo: "^(9[0-9]{2}|8[0-9]{2}|91|81)[0-9]{6}$"
   }
 }

@@ -98,6 +98,10 @@ export class RegistroComponent implements OnInit {
       camposValidos = false;
     }
 
+    if((<HTMLInputElement>pais).value.trim() == ""){
+      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de páis vacío", pais);
+      camposValidos = false;
+    }
 
     return camposValidos;
   }
