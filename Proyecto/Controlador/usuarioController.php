@@ -15,8 +15,8 @@
             $nombre = trim($request->nombre);
             $apellidos = trim($request->apellidos);
             $direccion = trim($request->direccion);
-            $codigo_postal = trim($request->codigo_postal);
-            $telefono_fijo = trim($request->telefono_fijo);
+            $codigo_postal =  intval(trim($request->codigo_postal));
+            $telefono_fijo =  intval(trim($request->telefono_fijo));
             $pais = trim($request->pais);
             $resultadoOperacion = DB::actualizarUsuario($email, $contrasenha, $nombre, $apellidos,$direccion, $codigo_postal, $telefono_fijo, $pais);
             if($resultadoOperacion){

@@ -103,15 +103,15 @@
         <div class="row">
           <div class="col ">
             <div class="form-floating">
-              <input type="number" class="form-control" id="codigo_postal" placeholder="Password"
-                formControlName="codigo_postal">
+              <input type="tel" class="form-control" id="codigo_postal" placeholder="Password"
+                formControlName="codigo_postal" minlength="5" maxlength="5" required>
               <label for="codigo_postal">Código Postal</label>
             </div>
           </div>
           <div class="col ">
             <div class="form-floating">
-              <input type="number" class="form-control" id="telefono_fijo" placeholder="Password"
-                formControlName="telefono_fijo">
+              <input type="tel" class="form-control" id="telefono_fijo" placeholder="Password"
+                formControlName="telefono_fijo" minlength="9" maxlength="9" required>
               <label for="telefono_fijo">Teléfono Fijo</label>
             </div>
           </div>

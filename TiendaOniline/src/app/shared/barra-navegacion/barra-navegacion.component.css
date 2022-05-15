@@ -2,3 +2,7 @@
 #navbar{
     background-color: black;
 }
+
+.btn{
+    background-color: black !important;
+}

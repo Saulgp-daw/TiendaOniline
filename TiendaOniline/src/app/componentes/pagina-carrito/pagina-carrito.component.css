@@ -13,8 +13,3 @@ tr:nth-child(even){
 .container{
     margin-top: 200px;
 }
-
-.btn{
-    background-color: rgb(165, 0, 0);
-    color: white;
-}
