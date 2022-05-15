@@ -13,3 +13,15 @@ tr:nth-child(even){
 .container{
     margin-top: 200px;
 }
+
+
+#vector-carrito{
+    width: 300px;
+}
+
+.card{
+    background-color: var(--tablas-cartas);
+    color: var(--text);
+    text-align: center;
+    padding: 40px;
+}

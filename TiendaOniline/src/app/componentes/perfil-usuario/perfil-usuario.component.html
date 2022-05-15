@@ -1,57 +1,76 @@
-<div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-header">
-            <h4>Mi perfil</h4>
+<div class="container-fluid">
+  <div class="card">
+    <div class="card-header">
+      <h4>Mi perfil</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formularioDeModificacion" (ngSubmit)="actualizarUsuario()">
+        <div class="row">
+          <div class="col ">
+            <div class="form-floating">
+              <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                formControlName="email" value="{{usuarioConectado.email}}">
+              <label for="email">Email address</label>
+            </div>
           </div>
-          <div class="card-body">
-            <form [formGroup]="formularioDeModificacion" (ngSubmit)="actualizarUsuario()">
-              <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com"
-                  formControlName="email" readonly='readonly' value="{{usuarioConectado.email}}">
-                <label for="email">Correo electrónico</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="contrasenha" placeholder="Password"
-                  formControlName="contrasenha">
-                <label for="contrasenha">Contraseña actual</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="confirmar_contrasenha" placeholder="Password">
-                <label for="confirmar_contrasenha">Nueva contraseña</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="nombre" placeholder="nombre" formControlName="nombre" value="{{usuarioConectado.nombre}}">
-                <label for="nombre">Nombre</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="apellidos" placeholder="apellidos" formControlName="apellidos" value="{{usuarioConectado.apellidos}}">
-                <label for="apellidos">Apellidos</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="direccion" placeholder="direccion" formControlName="direccion" value="{{usuarioConectado.direccion}}">
-                <label for="direccion">Dirección</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="codigo_postal" placeholder="cp"
-                  formControlName="codigo_postal" value="{{usuarioConectado.codigo_postal}}" minlength="5" maxlength="5" required>
-                <label for="codigo_postal">Código Postal</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="tel" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
-                  formControlName="telefono_fijo" value="{{usuarioConectado.telefono_fijo}}" minlength="9" maxlength="9">
-                <label for="telefono_fijo">Teléfono Fijo</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="pais" placeholder="pais" formControlName="pais" value="{{usuarioConectado.pais}}">
-                <label for="pais">País</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Modificar datos</button>
-              <button type="submit" class="btn btn-danger">Borrar cuenta</button>
-            </form>
+          <div class="col ">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="contrasenha" placeholder="contrasenha"
+                formControlName="contrasenha">
+              <label for="contrasenha">Contraseña</label>
+            </div>
+          </div>
+          <div class="col ">
+            <div class="form-floating">
+              <input type="password" class="form-control" id="confirmar_contrasenha" placeholder="confirmar_contrasenha">
+              <label for="confirmar_contrasenha">Confirme contraseña</label>
+            </div>
           </div>
         </div>
-      </div>
+        <div class="row">
+          <div class="col ">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="nombre" placeholder="nombre" formControlName="nombre" value="{{usuarioConectado.nombre}}">
+              <label for="nombre">Nombre</label>
+            </div>
+          </div>
+          <div class="col ">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="apellidos" placeholder="apellidos" formControlName="apellidos" value="{{usuarioConectado.apellidos}}">
+              <label for="apellidos">Apellidos</label>
+            </div>
+          </div>
+          <div class="col ">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="direccion" placeholder="direccion" formControlName="direccion" value="{{usuarioConectado.direccion}}">
+              <label for="direccion">Dirección</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col ">
+            <div class="form-floating">
+              <input type="tel" class="form-control" id="codigo_postal" placeholder="codigo_postal"
+                formControlName="codigo_postal" minlength="5" maxlength="5" value="{{usuarioConectado.codigo_postal}}" required>
+              <label for="codigo_postal">Código Postal</label>
+            </div>
+          </div>
+          <div class="col ">
+            <div class="form-floating">
+              <input type="tel" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
+                formControlName="telefono_fijo" minlength="9" maxlength="9" value="{{usuarioConectado.telefono_fijo}}" required>
+              <label for="telefono_fijo">Teléfono Fijo</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-floating">
+              <input type="text" class="form-control" id="pais" placeholder="pais" formControlName="pais" value="{{usuarioConectado.pais}}">
+              <label for="pais">País</label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Modificar datos</button>
+      </form>
     </div>
-  
+  </div>
+</div>

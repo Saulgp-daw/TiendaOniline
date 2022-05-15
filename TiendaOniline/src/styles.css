@@ -13,6 +13,11 @@ body {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  
+}
+
+.container{
+  margin-top: 160px;
 }
 
 .btn{
