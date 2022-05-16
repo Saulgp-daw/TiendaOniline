@@ -28,3 +28,7 @@ body {
 .btn:hover{
   background-color: var(--botones-hover) !important;
 }
+
+.text-truncate{
+  max-width: 100%;
+}

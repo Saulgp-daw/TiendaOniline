@@ -120,10 +120,10 @@ export class RegistroComponent implements OnInit {
     var mensaje_error = document.createElement("p");
     mensaje_error.textContent = mensaje;
     mensaje_error.id = idMensaje;
-    mensaje_error.style.color = "red";
+    mensaje_error.style.color = "rgba(239, 12, 127, 1)";
     mensaje_error.className = "mensaje_error";
     this.insertAfter(mensaje_error, elementoErroneo);
-    elementoErroneo.style.borderColor = "red";
+    elementoErroneo.style.borderColor = "rgba(239, 12, 127, 1)";
   }
 
   insertAfter(newNode, existingNode) {
@@ -153,11 +153,11 @@ export class RegistroComponent implements OnInit {
   notificacionServidor(mensaje: string) {
     var notificacion = document.getElementById("notificacionesUsuario");
     notificacion!.className = "";
-    notificacion!.innerHTML = "<h5>Respuesta: "+  mensaje+" </h5>";
+    notificacion!.innerHTML = "<h5>"+  mensaje+" </h5>";
     notificacion!.className = "mostrar";
     setTimeout(() => {
       notificacion!.className = "";
-    }, 4000);
+    }, 3000);
   }
 
   //Nuestras expresiones regulares

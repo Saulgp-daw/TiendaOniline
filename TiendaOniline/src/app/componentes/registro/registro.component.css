@@ -1,11 +1,15 @@
-.container-fluid .row {
+.container-fluid .col-xs-12{
     margin-bottom: 10px ;
+    
 }
-
 .container-fluid{
     margin-top: 160px;
 }
 
+.card, input, input:focus{
+    background-color: var(--tablas-cartas);
+    color: var(--text);
+}
 #notificacionesUsuario{
     background-color: var(--tablas-cartas);
     color: var(--text);
@@ -17,10 +21,12 @@
     top: 100px;
     left: 25vw;
     opacity: 0;
+    padding: 20px;
+    text-align: center;
 }
 
 .mostrar{
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-name: notificar;
     animation-iteration-count: 1;
     animation-direction: alternate;
@@ -30,13 +36,16 @@
 @keyframes notificar {
     0% {
       opacity: 0;
+      transform: translateY(-50%);
     }
   
-    75% {
+    50%, 90% {
       opacity: 1;
+      transform: translateY(0);
     }
 
     100%{
         opacity: 0;
+        
     }
   }
