@@ -40,7 +40,15 @@ export class PerfilUsuarioComponent implements OnInit {
   }
 
   async actualizarUsuario(): Promise<void> {
-    //console.log(this.formularioDeModificacion.value);
+
+    document.querySelectorAll("input").forEach(input => {
+      input.style.borderColor = "";
+    });
+
+    document.querySelectorAll(".mensaje_error").forEach(mensaje => {
+      mensaje.remove();
+    });
+
     if (this.validarCampos()) {
       this.resultado = await lastValueFrom(this.crudArticuloService.actualizarUsuario(this.formularioDeModificacion.value));
       this.mensajeDelServidor();
@@ -60,6 +68,9 @@ export class PerfilUsuarioComponent implements OnInit {
         break;
       case ("num_argumentos"):
         alert("El número de argumentos pasados es menor de lo posible");
+        break;
+      case ("contrasenha_incorrecta"):
+        alert("La contraseña proporcionada no es la correcta");
         break;
     }
   }
@@ -131,6 +142,7 @@ export class PerfilUsuarioComponent implements OnInit {
     mensaje_error.textContent = mensaje;
     mensaje_error.id = idMensaje;
     mensaje_error.style.color = "red";
+    mensaje_error.className = "mensaje_error";
     this.insertAfter(mensaje_error, elementoErroneo);
     elementoErroneo.style.borderColor = "red";
   }

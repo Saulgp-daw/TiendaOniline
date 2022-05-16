@@ -4,13 +4,13 @@
       <h4>Registrate</h4>
     </div>
     <div class="card-body">
-      <form [formGroup]="formularioDeRegistro" (ngSubmit)="nuevoRegistro()">
+      <form [formGroup]="formularioDeRegistro" (ngSubmit)="nuevoRegistro()" id="formularioDeRegistro">
         <div class="row">
           <div class="col ">
             <div class="form-floating">
               <input type="email" class="form-control" id="email" placeholder="name@example.com"
                 formControlName="email">
-              <label for="email">Email address</label>
+              <label for="email">Correo electrónico. Ejm. 'pepe@micorreo.com'</label>
             </div>
           </div>
           <div class="col ">
@@ -52,14 +52,14 @@
             <div class="form-floating">
               <input type="tel" class="form-control" id="codigo_postal" placeholder="codigo_postal"
                 formControlName="codigo_postal" minlength="5" maxlength="5" required>
-              <label for="codigo_postal">Código Postal</label>
+              <label for="codigo_postal">Código Postal. Ejm. '38410'</label>
             </div>
           </div>
           <div class="col ">
             <div class="form-floating">
               <input type="tel" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
                 formControlName="telefono_fijo" minlength="9" maxlength="9" required>
-              <label for="telefono_fijo">Teléfono Fijo</label>
+              <label for="telefono_fijo">Teléfono Fijo. Ejm. '922010203'</label>
             </div>
           </div>
           <div class="col">
@@ -73,4 +73,11 @@
       </form>
     </div>
   </div>
+</div>
+
+<div id="notificacionesUsuario" >
+    <div class="row">
+      <div class="col text-center" id="mensaje">
+      </div>
+    </div>
 </div>

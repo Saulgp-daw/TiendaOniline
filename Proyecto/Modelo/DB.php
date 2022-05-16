@@ -156,6 +156,8 @@ class DB{
                 "', pais='".$pais."' where email='".$email."'";
                 self::consulta($sql);
                 return "exito";
+           }else{
+               return "contrasenha_incorrecta";
            }
         }else{
             return "num_argumentos";

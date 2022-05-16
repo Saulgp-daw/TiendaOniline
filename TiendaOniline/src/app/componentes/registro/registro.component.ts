@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent implements OnInit {
-  formularioDeRegistro: FormGroup;
+  formularioDeRegistro: any;
 
   public resultadoRegistro: any;
   public resultadoLogin: any;
@@ -29,6 +29,7 @@ export class RegistroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    document.getElementById("mensaje")!.className = "";
   }
 
   /**
@@ -37,13 +38,18 @@ export class RegistroComponent implements OnInit {
    */
   async nuevoRegistro(): Promise<void> {
 
+    document.querySelectorAll("input").forEach( input => {
+      input.style.borderColor = "";
+    });
+
+    document.querySelectorAll(".mensaje_error").forEach( mensaje => {
+      mensaje.remove();
+    });
+    
     if (this.validarCampos()) {
       this.resultadoRegistro = await lastValueFrom(this.crudArticuloService.agregarUsuario(this.formularioDeRegistro.value));
       this.mensajeDelServidor();
     }
-
-
-
   }
 
   validarCampos(): boolean {
@@ -57,10 +63,12 @@ export class RegistroComponent implements OnInit {
     var telefono_fijo = document.getElementById("telefono_fijo");
     var pais = document.getElementById("pais");
 
+
+
     var mensaje = "";
     var camposValidos = true;
-    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value) {
-      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden", contrasenha);
+    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value || (<HTMLInputElement>contrasenha).value.trim() == "") {
+      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden o están vacías", contrasenha);
       camposValidos = false;
     }
 
@@ -68,38 +76,38 @@ export class RegistroComponent implements OnInit {
       this.agregarMensajeError("mensaje_email", "El email no es válido", email);
       camposValidos = false;
     }
-    if(!(<HTMLInputElement>nombre).value.match(this.expresionesRegulares.expRegNombreApellidos)){
+    if (!(<HTMLInputElement>nombre).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
       this.agregarMensajeError("mensaje_nombre", "El nombre no es válido", nombre);
       camposValidos = false;
     }
 
-    if(!(<HTMLInputElement>apellidos).value.match(this.expresionesRegulares.expRegNombreApellidos)){
+    if (!(<HTMLInputElement>apellidos).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
       this.agregarMensajeError("mensaje_apellidos", "Estos apellidos no son válidos", apellidos);
       camposValidos = false;
     }
 
-    if((<HTMLInputElement>direccion).value.trim() == ""){
+    if ((<HTMLInputElement>direccion).value.trim() == "") {
       this.agregarMensajeError("mensaje_direccion", "Su dirección no puede quedar vacía", direccion);
       camposValidos = false;
     }
 
-    if(!(<HTMLInputElement>codigo_postal).value.match(this.expresionesRegulares.expRegCP)){
+    if (!(<HTMLInputElement>codigo_postal).value.match(this.expresionesRegulares.expRegCP)) {
       this.agregarMensajeError("mensaje_cp", "El código postal es incorrecto", codigo_postal);
       camposValidos = false;
     }
 
-    if(!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)){
+    if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
       this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
       camposValidos = false;
     }
 
-    if(!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)){
+    if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
       this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
       camposValidos = false;
     }
 
-    if((<HTMLInputElement>pais).value.trim() == ""){
-      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de páis vacío", pais);
+    if ((<HTMLInputElement>pais).value.trim() == "") {
+      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de país vacío", pais);
       camposValidos = false;
     }
 
@@ -113,6 +121,7 @@ export class RegistroComponent implements OnInit {
     mensaje_error.textContent = mensaje;
     mensaje_error.id = idMensaje;
     mensaje_error.style.color = "red";
+    mensaje_error.className = "mensaje_error";
     this.insertAfter(mensaje_error, elementoErroneo);
     elementoErroneo.style.borderColor = "red";
   }
@@ -125,19 +134,30 @@ export class RegistroComponent implements OnInit {
   mensajeDelServidor() {
     switch (this.resultadoRegistro.resultado) {
       case ("exito"):
-        alert("Usuario Registrado con éxito");
-        this.router.navigate(["login"]);
+        this.notificacionServidor("Usuario Registrado con éxito");
+        //alert("Usuario Registrado con éxito");
+        //this.router.navigate(["login"]);
         break;
       case ("campos_vacios"):
-        alert("Uno o más campos están vacíos");
+        this.notificacionServidor("Uno o más campos están vacíos");
         break;
       case ("usuario_existente"):
-        alert("Este usuario ya está registrado, inténtelo de nuevo");
+        this.notificacionServidor("Este usuario ya está registrado, inténtelo de nuevo");
         break;
       case ("num_argumentos"):
-        alert("El número de argumentos pasados es menor de lo posible");
+        this.notificacionServidor("El número de argumentos pasados es menor de lo posible");
         break;
     }
+  }
+
+  notificacionServidor(mensaje: string) {
+    var notificacion = document.getElementById("notificacionesUsuario");
+    notificacion!.className = "";
+    notificacion!.innerHTML = "<h5>Respuesta: "+  mensaje+" </h5>";
+    notificacion!.className = "mostrar";
+    setTimeout(() => {
+      notificacion!.className = "";
+    }, 4000);
   }
 
   //Nuestras expresiones regulares

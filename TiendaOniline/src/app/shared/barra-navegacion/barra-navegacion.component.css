@@ -1,8 +1,8 @@
 
 #navbar{
-    background-color: black;
+    background-color: var(--tablas-cartas);
 }
 
 .btn{
-    background-color: black !important;
+    background-color: var(--tablas-cartas) !important;
 }

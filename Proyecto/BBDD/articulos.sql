@@ -7,12 +7,12 @@ use proyecto;
 
 CREATE TABLE articulos (
   id int(6) auto_increment,
-  descripcion varchar(200) not null,
-  nombre varchar(40) UNIQUE not null,
+  descripcion varchar(255) not null,
+  nombre varchar(255) UNIQUE not null,
   precio decimal(8,2) not null,
-  imagen varchar(90) not null,
-  categoria varchar(40) not null,
-  estado varchar(20) not null,
+  imagen varchar(255) not null,
+  categoria varchar(255) not null,
+  estado varchar(255) not null,
   stock int not null,
   PRIMARY KEY(id)
 ) ENGINE=InnoDB;
@@ -56,14 +56,14 @@ INSERT INTO articulos VALUES
 (0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23);
 
 CREATE TABLE usuarios (
-  email varchar(20) not null,
-  contrasenha varchar(150) not null,
-  nombre varchar(200) not null,
-  apellidos varchar(40) not null,
-  direccion varchar(90) not null,
+  email varchar(255) not null,
+  contrasenha varchar(255) not null,
+  nombre varchar(255) not null,
+  apellidos varchar(255) not null,
+  direccion varchar(255) not null,
   codigo_postal int(5) unsigned not null,
   telefono_fijo int(9) unsigned not null,
-  pais varchar(40) not null,
+  pais varchar(255) not null,
   PRIMARY KEY(email)
 ) ENGINE=InnoDB;
 
