@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ListarArticulosComponent } from './componentes/listar-articulos/listar-articulos.component';
-import { EditarArticulosComponent } from './componentes/editar-articulos/editar-articulos.component';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
 import { PaginaCarritoComponent } from './componentes/pagina-carrito/pagina-carrito.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 
 const routes: Routes = [
+  {path: 'home', component: HomeComponent},
   {path: 'tienda', pathMatch:'full', redirectTo:'tienda/categoria/todos'},
   {path: 'tienda/categoria', pathMatch:'full', redirectTo:'tienda/categoria/todos/1'},
   {path: 'tienda/categoria/:categoria', pathMatch:'full', redirectTo:'tienda/categoria/todos/1'},

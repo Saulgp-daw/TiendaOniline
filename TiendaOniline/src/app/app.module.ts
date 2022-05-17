@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { ListarArticulosComponent } from './componentes/listar-articulos/listar-articulos.component';
-import { EditarArticulosComponent } from './componentes/editar-articulos/editar-articulos.component';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
 import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
@@ -17,14 +16,13 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 import { ProductoNotificacionDirective } from './shared/producto-notificacion.directive';
-import { NotificacionComponent } from './componentes/notificacion/notificacion.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListarArticulosComponent,
-    EditarArticulosComponent,
     MostrarArticuloComponent,
     ListarCategoriasComponent,
     PaginaTiendaComponent,
@@ -35,7 +33,7 @@ import { NotificacionComponent } from './componentes/notificacion/notificacion.c
     RegistroComponent,
     PerfilUsuarioComponent,
     ProductoNotificacionDirective,
-    NotificacionComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
