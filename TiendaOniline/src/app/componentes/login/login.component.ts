@@ -29,12 +29,23 @@ export class LoginComponent implements OnInit {
   async nuevoLogin(): Promise<void>{
     this.resultadoLogin = await lastValueFrom(this.crudArticuloService.comprobarLogin(this.formularioLogin.value));
     this.usuario = this.resultadoLogin;
-    if(this.resultadoLogin.resultado){
-      alert("Usuario o contraseña incorrectos");
+    console.log(this.resultadoLogin.resultado);
+    if(this.resultadoLogin.resultado == "not_found"){
+      this.notificacionServidor("Usuario o contraseña incorrectos");
     }else{
       this.carritoService.setUsuario(this.usuario);
       this.carritoService.cargarCarrito();
       this.router.navigate(["tienda/categoria/todos/1"]);
     }
+  }
+
+  notificacionServidor(mensaje: string) {
+    var notificacion = document.getElementById("notificacionesUsuario");
+    notificacion!.className = "";
+    notificacion!.innerHTML = "<h5>"+  mensaje+" </h5>";
+    notificacion!.className = "mostrar";
+    setTimeout(() => {
+      notificacion!.className = "";
+    }, 3000);
   }
 }

@@ -135,8 +135,9 @@ export class RegistroComponent implements OnInit {
     switch (this.resultadoRegistro.resultado) {
       case ("exito"):
         this.notificacionServidor("Usuario Registrado con éxito");
-        //alert("Usuario Registrado con éxito");
-        //this.router.navigate(["login"]);
+        setTimeout(() => {
+          this.router.navigate(["login"]);
+        }, 2000);
         break;
       case ("campos_vacios"):
         this.notificacionServidor("Uno o más campos están vacíos");

@@ -67,13 +67,12 @@ export class PerfilUsuarioComponent implements OnInit {
   finalizarSesion(): void {
     this.servicioCarrito.limpiarSesion();
     this.servicioCarrito.cargarCarrito();
-
   }
 
   mensajeDelServidor() {
     switch (this.resultado.resultado) {
       case ("exito"):
-        this.notificacionServidor("Usuario borrado con éxito");
+        this.notificacionServidor("Operación finalizada con éxito");
         this.finalizarSesion();
         setTimeout(() => {
           this.router.navigate(["home"]);
