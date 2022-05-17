@@ -1,7 +1,13 @@
 .table{
     background-color: black;
     color: white;
+}
 
+#finalizarCompraContainer{
+    margin-top: 130px;
+    background-color: var(--tablas-cartas);
+    color: var(--text);
+    padding: 30px;
 }
 
 td{

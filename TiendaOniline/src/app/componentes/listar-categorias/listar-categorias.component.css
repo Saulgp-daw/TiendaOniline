@@ -1,15 +1,19 @@
+.categoria:hover{
+  background-color: black !important;
+  color: white !important;
+}
+
 #categorias {
   position: fixed;
   top: 280px;
   cursor: pointer;
-  background: transparent;
+  background: transparent !important;
+  background-color: black !important;
 }
-.list-group-item{
+.categoria{
     transition: 1s;
-}
-.list-group-item:hover{
-    background-color: black;
-    color: white;
-}
+};
+
+
 
 

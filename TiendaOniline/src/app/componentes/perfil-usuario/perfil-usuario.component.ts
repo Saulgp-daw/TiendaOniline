@@ -58,21 +58,31 @@ export class PerfilUsuarioComponent implements OnInit {
   mensajeDelServidor() {
     switch (this.resultado.resultado) {
       case ("exito"):
-        alert("Datos modificados con éxito");
+        this.notificacionServidor("Datos modificados con éxito");
         break;
       case ("campos_vacios"):
-        alert("Uno o más campos están vacíos");
+        this.notificacionServidor("Uno o más campos están vacíos");
         break;
       case ("usuario_existente"):
-        alert("Este usuario ya está registrado, inténtelo de nuevo");
+        this.notificacionServidor("Este usuario ya está registrado, inténtelo de nuevo");
         break;
       case ("num_argumentos"):
-        alert("El número de argumentos pasados es menor de lo posible");
+        this.notificacionServidor("El número de argumentos pasados es menor de lo posible");
         break;
       case ("contrasenha_incorrecta"):
-        alert("La contraseña proporcionada no es la correcta");
+        this.notificacionServidor("La contraseña proporcionada no es la correcta");
         break;
     }
+  }
+
+  notificacionServidor(mensaje: string) {
+    var notificacion = document.getElementById("notificacionesUsuario");
+    notificacion!.className = "";
+    notificacion!.innerHTML = "<h5>"+  mensaje+" </h5>";
+    notificacion!.className = "mostrar";
+    setTimeout(() => {
+      notificacion!.className = "";
+    }, 3000);
   }
 
   validarCampos(): boolean {
@@ -141,10 +151,10 @@ export class PerfilUsuarioComponent implements OnInit {
     var mensaje_error = document.createElement("p");
     mensaje_error.textContent = mensaje;
     mensaje_error.id = idMensaje;
-    mensaje_error.style.color = "red";
+    mensaje_error.style.color = "rgba(239, 12, 127, 1)";
     mensaje_error.className = "mensaje_error";
     this.insertAfter(mensaje_error, elementoErroneo);
-    elementoErroneo.style.borderColor = "red";
+    elementoErroneo.style.borderColor = "rgba(239, 12, 127, 1)";
   }
 
   insertAfter(newNode, existingNode) {

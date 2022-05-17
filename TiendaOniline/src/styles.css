@@ -17,7 +17,14 @@ body {
   
 }
 
-.container{
+.card, input, input:focus, table{
+  background-color: var(--tablas-cartas) !important;
+  color: var(--text) !important;
+  border-radius: 10px !important;
+  padding: 10px;
+}
+
+.container, .container-fluid{
   margin-top: 160px;
 }
 
