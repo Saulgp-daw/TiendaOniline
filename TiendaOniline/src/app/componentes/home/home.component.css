@@ -1,3 +1,44 @@
+.container-fluid{
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow:hidden;
+}
+
+
+img{
+    width: 400px;
+    height: 400px;
+}
+
 .section{
-    
+    min-height: 400px;
+    padding: 100px 20vw;
+}
+
+.blue {
+    background-color: #8DD8F7;
+}
+
+.pink{
+    background-color: rgb(248, 79, 183);
+}
+
+.wave {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.wave svg {
+    position: relative;
+    display: block;
+    width: calc(119% + 1.3px);
+    height: 41px;
+}
+
+.wave .shape-fill {
+    fill: #8DD8F7;
 }

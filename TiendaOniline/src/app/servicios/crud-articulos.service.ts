@@ -26,6 +26,10 @@ export class CrudArticulosService {
     return this.clienteHttp.get(this.API+"Controlador/articuloController.php?nombres_categorias");
   }
 
+  ObtenerDestacados(): Observable<any>{
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?random=3");
+  }
+
   ObtenerArticulo(id: any): Observable<any>{
     return this.clienteHttp.get(this.API+"Controlador/articuloController.php?id="+id);
   }

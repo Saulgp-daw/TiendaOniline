@@ -1,62 +1,61 @@
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar" >
-    <a class="navbar-brand" routerLink="/home">Oniline-Store</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="tienda/categoria/todos/1">Tienda</a>
-        </li>
-        <li class="nav-item dropdown d-block d-sm-none">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
-            <li><a class="dropdown-item" routerLink="/tienda/categoria/todos/1">Todos</a></li>
-            <li><a class="dropdown-item" *ngFor="let categoria of categorias" routerLink="/tienda/categoria/{{categoria.categoria}}/1">{{categoria.categoria}}</a></li>
-          </ul>
-        </li>
-      </ul>
-      
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/registro">
-            Signup
-          </a>
-        </li>
-        <li class="nav-item" *ngIf="nombreUsuario == 'invitado'; else logout">
-          <a class="nav-link" routerLink="/login">
-            Login
-          </a>
-        </li>
-        <ng-template #logout>
-          <li class="nav-item">
-            <a class="nav-link" (click)="finalizarSesion()" routerLink="/">
-                Logout
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/perfil">
-                {{nombreUsuario}}
-                <i class="fa fa-user-circle-o" aria-hidden="true"
-                  style="font-size: 24px; color: azure;"></i>
-            </a>
-          </li>
-        </ng-template>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
+  <a class="navbar-brand" routerLink="/home">Oniline-Store</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
       <li class="nav-item">
-      <button class="btn" routerLink="carrito" style="margin-left: -20px;">
-        <i class="fa fa-shopping-cart" style="font-size: 24px; color: azure;"></i>
-        <div class="badge bg-danger">{{totalArticulos}}</div>
-      </button>
+        <a class="nav-link" aria-current="page" routerLink="/home">Home</a>
       </li>
-    </div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="tienda/categoria/todos/1">Tienda</a>
+      </li>
+      <li class="nav-item dropdown d-block d-sm-none">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          Categorias
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="dropdown-item" routerLink="/tienda/categoria/todos/1">Todos</a></li>
+          <li><a class="dropdown-item" *ngFor="let categoria of categorias"
+              routerLink="/tienda/categoria/{{categoria.categoria}}/1">{{categoria.categoria}}</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/registro">
+          Signup
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="nombreUsuario == 'invitado'; else logout">
+        <a class="nav-link" routerLink="/login">
+          Login
+        </a>
+      </li>
+      <ng-template #logout>
+        <li class="nav-item">
+          <a class="nav-link" (click)="finalizarSesion()" routerLink="/">
+            Logout
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/perfil">
+            {{nombreUsuario}}
+            <i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 24px; color: azure;"></i>
+          </a>
+        </li>
+      </ng-template>
+      <li class="nav-item">
+        <button class="btn" routerLink="carrito" style="margin-left: -20px;">
+          <i class="fa fa-shopping-cart" style="font-size: 24px; color: azure;"></i>
+          <div class="badge bg-danger">{{totalArticulos}}</div>
+        </button>
+      </li>
+    </ul>
+    
+  </div>
 </nav>
-
-
-
