@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Usuario } from '../model/usuario';
 import { Articulo } from '../model/articulo';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ import { Articulo } from '../model/articulo';
  * y devolver la respuesta
  */
 export class CrudArticulosService {
-  API: string="http://localhost/PHP/DWES/Proyecto/"; //api de php en crudo que devuelve un json
+  API = environment.local; //api de php en crudo que devuelve un json
   constructor(private clienteHttp:HttpClient) { }
 
   ObtenerArticulosCategoria(categoria:string = "todos", pagina:number=1, tamPag:number=10): Observable<any>{
