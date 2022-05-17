@@ -11,6 +11,7 @@ img{
   background-color: var(--botones-hover);
 }
 
+
 #bolt {
   opacity: 0;
   transform: translateY(30%);

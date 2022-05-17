@@ -46,6 +46,10 @@ export class CrudArticulosService {
     return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?registro", datosUsuario);
   }
 
+  borrarUsuario(datosUsuario: Usuario):Observable<any>{
+    return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?borrar", datosUsuario);
+  }
+
   comprobarLogin(datosUsuario: Usuario): Observable<any>{
     return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?login", datosUsuario);
   }

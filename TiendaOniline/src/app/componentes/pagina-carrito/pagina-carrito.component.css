@@ -31,3 +31,6 @@ tr:nth-child(even){
     text-align: center;
     padding: 40px;
 }
+.btn{
+    color: var(--text);
+}

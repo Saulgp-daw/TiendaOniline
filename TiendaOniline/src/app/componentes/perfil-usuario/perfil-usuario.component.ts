@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
 import { Usuario } from 'src/app/model/usuario';
+import { CarritoService } from 'src/app/servicios/carrito.service';
 import { CrudArticulosService } from 'src/app/servicios/crud-articulos.service';
 
 @Component({
@@ -14,7 +16,7 @@ export class PerfilUsuarioComponent implements OnInit {
   formularioDeModificacion: any;
   public resultado: any;
 
-  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService) {
+  constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService, private servicioCarrito: CarritoService, private router: Router) {
 
   }
 
@@ -55,10 +57,27 @@ export class PerfilUsuarioComponent implements OnInit {
     }
   }
 
+  async borrarCuenta(): Promise<void> {
+    if (this.validarCampos()) {
+      this.resultado = await lastValueFrom(this.crudArticuloService.borrarUsuario(this.formularioDeModificacion.value));
+      this.mensajeDelServidor();
+    }
+  }
+
+  finalizarSesion(): void {
+    this.servicioCarrito.limpiarSesion();
+    this.servicioCarrito.cargarCarrito();
+
+  }
+
   mensajeDelServidor() {
     switch (this.resultado.resultado) {
       case ("exito"):
-        this.notificacionServidor("Datos modificados con éxito");
+        this.notificacionServidor("Usuario borrado con éxito");
+        this.finalizarSesion();
+        setTimeout(() => {
+          this.router.navigate(["home"]);
+        }, 2000);
         break;
       case ("campos_vacios"):
         this.notificacionServidor("Uno o más campos están vacíos");
@@ -78,7 +97,7 @@ export class PerfilUsuarioComponent implements OnInit {
   notificacionServidor(mensaje: string) {
     var notificacion = document.getElementById("notificacionesUsuario");
     notificacion!.className = "";
-    notificacion!.innerHTML = "<h5>"+  mensaje+" </h5>";
+    notificacion!.innerHTML = "<h5>" + mensaje + " </h5>";
     notificacion!.className = "mostrar";
     setTimeout(() => {
       notificacion!.className = "";
@@ -159,8 +178,9 @@ export class PerfilUsuarioComponent implements OnInit {
 
   insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-
   }
+
+
 
   //Nuestras expresiones regulares
   readonly expresionesRegulares = {

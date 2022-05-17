@@ -164,6 +164,21 @@ class DB{
         }
     }
 
+    public static function borrarUsuario(string $email, string $contrasenha){
+        if(!empty($email) && $email != null || !empty($contrasenha) && $contrasenha != null){
+            $usuario = self::devolverUsuario($email);
+            if(password_verify($contrasenha, $usuario->contrasenha)){
+                $sql = "delete from usuarios where email='".$email."'";
+                self::consulta($sql);
+                return "exito";
+           }else{
+                return "contrasenha_incorrecta";
+            }
+        }else{
+            return "num_argumentos";
+        }
+    }
+
     public static function actualizarArticulo(int $id, int $cantidad = 0){
         if(!empty($id) && $id != null){
             $articulo = self::convertirAObjetoArticulo(self::devolverArticulo($id));

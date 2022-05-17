@@ -69,8 +69,9 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Modificar datos</button>
+        <button type="submit" class="btn btn-primary">Modificar datos</button> <button class="btn btn-primary" (click)="borrarCuenta();$event.preventDefault();$event.stopPropagation()">Borrar cuenta</button>
       </form>
+     
     </div>
   </div>
 </div>
