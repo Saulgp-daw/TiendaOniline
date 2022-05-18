@@ -44,7 +44,6 @@
         if(isset($postdata) && !empty($postdata)){
             $email = trim($request->email);
             $contrasenha = trim($request->contrasenha);
-            
             echo DB::loginUsuario($email, $contrasenha);
         }
     }

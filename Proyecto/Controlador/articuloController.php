@@ -11,20 +11,18 @@
     //devolver un artículo único mediante su id
     if(isset($_GET['id'])){
         $id = intval($_GET['id']);
-        $articulo = json_encode(DB::devolverArticulo($id)) ;
-        require_once("../Vista/vistaArticuloUnico.php");
+        echo json_encode(DB::devolverArticulo($id)) ;
     }
 
     //devuelve el número de articulos en base al nombre de la categoria que se le pase
     if(isset($_GET['categorias'])){
         $cantidadArticulos = DB::cantidadArticulos($_GET['categorias']);
-        require_once("../Vista/vistaCantidadArticulos.php");
+        echo ("{\"cantidad\": \"". $cantidadArticulos."\"}");
     }
 
     //devuelve un json con el nombre de cada una de las categorias
     if(isset($_GET['nombres_categorias'])){
-        $listaDeCategorias = DB::devolverCategorias();
-        require_once("../Vista/vistaCategorias.php");
+        echo DB::devolverCategorias();
     }
 
     //muestra los productos relacionados con la categoria, pagina actual y numero de productos que queremos en dicha página
@@ -50,21 +48,11 @@
             $pagActual = 1;
         }
     
-        $listaDeArticulos = DB::listaArticulos($pagActual, $tamPag, $categoria);
-        require_once("../Vista/vistaArticulos.php");
+        echo DB::listaArticulos($pagActual, $tamPag, $categoria);
     }
 
     if(isset($_GET['random'])){
         $cantidadDeAleatorios = $_GET['random'];
         echo DB::listarArticulosAleatorios($cantidadDeAleatorios);
     }
-
-   
-
-    
-
-
-
-
-
 ?>
