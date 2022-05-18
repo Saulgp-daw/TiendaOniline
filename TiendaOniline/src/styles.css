@@ -1,14 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-  --primario: rgba(239, 12, 127, 1);
-  --text: white;
-  --tablas-cartas: black;
-  --botones-hover: rgb(197, 1, 99);
-
+  --primario: rgb(56, 114, 238);
+  --text: black;
+  --secundario: rgb(186, 208, 247);
+  --otro: rgb(199, 217, 247);
+  --secundario-impar:  rgb(163, 191, 240);
+  --botones-hover: rgb(57, 54, 247);
+  --box-shadow: 2px 2px 2px 1px rgba(57, 54, 247, 0.2);
 }
 
 body {
-  background-image: url("assets/img/Luminary.svg");
+  background-image: url("assets/img/Shiny.svg");
   background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -22,8 +24,8 @@ body {
   border: 3px solid var(--primario);
   padding: 7px 15px;
   border-width: 0px 0px 0px 10px;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: var(--secundario);
+  color: var(--text);
   bottom: 3vh;
   left: 3vw;
 }
@@ -55,10 +57,11 @@ body {
 }
 
 .card, input, input:focus, table{
-  background-color: var(--tablas-cartas) !important;
+  background-color: var(--secundario) !important;
   color: var(--text) !important;
   border-radius: 10px !important;
   padding: 10px;
+  box-shadow: var(--box-shadow);
 }
 
 .container, .container-fluid{
@@ -77,3 +80,24 @@ body {
   max-width: 100%;
   display: inline-block;
 }
+
+.categoria:hover{
+  background-color: var(--botones-hover) !important;
+  color: white !important;
+}
+
+#categorias {
+  top: 280px;
+  cursor: pointer;
+  background: transparent !important;
+  /*background-color: black !important;*/
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  box-shadow: var(--box-shadow);
+}
+.categoria{
+    transition: 1s;
+};

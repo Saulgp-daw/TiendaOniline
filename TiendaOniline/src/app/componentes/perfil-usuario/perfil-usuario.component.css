@@ -8,7 +8,7 @@
 
 
 #notificacionesUsuario{
-    background-color: var(--tablas-cartas);
+    background-color: var(--secundario);
     color: var(--text);
     width: 50vw;
     height: 10vh;

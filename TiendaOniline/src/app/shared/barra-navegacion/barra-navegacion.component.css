@@ -1,10 +1,10 @@
 
 #navbar{
-    background-color: var(--tablas-cartas);
+    background-color: var(--primario);
 }
 
 .btn{
-    background-color: var(--tablas-cartas) !important;
+    background-color: var(--primario) !important;
 }
 
 li{

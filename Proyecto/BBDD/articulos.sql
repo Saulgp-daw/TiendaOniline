@@ -68,4 +68,4 @@ CREATE TABLE usuarios (
 ) ENGINE=InnoDB;
 
 insert into usuarios values 
-('saulgp1@gmail.com', '1234', 'Saul', 'Gonzalez Perez', 'Los Realejos', 38410, 922202122, 'España');
+('saulgp1@gmail.com', '$2y$10$hXMV2bGUgf5A5Ez2zHooY.Qu.Tbn2tkS1ICloQJGCW/EWegwepi7i', 'Saul', 'Gonzalez Perez', 'Los Realejos', 38410, 922202122, 'España');
