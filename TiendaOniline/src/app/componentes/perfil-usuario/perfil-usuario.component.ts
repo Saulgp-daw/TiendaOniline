@@ -116,8 +116,8 @@ export class PerfilUsuarioComponent implements OnInit {
 
     var mensaje = "";
     var camposValidos = true;
-    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value) {
-      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden", contrasenha);
+    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value || (<HTMLInputElement>contrasenha).value.trim() == "") {
+      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden o están vacías", contrasenha);
       camposValidos = false;
     }
 

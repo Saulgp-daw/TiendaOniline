@@ -20,6 +20,7 @@ img{
   cursor: pointer;
   background-color: black;
   color: white;
+  position: relative;
 }
 
 @keyframes dropIn {
@@ -28,4 +29,19 @@ img{
     opacity: 1;
     transform: translateY(0);
   }
+}
+.img__description_layer{
+  position: absolute;
+  padding: 76px;
+  background: rgba(35, 122, 57, 0.6);
+  width: 14.6em;
+  text-align: center;
+  color: white;
+  opacity: 0;
+  transition: 0.3s ease-in;
+  font-weight: bold;
+}
+
+.card:hover > .img__description_layer{
+  opacity: 1;
 }

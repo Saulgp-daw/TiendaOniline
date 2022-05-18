@@ -4,6 +4,9 @@
     <div class="card mb-5" style="width: 16rem;" routerLink="/tienda/mostrar-articulo/{{articulo.id}}" id="bolt"
       style=" --order:{{iControl}}">
       <img src="{{articulo.imagen}}" class="card-img-top" alt="{{articulo.nombre}}">
+      <div class="img__description_layer">
+        <span class="img__description">Más info <i class="fa fa-info-circle" aria-hidden="true"></i></span>
+      </div>
       <div class="card-body">
         <h5 class="card-title" height="20px">{{articulo.nombre}}</h5>
         <span>Estado: {{articulo.estado}}</span>
@@ -17,6 +20,7 @@
         </ng-template>
       </div>
     </div>
+    
   </div>
 </div>
 
