@@ -9,6 +9,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,9 @@ const routes: Routes = [
   {path: 'carrito', component: PaginaCarritoComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'perfil', component: PerfilUsuarioComponent}
+  {path: 'perfil', component: PerfilUsuarioComponent},
+  {path: '404', component: NotFoundComponent},
+  { path: '**', redirectTo: '404'}
 ];
 
 @NgModule({

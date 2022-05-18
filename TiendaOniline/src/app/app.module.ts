@@ -17,6 +17,7 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usuario.component';
 import { ProductoNotificacionDirective } from './shared/producto-notificacion.directive';
 import { HomeComponent } from './componentes/home/home.component';
+import { NotFoundComponent } from './componentes/not-found/not-found.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { HomeComponent } from './componentes/home/home.component';
     RegistroComponent,
     PerfilUsuarioComponent,
     ProductoNotificacionDirective,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

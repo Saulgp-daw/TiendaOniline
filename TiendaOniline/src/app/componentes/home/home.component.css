@@ -5,7 +5,6 @@
     overflow:hidden;
 }
 
-
 img{
     width: 400px;
     height: 400px;
@@ -21,7 +20,8 @@ img{
 }
 
 .pink{
-    background-color: rgb(248, 79, 183);
+    background-color: var(--botones-hover);
+    color: white;
 }
 
 .wave {
