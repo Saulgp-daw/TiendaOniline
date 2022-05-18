@@ -2,3 +2,32 @@
     z-index: 3;
     margin-top: 160px;
 }
+
+.fixed{
+    position: fixed;
+}
+
+.categoria:hover{
+    background-color: black !important;
+    color: white !important;
+  }
+  
+  #categorias {
+    top: 280px;
+    cursor: pointer;
+    background: transparent !important;
+    background-color: black !important;
+    word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+  .categoria{
+      transition: 1s;
+  };
+  
+  
+  
+  
+  

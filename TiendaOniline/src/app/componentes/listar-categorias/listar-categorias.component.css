@@ -9,6 +9,10 @@
   cursor: pointer;
   background: transparent !important;
   background-color: black !important;
+  min-width: 200px;
+  width: calc(100vw/5);
+  max-width: fit-content;
+  display: inline-block;
 }
 .categoria{
     transition: 1s;

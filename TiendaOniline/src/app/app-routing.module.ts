@@ -12,6 +12,7 @@ import { HomeComponent } from './componentes/home/home.component';
 
 
 const routes: Routes = [
+  {path: '', pathMatch:'full', redirectTo:'home'},
   {path: 'home', component: HomeComponent},
   {path: 'tienda', pathMatch:'full', redirectTo:'tienda/categoria/todos'},
   {path: 'tienda/categoria', pathMatch:'full', redirectTo:'tienda/categoria/todos/1'},
