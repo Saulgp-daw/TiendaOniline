@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
  * y devolver la respuesta
  */
 export class CrudArticulosService {
-  API = environment.local; //api de php en crudo que devuelve un json
+  API = environment.url; //api de php en crudo que devuelve un json
   constructor(private clienteHttp:HttpClient) { }
 
   ObtenerArticulosCategoria(categoria:string = "todos", pagina:number=1, tamPag:number=10): Observable<any>{

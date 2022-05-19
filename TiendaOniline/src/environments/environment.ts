@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  local: "http://localhost/PHP/DWES/Servidor/"
+  url: "http://localhost/PHP/DWES/Servidor/"
 };
 
 /*
