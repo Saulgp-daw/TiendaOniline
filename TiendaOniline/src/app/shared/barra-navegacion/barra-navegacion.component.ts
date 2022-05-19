@@ -15,8 +15,6 @@ export class BarraNavegacionComponent implements OnInit {
   constructor(private servicioCarrito: CarritoService, private ruta: ActivatedRoute, private router: Router, private crudArticuloService: CrudArticulosService) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
-        // Show loading indicator
-        //console.log('Route change detected');
         this.cargarSesion();
       }
     });

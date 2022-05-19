@@ -26,8 +26,6 @@ export class ListarArticulosComponent implements OnInit {
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private carritoService: CarritoService) {
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
-        // Show loading indicator
-        //console.log('Route change detected');
         this.cargarArticulos();
       }
     });
@@ -41,10 +39,7 @@ export class ListarArticulosComponent implements OnInit {
   cargarArticulos(): void {
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pagina = this.ruta.snapshot.paramMap.get('pag');
-    //console.log(this.categoria);
-    //console.log(this.pagina);
     this.crudArticuloService.ObtenerArticulosCategoria(this.categoria, this.pagina).subscribe(respuesta => {
-      //console.log(respuesta);
       this.articulos = respuesta;
     });
   }

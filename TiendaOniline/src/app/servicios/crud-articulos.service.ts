@@ -39,7 +39,7 @@ export class CrudArticulosService {
   }
   
   actualizarArticulo(articulo: Articulo): Observable<any>{
-    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?id="+articulo.id+"&cantidad="+articulo['cantidad']);
+    return this.clienteHttp.get(this.API+"Controlador/articuloController.php?id_articulo="+articulo.id+"&cantidad="+articulo['cantidad']);
   }
 
   agregarUsuario(datosUsuario: Usuario):Observable<any>{

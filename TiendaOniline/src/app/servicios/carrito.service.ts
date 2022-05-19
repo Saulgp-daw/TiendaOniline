@@ -58,7 +58,6 @@ export class CarritoService {
       this.carrito.push(articulo);
       this.listaProductos.next(this.carrito);
     }
-    //console.log(this.carrito);
     this.guardarCarrito();
   }
 
@@ -83,7 +82,6 @@ export class CarritoService {
       if(localStorage.getItem(this.usuario)){
         this.carrito = JSON.parse(localStorage.getItem(this.usuario)!);
         this.listaProductos.next(this.carrito);
-        //console.log(this.carrito);
       }else{
         this.borrarTodo();
       }
@@ -91,7 +89,6 @@ export class CarritoService {
       if(localStorage.getItem(this.usuario.email)){
         this.carrito = JSON.parse(localStorage.getItem(this.usuario.email)!);
         this.listaProductos.next(this.carrito);
-        //console.log(this.carrito);
       }
     }
      

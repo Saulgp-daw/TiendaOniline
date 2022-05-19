@@ -24,7 +24,6 @@ export class PerfilUsuarioComponent implements OnInit {
     if (localStorage.getItem("usuarioConectado")) {
       this.usuarioConectado = JSON.parse(localStorage.getItem("usuarioConectado")!);
     }
-    console.log(this.usuarioConectado);
     this.cargarFormulario();
   }
 

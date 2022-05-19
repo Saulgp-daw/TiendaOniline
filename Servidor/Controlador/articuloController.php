@@ -1,8 +1,8 @@
 <?php
     require_once("header.php");
     //devuelve si ha habido una modificación en la fila de dicho artículo
-    if(isset($_GET['id']) && isset($_GET['cantidad'])){
-        $id = intval($_GET['id']);
+    if(isset($_GET['id_articulo']) && isset($_GET['cantidad'])){
+        $id = intval($_GET['id_articulo']);
         $cantidad = intval($_GET['cantidad']);
         $respuesta = DB::actualizarArticulo($id, $cantidad);
         echo '{"filas_actualizadas": "'.$respuesta.'"}';

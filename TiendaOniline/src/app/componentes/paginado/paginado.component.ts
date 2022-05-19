@@ -18,8 +18,6 @@ export class PaginadoComponent implements OnInit {
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
-        // Show loading indicator
-        //console.log('Route change detected');
         this.cargarPaginado(this.ARTICULOSPORPAGINA);
       }
     });
@@ -47,7 +45,6 @@ export class PaginadoComponent implements OnInit {
   redirigir(event: any){
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pag = event.target.value;
-    //console.log(this.pag);
     this.router.navigate(["/tienda/categoria/"+this.categoria+"/"+this.pag]);
     this.paginaActual = this.pag;
   }

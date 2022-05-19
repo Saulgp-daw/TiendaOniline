@@ -66,7 +66,7 @@ export class PaginaCarritoComponent implements OnInit {
 
   finalizarCompra(): void{
     this.carrito.forEach(articulo => {
-      this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { console.log(respuesta)}); //quitar el console log cuando salga a produccion
+      this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { respuesta }); //quitar el console log cuando salga a produccion
       this.factura.push(articulo);
     });
     this.finalizadaCompra = true;

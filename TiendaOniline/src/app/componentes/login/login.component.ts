@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
   async nuevoLogin(): Promise<void>{
     this.resultadoLogin = await lastValueFrom(this.crudArticuloService.comprobarLogin(this.formularioLogin.value));
     this.usuario = this.resultadoLogin;
-    console.log(this.resultadoLogin.resultado);
     if(this.resultadoLogin.resultado == "not_found"){
       this.notificacionServidor("Usuario o contraseña incorrectos");
     }else{

@@ -26,9 +26,6 @@ export class ListarCategoriasComponent implements OnInit {
     
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pagina = this.ruta.snapshot.paramMap.get('pag');
-    //console.log(this.categoria);
-    //console.log(this.pagina);
-    
   }
 
 }
