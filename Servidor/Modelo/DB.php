@@ -8,7 +8,8 @@ class DB{
     //Si falla alguna consulta es por el Object
     public static function consulta(string $sql): Object{
         try{
-            [$host, $user, $pwd, $db] = ["localhost", "admin", "admin", "proyecto"];
+            /*[$host, $user, $pwd, $db] = ["localhost", "admin", "admin", "proyecto"]; produccion*/
+            [$host, $user, $pwd, $db] = ["localhost", "id18957893_admin", "yPs{MVP?OB-$*+N1", "id18957893_proyecto"];
             self::$conexion = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pwd);
             self::$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             if(strpos(strtoupper(trim($sql)), "SELECT")>= 0){
@@ -170,7 +171,7 @@ class DB{
             if(password_verify($contrasenha, $usuario->contrasenha)){
                 $sql = "delete from usuarios where email='".$email."'";
                 self::consulta($sql);
-                return "exito";
+                return "borrado_exito";
            }else{
                 return "contrasenha_incorrecta";
             }
