@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  local: "https://onilinestore.000webhostapp.com/Servidor/"
 };

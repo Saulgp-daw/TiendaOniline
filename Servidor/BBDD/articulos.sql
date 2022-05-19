@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS proyecto;
+/*DROP DATABASE IF EXISTS proyecto;
 CREATE DATABASE proyecto DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin';
 GRANT ALL ON proyecto.* TO 'admin'@'localhost';
 
-use proyecto;
+use proyecto;*/
 
 CREATE TABLE articulos (
   id int(6) auto_increment,

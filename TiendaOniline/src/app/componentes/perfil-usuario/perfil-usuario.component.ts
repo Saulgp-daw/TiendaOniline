@@ -71,8 +71,11 @@ export class PerfilUsuarioComponent implements OnInit {
 
   mensajeDelServidor() {
     switch (this.resultado.resultado) {
-      case ("exito"):
-        this.notificacionServidor("Operación finalizada con éxito");
+      case("exito"):
+        this.notificacionServidor("Modificacíon finalizada con éxito");
+        break;
+      case ("borrado_exito"):
+        this.notificacionServidor("Usuario eliminado con éxito");
         this.finalizarSesion();
         setTimeout(() => {
           this.router.navigate(["home"]);
