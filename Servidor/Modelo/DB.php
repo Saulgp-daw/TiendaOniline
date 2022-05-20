@@ -5,7 +5,11 @@ require_once("../Modelo/Usuario.php");
 class DB{
     private static PDO $conexion;
 
-    //Si falla alguna consulta es por el Object
+    /**
+     * La función que conectará con nuestra base de datos, usaremos la extensión PDO
+     * Hay dos credenciales, las de local y las de producción
+     * Si hay un error haremos uso de excepciones que se nos mostrará en pantalla 
+     */
     public static function consulta(string $sql): Object{
         try{
             [$host, $user, $pwd, $db] = ["localhost", "admin", "admin", "proyecto"]; 
@@ -27,6 +31,10 @@ class DB{
         }
     }
 
+    /**
+     * Esta función nos devolverá la cantidad de artículos dependiendo de la categoria que le pasaremos, si categoria es vacío pero no null simplemente mostrará todos
+     * los productos que tengamos
+     */
     public static function cantidadArticulos(string $categoria = null):string{
         $sentencia = "select count(*) As cantidadProductos from articulos";;
 
@@ -38,9 +46,14 @@ class DB{
         return intval($count['cantidadProductos']);
     }
 
-    public static function listaArticulos(int $numPag=1, int $tamPag=10, string $categoria="todos"):String{
+    /**
+     * Esta función recibirá 3 parámetros pero estarán los tres inicializados por defecto
+     * dependiendo si la categoria es todos o no, haremos una consulta sql filtrando esa categoria
+     * calcularemos el comienzo de los productos a buscar con el número de página actual y el tamaño de cuántos artículos se desea mostrar de una tacada
+     * finalmente recorreremos con un fetch el resultado de la consulta y lo guardaremos en un array al que retornaremos con un json encode
+     */
+    public static function listaArticulos(int $numPag=1, int $tamPag=10, string $categoria="todos"):string{
         $comienzo = ($numPag-1)*$tamPag;
-        //$sql = "Select * from articulos limit $comienzo, $tamPag";
         if($categoria == "todos"){
             $resultado = self::consulta("Select * from articulos limit $comienzo, $tamPag");
         }else{
@@ -54,8 +67,11 @@ class DB{
         return json_encode($listaProductos);
     }
 
-    public static function devolverCategorias(){
-        //select distinct categoria from articulos;
+    /**
+     * La consulta distinct de mysql devolverá las categorías únicas de los artículos
+     * como hicimos con la función 'listaArticulos' recorreremos con un fetch el resultado y devolveremos un json_encode del array
+     */
+    public static function devolverCategorias(): string{
         $resultado = self::consulta("Select distinct categoria from articulos");
         $listaCategorias = [];
         while($categoria=$resultado->fetch(PDO::FETCH_ASSOC)){
@@ -64,7 +80,12 @@ class DB{
         return json_encode($listaCategorias);
     }
 
-    public static function devolverArticulo(int $id){
+    /**
+     * Esta función recibirá un id que será único y devolverá un array con los artículos dicho id
+     * como es único solo devolverá uno. Esta función devuelve al array y no el string del json_encode porque lo usaremos más adelante
+     * en el mismo modelo
+     */
+    public static function devolverArticulo(int $id): Array{
         $sql = "Select * from articulos where id=$id";
         $resultado = self::consulta($sql);
         while($articulo = $resultado->fetch(PDO::FETCH_ASSOC)){
@@ -72,14 +93,17 @@ class DB{
         }
     }
 
-    public static function devolverUsuario(string $email): Usuario{
+    public static function devolverUsuario(string $email): Array{
         $sql = "select * from usuarios where email='".$email."'";
         $resultado = self::consulta($sql);
         while($usuario = $resultado->fetch(PDO::FETCH_ASSOC)){
-            return self::convertirAObjetoUsuario($usuario);
+            return $usuario;
         }
     }
 
+    /**
+     * Haremos uso de esta función que recibirá un array de una consulta y lo convertirá y devolverá como un objeto Usuario
+     */
     public static function convertirAObjetoUsuario($array): Usuario{
         $email = $array['email'];
         $contrasenha = $array['contrasenha'];
@@ -91,8 +115,10 @@ class DB{
         $pais = $array['pais'];
         return new Usuario($email, $contrasenha, $nombre, $apellidos, $direccion, $codigo_postal, $telefono_fijo, $pais);
     }
-
-    public static function convertirAObjetoArticulo($array){
+    /**
+     * Haremos uso de esta función que recibirá un array de una consulta y lo convertirá y devolverá como un objeto Articulo
+     */
+    public static function convertirAObjetoArticulo($array): Articulo{
         $id = $array['id'];
         $descripcion= $array['descripcion'];
         $nombre= $array['nombre'];
@@ -104,10 +130,20 @@ class DB{
         return new Articulo($id, $descripcion, $nombre, $precio, $imagen, $categoria, $estado, $stock);
     }
 
+    /**
+     * Esta función simplemente mostrará el mensaje de error que posiblemente tengamos por pantalla
+     */
     public static function mensajeError($mensaje){
         echo "<br><span style='color:red; font-size: 3em'>$mensaje</span>";
     }
 
+    /**
+     * Para hacer el login recibiremos un email y contraseña y devolverá un string de json
+     * Primero haremos una consulta buscando el email, que en nuestra base de datos será único
+     * Haremos un fetch del resultado y convertiremos el array en un objeto usuario
+     * finalmente hacemos uso de la función propia para verificar que el parametro contraseña pasado es el mismo que el del objeto usuario
+     * si lo es devolvemos un json del usuario, si no saldremos del bucle y resultado será 'not_found'
+     */
     public static function loginUsuario(string $email, string $contrasenha): string{
         $sql = "select * from usuarios where email='".$email."'";
         $resultado = self::consulta($sql);
@@ -117,10 +153,12 @@ class DB{
                  return json_encode($usuario);
             }
         }
-
         return '{"resultado": "not_found"}';
     }
 
+    /**
+     * Recibimos todos los parámetros necesarios para insertar un usuario en la base de datos
+     */
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
         if(func_num_args() == 8){
             foreach(func_get_args() as $arg){
@@ -147,7 +185,7 @@ class DB{
                     return "campos_vacios";
                 }
             }
-            $usuario = self::devolverUsuario($email);
+            $usuario = self::convertirAObjetoUsuario(self::devolverUsuario($email));
             if(password_verify($contrasenha, $usuario->contrasenha)){
                 $sql = "update usuarios set nombre='".$nombre.
                 "', apellidos='".$apellidos.
@@ -167,7 +205,7 @@ class DB{
 
     public static function borrarUsuario(string $email, string $contrasenha){
         if(!empty($email) && $email != null || !empty($contrasenha) && $contrasenha != null){
-            $usuario = self::devolverUsuario($email);
+            $usuario = self::convertirAObjetoUsuario(self::devolverUsuario($email));
             if(password_verify($contrasenha, $usuario->contrasenha)){
                 $sql = "delete from usuarios where email='".$email."'";
                 self::consulta($sql);

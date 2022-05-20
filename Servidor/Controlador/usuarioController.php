@@ -67,6 +67,11 @@
         }
     }
 
+    if(isset($_GET['devolverUsuario'])){
+        $email = $_GET['devolverUsuario'];
+        echo json_encode(DB::devolverUsuario($email));
+    }
+
 
 
 

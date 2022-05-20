@@ -6,21 +6,21 @@
     <div class="card-body">
       <form [formGroup]="formularioDeModificacion" (ngSubmit)="actualizarUsuario()">
         <div class="row">
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="email" class="form-control" id="email" placeholder="name@example.com"
                 formControlName="email" value="{{usuarioConectado.email}}" readonly>
               <label for="email" class="text-truncate d-inline-block">Correo electrónico</label>
             </div>
           </div>
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="password" class="form-control" id="contrasenha" placeholder="contrasenha"
                 formControlName="contrasenha">
               <label for="contrasenha" class="text-truncate d-inline-block">Contraseña</label>
             </div>
           </div>
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="password" class="form-control" id="confirmar_contrasenha" placeholder="confirmar_contrasenha">
               <label for="confirmar_contrasenha" class="text-truncate d-inline-block">Confirme contraseña</label>
@@ -28,19 +28,19 @@
           </div>
         </div>
         <div class="row">
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="text" class="form-control" id="nombre" placeholder="nombre" formControlName="nombre" value="{{usuarioConectado.nombre}}">
               <label for="nombre" class="text-truncate d-inline-block">Nombre</label>
             </div>
           </div>
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="text" class="form-control" id="apellidos" placeholder="apellidos" formControlName="apellidos" value="{{usuarioConectado.apellidos}}">
               <label for="apellidos" class="text-truncate d-inline-block">Apellidos</label>
             </div>
           </div>
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="text" class="form-control" id="direccion" placeholder="direccion" formControlName="direccion" value="{{usuarioConectado.direccion}}">
               <label for="direccion" class="text-truncate d-inline-block">Dirección</label>
@@ -48,21 +48,21 @@
           </div>
         </div>
         <div class="row">
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="tel" class="form-control" id="codigo_postal" placeholder="codigo_postal"
                 formControlName="codigo_postal" minlength="5" maxlength="5" value="{{usuarioConectado.codigo_postal}}" required>
               <label for="codigo_postal" class="text-truncate d-inline-block">Código Postal</label>
             </div>
           </div>
-          <div class="col ">
+          <div class="col-xs-12 col-lg ">
             <div class="form-floating">
               <input type="tel" class="form-control" id="telefono_fijo" placeholder="telefono_fijo"
                 formControlName="telefono_fijo" minlength="9" maxlength="9" value="{{usuarioConectado.telefono_fijo}}" required>
               <label for="telefono_fijo" class="text-truncate d-inline-block">Teléfono Fijo</label>
             </div>
           </div>
-          <div class="col">
+          <div class="col-xs-12 col-lg">
             <div class="form-floating">
               <input type="text" class="form-control" id="pais" placeholder="pais" formControlName="pais" value="{{usuarioConectado.pais}}">
               <label for="pais" class="text-truncate d-inline-block">País</label>

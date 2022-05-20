@@ -58,6 +58,10 @@ export class CrudArticulosService {
     return this.clienteHttp.post(this.API+"Controlador/usuarioController.php?actualizar", datosUsuario);
   }
 
+  devolverUsuario(email: string):Observable<any>{
+    return this.clienteHttp.get(this.API+"Controlador/usuarioController.php?devolverUsuario="+email);
+  }
+
   
 
 

@@ -52,6 +52,9 @@ export class PerfilUsuarioComponent implements OnInit {
 
     if (this.validarCampos()) {
       this.resultado = await lastValueFrom(this.crudArticuloService.actualizarUsuario(this.formularioDeModificacion.value));
+      var usuario = await lastValueFrom(this.crudArticuloService.devolverUsuario(this.usuarioConectado.email));
+      console.log(usuario);
+      this.servicioCarrito.setUsuario(usuario);
       this.mensajeDelServidor();
     }
   }
