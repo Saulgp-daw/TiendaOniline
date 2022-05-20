@@ -11,11 +11,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 /**
- * Aquí es donde hacemos las peticiones a nuestra api localizada en la carpeta proyecto, hacemos uso de los módulos de angular para conectarnos
+ * Aquí es donde hacemos las peticiones a nuestra api localizada en la carpeta Servidor, hacemos uso de los módulos de angular para conectarnos
  * y devolver la respuesta
  */
 export class CrudArticulosService {
-  API = environment.url; //api de php en crudo que devuelve un json
+  API = environment.url; //nuestra url al servidor
   constructor(private clienteHttp:HttpClient) { }
 
   ObtenerArticulosCategoria(categoria:string = "todos", pagina:number=1, tamPag:number=10): Observable<any>{
