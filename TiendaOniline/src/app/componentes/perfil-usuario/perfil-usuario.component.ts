@@ -131,12 +131,12 @@ export class PerfilUsuarioComponent implements OnInit {
       camposValidos = false;
     }
     if (!(<HTMLInputElement>nombre).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
-      this.agregarMensajeError("mensaje_nombre", "El nombre no es válido", nombre);
+      this.agregarMensajeError("mensaje_nombre", "El nombre debe tener la primera letra mayúscula y no tener números", nombre);
       camposValidos = false;
     }
 
     if (!(<HTMLInputElement>apellidos).value.match(this.expresionesRegulares.expRegNombreApellidos)) {
-      this.agregarMensajeError("mensaje_apellidos", "Estos apellidos no son válidos", apellidos);
+      this.agregarMensajeError("mensaje_apellidos", "Los apellidos deben tener la primera letra mayúscula y no tener números", apellidos);
       camposValidos = false;
     }
 
@@ -146,22 +146,17 @@ export class PerfilUsuarioComponent implements OnInit {
     }
 
     if (!(<HTMLInputElement>codigo_postal).value.match(this.expresionesRegulares.expRegCP)) {
-      this.agregarMensajeError("mensaje_cp", "El código postal es incorrecto", codigo_postal);
+      this.agregarMensajeError("mensaje_cp", "El código postal es incorrecto. Deben ser 5 cifras", codigo_postal);
       camposValidos = false;
     }
 
     if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
-      this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
-      camposValidos = false;
-    }
-
-    if (!(<HTMLInputElement>telefono_fijo).value.match(this.expresionesRegulares.expRegTelFijo)) {
-      this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto", telefono_fijo);
+      this.agregarMensajeError("mensaje_fijo", "El teléfono fijo es incorrecto. Deben ser 9 números", telefono_fijo);
       camposValidos = false;
     }
 
     if ((<HTMLInputElement>pais).value.trim() == "") {
-      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de páis vacío", pais);
+      this.agregarMensajeError("mensaje_pais", "No puede dejar el campo de país vacío", pais);
       camposValidos = false;
     }
 

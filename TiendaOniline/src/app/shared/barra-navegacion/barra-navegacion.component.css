@@ -3,6 +3,10 @@
     background-color: var(--primario);
 }
 
+.navbar {
+    text-align: center;
+  }
+
 .btn{
     background-color: var(--primario) !important;
 }

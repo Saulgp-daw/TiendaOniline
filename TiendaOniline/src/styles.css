@@ -57,8 +57,16 @@ body {
   }
 }
 
-.card, input, input:focus, table{
+.card, table{
   background-color: var(--secundario) !important;
+  color: var(--text) !important;
+  border-radius: 10px !important;
+  padding: 10px;
+  box-shadow: var(--box-shadow);
+}
+
+input{
+  background-color: white !important;
   color: var(--text) !important;
   border-radius: 10px !important;
   padding: 10px;
@@ -102,3 +110,4 @@ body {
 .categoria{
     transition: 1s;
 };
+

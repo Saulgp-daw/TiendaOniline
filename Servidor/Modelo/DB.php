@@ -93,6 +93,10 @@ class DB{
         }
     }
 
+    /**
+     * Esta función recibirá un email que será único y devolver un array con 
+     * los usuarios que coincidan con 
+     */
     public static function devolverUsuario(string $email): Array{
         $sql = "select * from usuarios where email='".$email."'";
         $resultado = self::consulta($sql);
