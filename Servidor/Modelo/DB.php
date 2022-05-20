@@ -162,6 +162,10 @@ class DB{
 
     /**
      * Recibimos todos los parámetros necesarios para insertar un usuario en la base de datos
+     * Comprobamos primero si son 8, si no lo son notificaremos que el número de argumentos no coincide
+     * Si coincide comprobaremos uno a uno si los campos están vacíos y notificaremos en caso de que lo sea
+     * Si no ha habido ningún error hasta el momento haremos una consulta que preguntará si existe dicho usuario, si ya existe lo notificaremos
+     * finalmente haremos otra consulta y retornaremos que ha sido registrado exitósamente
      */
     public static function registroUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais){
         if(func_num_args() == 8){
@@ -181,7 +185,14 @@ class DB{
             return "num_argumentos";
         }
     }
-
+    /**
+     * Recibimos todos los parámetros necesarios para insertar un usuario en la base de datos
+     * Comprobamos primero si son 8, si no lo son notificaremos que el número de argumentos no coincide
+     * Si coincide comprobaremos uno a uno si los campos están vacíos y notificaremos en caso de que lo sea
+     * Si no ha habido ningún error hasta el momento recogeremos el usuario de la base de datos
+     * finalmente al igual que con el login comprobaremos si la contraseña del parámetro coincide con la del objeto usuario
+     * y haremos la consulta, notificando que se ha actualizado con éxito
+     */
     public static function actualizarUsuario(string $email, string $contrasenha, string $nombre, string $apellidos, string $direccion, int $codigo_postal, int $telefono_fijo, string $pais): string{
         if(func_num_args() == 8){
             foreach(func_get_args() as $arg){
@@ -207,6 +218,12 @@ class DB{
         }
     }
 
+    /**
+     * Recibiremos dos parámetros, comprobaremos que no estén vacíos y no sean nulos, retornaremos una notificación que el numero de argumentos no coincide
+     * En caso de que no lo sean, buscaremos dicho usuario y lo convertiremos a objeto
+     * como con el login comprobaremos que las contraseñas coinciden, si coinciden retornaremos que se ha borrado con éxito
+     * en caso contrario retornaremos al front que las contraseñas son incorrectas
+     */
     public static function borrarUsuario(string $email, string $contrasenha){
         if(!empty($email) && $email != null || !empty($contrasenha) && $contrasenha != null){
             $usuario = self::convertirAObjetoUsuario(self::devolverUsuario($email));
@@ -222,8 +239,14 @@ class DB{
         }
     }
 
-    public static function actualizarArticulo(int $id, int $cantidad = 0){
-        if(!empty($id) && $id != null){
+    /**
+     * Recibiremos dos parámetros, un id único y una cantidad que inicializaremos a 0 si no recibimos nada
+     * nos aseguramos que el id no esté vacío o nulo
+     * Si hay un artículo restaremos la cantidad que nos pasan al stock y dependiendo de si cantidad que compraron es mayor o igual al stock, modificamos cantidad al máximo de stock 
+     * y cambiaremos el estado del artículo a agotado. Finalmente haremos una consulta y devolveremos la cantidad de filas modificadas
+     */
+    public static function actualizarArticulo(int $id, int $cantidad = 0): int{
+        if(!empty($id) || $id != null){
             $articulo = self::convertirAObjetoArticulo(self::devolverArticulo($id));
             if($articulo){
                 $estado = "Disponible";
@@ -235,18 +258,6 @@ class DB{
                 $sql = "update articulos set stock=$cantidad, estado='".$estado."' where id=$id";
                 return self::consulta($sql)->rowCount();
             }
-        }
-    }
-
-    public static function listarArticulosAleatorios(int $cantidad){
-        if(!empty($cantidad) && $cantidad != null){
-            $resultado = self::consulta("Select * from articulos order by rand() limit $cantidad");
-        
-            $listaProductos = [];
-            while($p=$resultado->fetch(PDO::FETCH_ASSOC)){
-                $listaProductos[]=$p;
-            }
-            return json_encode($listaProductos);
         }
     }
 
