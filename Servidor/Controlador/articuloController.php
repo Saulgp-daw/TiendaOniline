@@ -50,9 +50,4 @@
     
         echo DB::listaArticulos($pagActual, $tamPag, $categoria);
     }
-
-    if(isset($_GET['random'])){
-        $cantidadDeAleatorios = $_GET['random'];
-        echo DB::listarArticulosAleatorios($cantidadDeAleatorios);
-    }
 ?>

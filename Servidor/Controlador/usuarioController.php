@@ -2,6 +2,7 @@
     require_once("header.php");
 
      /**
+      * Para actualizar, borrar, login y registro
      * recogemos los valores enviados desde angular para tratar con los datos, comprobando antes si se encuentran datos en estos
      * llamaremos luego a la BBDD y dependiendo del resultado de la operación devolveremos un JSON.
      */
@@ -67,6 +68,7 @@
         }
     }
 
+    //recogeremos el parámetro devolverUsuario de la url y haremos una consulta a la base de datos para que nos devuelva el objeto usuario
     if(isset($_GET['devolverUsuario'])){
         $email = $_GET['devolverUsuario'];
         echo json_encode(DB::devolverUsuario($email));
