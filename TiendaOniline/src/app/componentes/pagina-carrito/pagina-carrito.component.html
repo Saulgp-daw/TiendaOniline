@@ -29,14 +29,14 @@
                   (click)="aumentarUnidades(articulo);$event.preventDefault();$event.stopPropagation()">+</button>
               </td>
               <td>{{ articulo['precioCantidad'] }} €</td>
-              <td><button class="btn btn-danger" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button>
+              <td><button class="btn btn-danger borrarProducto" (click)="borrarArticulo(articulo)"><i class="fa fa-trash"></i></button>
               </td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
               <td>
-                <button class="btn btn-danger" (click)="borrarTodos()">Limpiar Carrito</button>
+                <button class="btn btn-danger borrarProducto" (click)="borrarTodos()" >Limpiar Carrito</button>
               </td>
               <td>
                 <button class="btn btn-primary" routerLink="/tienda/categoria/todos/1">Seguir comprando</button>

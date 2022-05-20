@@ -52,6 +52,11 @@ export class RegistroComponent implements OnInit {
     }
   }
 
+   /**
+   * Recogemos todos los elementos necesarios del DOM, comprobamos que cada uno de ellos cumple con las condiciones que nos interesan, si en ningún caso ha
+   * habido un error retornaremos true
+   * @returns bool
+   */
   validarCampos(): boolean {
     var email = document.getElementById("email");
     var contrasenha = document.getElementById("contrasenha");
@@ -109,6 +114,12 @@ export class RegistroComponent implements OnInit {
     return camposValidos;
   }
 
+   /**
+   * Esta función colorea de rojo el borde del input en caso de que lso datos del usuario estén incorrectos
+   * @param idMensaje 
+   * @param mensaje 
+   * @param elementoErroneo 
+   */
   agregarMensajeError(idMensaje: string, mensaje: string, elementoErroneo: any) {
     var elemento = document.getElementById(idMensaje);
     elemento?.remove();
@@ -121,11 +132,15 @@ export class RegistroComponent implements OnInit {
     elementoErroneo.style.borderColor = "rgba(239, 12, 127, 1)";
   }
 
+  //introduce un elemento después de otro
   insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
-
   }
 
+    /**
+   * Dependiendo de la respuesta recibida del servidor a nuestro atributo resultado le mandaremos un mensaje diferente
+   * a la función notificacionServidor que es el que se encargará de la animación de notificación y mostrar un mensaje diferente
+   */
   mensajeDelServidor() {
     switch (this.resultadoRegistro.resultado) {
       case ("exito"):

@@ -34,3 +34,12 @@ tr:nth-child(even){
 .btn{
     color: var(--text);
 }
+
+.borrarProducto{
+    background-color: var(--borrar) !important;
+    color: var(--otro);
+}
+
+.borrarProducto:hover{
+    background-color: var(--borrar-hover) !important;
+}

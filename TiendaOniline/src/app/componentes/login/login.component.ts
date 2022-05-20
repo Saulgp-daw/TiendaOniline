@@ -16,6 +16,13 @@ export class LoginComponent implements OnInit {
   public resultadoLogin: any;
   public usuario!: Usuario;
 
+  /**
+   * Hacemos uso del módulo de angular llamado 'FormGroup' y 'FormBuilder' para recoger/inicializar los datos de los inputs
+   * @param formulario 
+   * @param crudArticuloService 
+   * @param carritoService 
+   * @param router 
+   */
   constructor(public formulario: FormBuilder, private crudArticuloService: CrudArticulosService, private carritoService: CarritoService, private router: Router) { 
     this.formularioLogin = this.formulario.group({
       email:[''],
@@ -26,6 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Hacemos uso de un promise y async, para esperar a recibir el resultado que nos devolverá el servicio, dependiendo del resultado que
+   * nos devuelva el servidor, notificaremos al usuario o haremos un login exitoso
+   */
   async nuevoLogin(): Promise<void>{
     this.resultadoLogin = await lastValueFrom(this.crudArticuloService.comprobarLogin(this.formularioLogin.value));
     this.usuario = this.resultadoLogin;
@@ -38,6 +49,11 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param mensaje Recibirá un string con el mensaje que se desea mostrar, buscaremos en el DOM el id 'notificacionesUsuario' y cambiaremos su 
+   * nombre de clase a mostrar
+   */
   notificacionServidor(mensaje: string) {
     var notificacion = document.getElementById("notificacionesUsuario");
     notificacion!.className = "";

@@ -26,6 +26,12 @@ export class PaginaCarritoComponent implements OnInit {
   constructor(private servicioCarrito: CarritoService, private servicioArticulos: CrudArticulosService, private ruta: ActivatedRoute, private router: Router) {
    }
 
+   /**
+    * Al iniciar la página, llamamos al servicio carrito y guardamos en nuestras variables array carrito y granTotal las respuestas
+    * y llamamos al servicio carrito para que nos devuela el carrito del usuario actual
+    * invoice es un número de 6 cifras que usaremos para simular el nº de pedido de la factura
+    * cogemos la fecha y hora actual y los guardamos en una variable, finalmente sumamos granTotal con los gastos de envío
+    */
   ngOnInit(): void {
     this.servicioCarrito.devolverProductos().subscribe( (respuesta: any) => {
       this.carrito = respuesta;
@@ -41,14 +47,17 @@ export class PaginaCarritoComponent implements OnInit {
     this.gastosTotales = (this.granTotal+this.gastosEnvio).toFixed(2);
   }
 
+  //borra un artículo del carrito
   borrarArticulo(articulo: Articulo): void{
     this.servicioCarrito.borrarArticulo(articulo);
   }
 
+  //llama al servicio y borra todos los articulos
   borrarTodos(): void{
     this.servicioCarrito.borrarTodo();
   }
 
+  //llama al servicio carrito y resta la cantidad, si es igual o menor a 0 se eliminará
   restarUnidades(articulo: Articulo): void{
       this.servicioCarrito.restarUnidades(articulo);
       if(articulo['cantidad'] <= 0){
@@ -56,6 +65,7 @@ export class PaginaCarritoComponent implements OnInit {
       }
   }
 
+  //llama al servicio y suma la cantidad de articulos comprados, si es mayor que el stock se notificará al usuario
   aumentarUnidades(articulo: Articulo): void{
     if(articulo['cantidad'] < articulo.stock){
       this.servicioCarrito.aumentarUnidades(articulo);
@@ -64,9 +74,14 @@ export class PaginaCarritoComponent implements OnInit {
     }
   }
 
+  /**
+   * Para cada artículo del carrito, actualizamos la cantidad de stock llamando al servicio y los añadimos a otro array para la factura
+   * cambiamos la variable finalizadaCompra a true apra el ngIf del html y el granTotal lo pasamos al granTotalFactura
+   * finalmente borramos todos los artículos del carrito para que no vuelvan a salir
+   */
   finalizarCompra(): void{
     this.carrito.forEach(articulo => {
-      this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { respuesta }); //quitar el console log cuando salga a produccion
+      this.servicioArticulos.actualizarArticulo(articulo).subscribe(respuesta => { respuesta }); 
       this.factura.push(articulo);
     });
     this.finalizadaCompra = true;
@@ -74,6 +89,10 @@ export class PaginaCarritoComponent implements OnInit {
     this.borrarTodos();
   }
 
+  /**
+   * Si el usuario decide darle click al botón de descargar factura, hacemos uso de una librería que hemos encontrado que recoge lo que está actualmente en
+   * una etiqueta del html y generará un pdf
+   */
   generarFactura(): void {
     // Extraemos el
     const DATA = document.getElementById('htmlData');
@@ -95,7 +114,7 @@ export class PaginaCarritoComponent implements OnInit {
       doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
       return doc;
     }).then((docResult) => {
-      docResult.save(`Factura_Tienda_Oniline_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
+      docResult.save(`Factura_Oniline_Store_${this.usuario.nombre+"_"+this.usuario.apellidos+"_"+new Date().toISOString()}.pdf`);
     });
   }
 

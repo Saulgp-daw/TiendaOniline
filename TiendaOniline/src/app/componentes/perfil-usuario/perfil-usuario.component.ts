@@ -20,6 +20,9 @@ export class PerfilUsuarioComponent implements OnInit {
 
   }
 
+  /**
+   * al iniciar la página recogeremos los datos de usuarioConectado del localstorage e inicialzamos el formulario 
+   */
   ngOnInit(): void {
     if (localStorage.getItem("usuarioConectado")) {
       this.usuarioConectado = JSON.parse(localStorage.getItem("usuarioConectado")!);
@@ -27,6 +30,9 @@ export class PerfilUsuarioComponent implements OnInit {
     this.cargarFormulario();
   }
 
+  /**
+   * Nuestro formgroup lo modificaremos con los datos del usuario actualmente conectado
+   */
   cargarFormulario(): void {
     this.formularioDeModificacion = this.formulario.group({
       email: [this.usuarioConectado.email],
@@ -40,6 +46,10 @@ export class PerfilUsuarioComponent implements OnInit {
     });
   }
 
+  /**
+   * Cuando el usuario le de a los botones modificar o borrar validaremos primero que los campos no estén vacíos, cumplan las expresiones regulares
+   * necesarias y en el caso de la contraseña coincida una con la otra
+   */
   async actualizarUsuario(): Promise<void> {
 
     document.querySelectorAll("input").forEach(input => {
@@ -53,24 +63,38 @@ export class PerfilUsuarioComponent implements OnInit {
     if (this.validarCampos()) {
       this.resultado = await lastValueFrom(this.crudArticuloService.actualizarUsuario(this.formularioDeModificacion.value));
       var usuario = await lastValueFrom(this.crudArticuloService.devolverUsuario(this.usuarioConectado.email));
-      console.log(usuario);
       this.servicioCarrito.setUsuario(usuario);
       this.mensajeDelServidor();
     }
   }
 
   async borrarCuenta(): Promise<void> {
+    document.querySelectorAll("input").forEach(input => {
+      input.style.borderColor = "";
+    });
+
+    document.querySelectorAll(".mensaje_error").forEach(mensaje => {
+      mensaje.remove();
+    });
+
     if (this.validarCampos()) {
       this.resultado = await lastValueFrom(this.crudArticuloService.borrarUsuario(this.formularioDeModificacion.value));
       this.mensajeDelServidor();
     }
   }
 
+  /**
+   * Como su nombre indica, limpiaremos la variable usuarioConectado del localstorage y cargaremos el carrito
+   */
   finalizarSesion(): void {
     this.servicioCarrito.limpiarSesion();
     this.servicioCarrito.cargarCarrito();
   }
 
+  /**
+   * Dependiendo de la respuesta recibida del servidor a nuestro atributo resultado le mandaremos un mensaje diferente
+   * a la función notificacionServidor que es el que se encargará de la animación de notificación y mostrar un mensaje diferente
+   */
   mensajeDelServidor() {
     switch (this.resultado.resultado) {
       case("exito"):
@@ -98,6 +122,11 @@ export class PerfilUsuarioComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @param mensaje Recibirá un string con el mensaje que se desea mostrar, buscaremos en el DOM el id 'notificacionesUsuario' y cambiaremos su 
+   * nombre de clase a mostrar
+   */
   notificacionServidor(mensaje: string) {
     var notificacion = document.getElementById("notificacionesUsuario");
     notificacion!.className = "";
@@ -108,6 +137,11 @@ export class PerfilUsuarioComponent implements OnInit {
     }, 3000);
   }
 
+  /**
+   * Recogemos todos los elementos necesarios del DOM, comprobamos que cada uno de ellos cumple con las condiciones que nos interesan, si en ningún caso ha
+   * habido un error retornaremos true
+   * @returns bool
+   */
   validarCampos(): boolean {
     var email = document.getElementById("email");
     var contrasenha = document.getElementById("contrasenha");
@@ -163,6 +197,12 @@ export class PerfilUsuarioComponent implements OnInit {
     return camposValidos;
   }
 
+  /**
+   * Esta función colorea de rojo el borde del input en caso de que lso datos del usuario estén incorrectos
+   * @param idMensaje 
+   * @param mensaje 
+   * @param elementoErroneo 
+   */
   agregarMensajeError(idMensaje: string, mensaje: string, elementoErroneo: any) {
     var elemento = document.getElementById(idMensaje);
     elemento?.remove();
@@ -175,11 +215,10 @@ export class PerfilUsuarioComponent implements OnInit {
     elementoErroneo.style.borderColor = "rgba(239, 12, 127, 1)";
   }
 
+  //introduce un elemento después de otro
   insertAfter(newNode, existingNode) {
     existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
   }
-
-
 
   //Nuestras expresiones regulares
   readonly expresionesRegulares = {

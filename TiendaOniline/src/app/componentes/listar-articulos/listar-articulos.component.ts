@@ -35,7 +35,10 @@ export class ListarArticulosComponent implements OnInit {
   }
 
 
-
+  /**
+   * Esta función hará uso del módulo ActivatedRoute de angular para recoger los parametros categoria y número de página
+   * se lo enviarémos a nuestro servicio crud y guardaremos la respuesta en un array que tendremos de articulos
+   */
   cargarArticulos(): void {
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pagina = this.ruta.snapshot.paramMap.get('pag');
@@ -44,16 +47,25 @@ export class ListarArticulosComponent implements OnInit {
     });
   }
 
+  /**
+   * llamaremos al servicio carrito y agregaremos el artículo que recibimos como parámetro al carrito
+   * activaremos la animación de notificación
+   * @param articulo 
+   */
   agregarAlCarrito(articulo: Articulo = null!): void {
     this.carritoService.agregarACarrito(articulo);
     this.mostrarNotificacion();
   }
 
+  /**
+   * Recogemos del DOM el id 'notificacionAgregado', le damos el nombre de nuestra clase 'mostrar' y después de unos milisegundos se la volvemos a quitar
+   * el css se encargará de renderizar la animación
+   */
   mostrarNotificacion() {
     var notificacion = document.getElementById('notificacionAgregado')!;
     notificacion.className = 'mostrar';
     setTimeout(() => {
-      notificacion.className = 'aaaa';
+      notificacion.className = '';
     }, 2000);
   }
 }

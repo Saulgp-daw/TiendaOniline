@@ -20,6 +20,9 @@ export class PaginaTiendaComponent implements OnInit {
     this.cargarCategorias();
   }
 
+  /**
+   * llamaremos a nuestro servicio 'crudArticuloService' y guardaremos en nuestra variable 'Categorias' la respuesta
+   */
   cargarCategorias(){
     this.crudArticuloService.ObtenerCategorias().subscribe( respuesta => {
       this.Categorias = respuesta;

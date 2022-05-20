@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./listar-categorias.component.css']
 })
 export class ListarCategoriasComponent implements OnInit {
-  Categorias: any;
+  Categorias: any; //nuestra variable que recorreremos con un ngFor que tendrá todas los nombres de las categorías
   private categoria: any;
   private pagina: any;
   Articulos:any;
@@ -19,6 +19,9 @@ export class ListarCategoriasComponent implements OnInit {
     this.cargarCategorias();
   }
 
+  /**
+   * llamaremos a nuestro servicio 'crudArticuloService' y guardaremos en nuestra variable 'Categorias' la respuesta
+   */
   cargarCategorias(){
     this.crudArticuloService.ObtenerCategorias().subscribe( respuesta => {
       this.Categorias = respuesta;

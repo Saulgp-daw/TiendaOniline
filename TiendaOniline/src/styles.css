@@ -7,6 +7,8 @@
   --secundario-impar:  rgb(163, 191, 240);
   --botones-hover: rgb(57, 54, 247);
   --box-shadow: 2px 2px 2px 1px rgba(57, 54, 247, 0.2);
+  --borrar: rgb(255, 0, 76);
+  --borrar-hover: rgb(175, 1, 53);
 }
 
 body {

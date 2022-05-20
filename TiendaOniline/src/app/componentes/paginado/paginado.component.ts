@@ -15,6 +15,13 @@ export class PaginadoComponent implements OnInit {
   public paginaActual !: number;
   private ARTICULOSPORPAGINA: number = 10;
   
+  /**
+   * Con Router podemos cargar el paginado por cada cambio de secciones de nuestro dominio
+   * @param crudArticuloService nuestro servicio
+   * @param ruta módulo de angular
+   * @param router módulo de angular
+   * @param location módulo de angular
+   */
   constructor(private crudArticuloService: CrudArticulosService, private ruta: ActivatedRoute, private router: Router, private location: Location) { 
     this.router.events.subscribe((event: Event | any) => {
       if (event instanceof NavigationEnd) {
@@ -27,6 +34,12 @@ export class PaginadoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Recibiremos una constante que determinaría el número de artículos por página
+   * Recogemos de la url el parámetro categoria gracias al módulo ActivatedRoute y llamaremos a nuestro servicio,
+   * dependiendo de la respuesta calculamos el número de páginas haciendo una división
+   * @param ARTICULOSPORPAGINA 
+   */
   cargarPaginado(ARTICULOSPORPAGINA: number):void{
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     if(this.categoria == "todos"){
@@ -42,6 +55,10 @@ export class PaginadoComponent implements OnInit {
     });
   }
 
+  /**
+   * 
+   * @param event Cuando el usuario le de a la página que desean ir haremos uso del módulo Router para redirigirle a esa página
+   */
   redirigir(event: any){
     this.categoria = this.ruta.snapshot.paramMap.get('categoria');
     this.pag = event.target.value;
