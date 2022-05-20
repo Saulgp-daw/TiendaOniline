@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 
 import { ListarArticulosComponent } from './componentes/listar-articulos/listar-articulos.component';
 import { MostrarArticuloComponent } from './componentes/mostrar-articulo/mostrar-articulo.component';
-import { ListarCategoriasComponent } from './componentes/listar-categorias/listar-categorias.component';
 import { PaginaTiendaComponent } from './componentes/pagina-tienda/pagina-tienda.component';
 import { PaginadoComponent } from './componentes/paginado/paginado.component';
 import { BarraNavegacionComponent } from './shared/barra-navegacion/barra-navegacion.component';
@@ -18,6 +17,7 @@ import { PerfilUsuarioComponent } from './componentes/perfil-usuario/perfil-usua
 import { ProductoNotificacionDirective } from './shared/producto-notificacion.directive';
 import { HomeComponent } from './componentes/home/home.component';
 import { NotFoundComponent } from './componentes/not-found/not-found.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import { NotFoundComponent } from './componentes/not-found/not-found.component';
     AppComponent,
     ListarArticulosComponent,
     MostrarArticuloComponent,
-    ListarCategoriasComponent,
     PaginaTiendaComponent,
     PaginadoComponent,
     BarraNavegacionComponent,
@@ -35,7 +34,8 @@ import { NotFoundComponent } from './componentes/not-found/not-found.component';
     PerfilUsuarioComponent,
     ProductoNotificacionDirective,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

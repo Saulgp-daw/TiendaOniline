@@ -1,0 +1,13 @@
+footer{
+    background-color: var(--secundario);
+    height: 100px;
+}
+
+.container-fluid{
+    margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow:hidden;
+    bottom: 0;
+    position: relative;
+}
