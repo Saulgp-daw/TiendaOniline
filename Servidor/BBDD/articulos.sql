@@ -1,9 +1,9 @@
-DROP DATABASE IF EXISTS proyecto;
+/*DROP DATABASE IF EXISTS proyecto;
 CREATE DATABASE proyecto DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
 CREATE USER IF NOT EXISTS 'admin'@'localhost' IDENTIFIED BY 'admin';
 GRANT ALL ON proyecto.* TO 'admin'@'localhost';
 
-use proyecto;
+use proyecto;*/
 
 CREATE TABLE articulos (
   id int(6) auto_increment,
@@ -53,7 +53,27 @@ INSERT INTO articulos VALUES
 (0, '100% zumo de manzana con gaseosa. 200ml','Appleteiser',2.4,'https://i.imgur.com/PBu5O2j.jpg','Bebidas', 'Agotado',0),
 (0, 'Botella individual de 300ml','Tónica',31.0,'https://i.imgur.com/ibfYSjJ.jpg','Bebidas', 'Disponible',20),
 (0, 'Delicioso refresco de fresa 400ml','Refresco de fresa',31.0,'https://i.imgur.com/acGk5N4.png','Bebidas', 'Disponible',40),
-(0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23);
+(0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23),
+(0, 'La consola incluye dos mandos y un cartucho de Super Mario 64','Consola Nintendo 64',100.0,'https://i.imgur.com/QKFSW9l.jpg','Tecnología', 'Disponible',10),
+(0, 'Versión OLED. Pantalla de 7 pulgadas. La última consola de Nintendo','Consola Nintendo Switch',214.7,'https://i.imgur.com/Ihu7pjL.jpg','Tecnología', 'Disponible',54),
+(0, 'La última consola de Microsoft','Xbox Serie X',331.0,'https://i.imgur.com/7feQEhG.jpg','Tecnología', 'Agotado',0),
+(0, 'Incluye mando y 3 juegos','PlayStation 4 Pro',244.0,'https://i.imgur.com/zeXrtzB.jpg','Tecnología', 'Disponible',10),
+(0, 'La primera consola de Sony. Incluye mando y memory card de 512mb','PlayStation 1',100.4,'https://i.imgur.com/5ejghJi.jpg','Bebidas', 'Agotado',0),
+(0, 'Pack de 4 vasos de cristal','Vasos de Cristal',31.0,'https://i.imgur.com/y7nKjJ5.jpg','Hogar', 'Disponible',20),
+(0, 'Pack de 4 vasos de licor. Soportan temperaturas bajas sin romperse','Vasos de licor',31.0,'https://i.imgur.com/7WmU2Dt.jpg','Hogar', 'Disponible',40),
+(0, 'Pan de molde artesanal. Perfecto para sandwiches y tostadas','Pan de molde artesanal',3.0,'https://i.imgur.com/EOOWAK0.jpg','Alimentos', 'Disponible',23),
+(0, 'Manzana Roja','Manzana Roja',1.0,'https://i.imgur.com/YDi8E92.jpg','Alimentos', 'Disponible',10),
+(0, '300g envasado en plástico','Azúcar blanca',3.7,'https://i.imgur.com/nwcERse.jpg','Alimentos', 'Disponible',54),
+(0, 'Portátil con 6Gb de RAM y 500Gb de SSD','Portátil',371.0,'https://i.imgur.com/074poga.jpg','Tecnología', 'Agotado',0),
+(0, 'La torre incluye fuente de alimentación, 2 ventiladores, 14GB de RAM,1TB de SSD y luces LED','Torre para PC',564.0,'https://i.imgur.com/zdlCyRv.jpg','Tecnología', 'Disponible',10),
+(0, 'Resistente al agua y al sol. Ideal para veranear','Silla de Plástico',40.4,'https://i.imgur.com/EOaUNBp.jpg','Hogar', 'Agotado',0),
+(0, '100ml con olor a moras','Jabón de manos',3.0,'https://i.imgur.com/Y1geqPL.jpg','Hogar', 'Disponible',20),
+(0, '200ml champú para el cuero cabelludo y la caspa','Champú',12.0,'https://i.imgur.com/SEgvAWe.jpg','Hogar', 'Disponible',40),
+(0, 'Pack de 4 yogures de fresa','Yogur de fresa',5.0,'https://i.imgur.com/EZbeeRw.jpg','Alimentos', 'Disponible',23),
+(0, 'Delicioso bonito del norte fresco del día','Bonito del norte',55.0,'https://i.imgur.com/qNZgVYE.jpg','Alimentos', 'Disponible',3),
+(0, '50ml actúa contra la caries y el sarro','Pasta dentífrica',5.0,'https://i.imgur.com/VJCQeqf.jpg','Hogar', 'Disponible',23)
+
+;
 
 CREATE TABLE usuarios (
   email varchar(255) not null,
