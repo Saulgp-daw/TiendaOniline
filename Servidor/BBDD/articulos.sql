@@ -54,8 +54,8 @@ INSERT INTO articulos VALUES
 (0, 'Botella individual de 300ml','Tónica',31.0,'https://i.imgur.com/ibfYSjJ.jpg','Bebidas', 'Disponible',20),
 (0, 'Delicioso refresco de fresa 400ml','Refresco de fresa',31.0,'https://i.imgur.com/acGk5N4.png','Bebidas', 'Disponible',40),
 (0, 'Los mejores mangos exprimidos de cuba en un tetrabrick de 300ml','Jugo de mango',31.0,'https://i.imgur.com/4PYCfoD.jpg','Bebidas', 'Disponible',23),
-(0, 'La consola incluye dos mandos y un cartucho de Super Mario 64','Consola Nintendo 64',100.0,'https://i.imgur.com/QKFSW9l.jpg','Tecnología', 'Disponible',10),
-(0, 'Versión OLED. Pantalla de 7 pulgadas. La última consola de Nintendo','Consola Nintendo Switch',214.7,'https://i.imgur.com/Ihu7pjL.jpg','Tecnología', 'Disponible',54),
+(0, 'La consola incluye dos mandos y un cartucho de Super Mario 64','Nintendo 64',100.0,'https://i.imgur.com/QKFSW9l.jpg','Tecnología', 'Disponible',10),
+(0, 'Versión OLED. Pantalla de 7 pulgadas. La última consola de Nintendo','Nintendo Switch',214.7,'https://i.imgur.com/Ihu7pjL.jpg','Tecnología', 'Disponible',54),
 (0, 'La última consola de Microsoft','Xbox Serie X',331.0,'https://i.imgur.com/7feQEhG.jpg','Tecnología', 'Agotado',0),
 (0, 'Incluye mando y 3 juegos','PlayStation 4 Pro',244.0,'https://i.imgur.com/zeXrtzB.jpg','Tecnología', 'Disponible',10),
 (0, 'La primera consola de Sony. Incluye mando y memory card de 512mb','PlayStation 1',100.4,'https://i.imgur.com/5ejghJi.jpg','Bebidas', 'Agotado',0),
@@ -71,9 +71,7 @@ INSERT INTO articulos VALUES
 (0, '200ml champú para el cuero cabelludo y la caspa','Champú',12.0,'https://i.imgur.com/SEgvAWe.jpg','Hogar', 'Disponible',40),
 (0, 'Pack de 4 yogures de fresa','Yogur de fresa',5.0,'https://i.imgur.com/EZbeeRw.jpg','Alimentos', 'Disponible',23),
 (0, 'Delicioso bonito del norte fresco del día','Bonito del norte',55.0,'https://i.imgur.com/qNZgVYE.jpg','Alimentos', 'Disponible',3),
-(0, '50ml actúa contra la caries y el sarro','Pasta dentífrica',5.0,'https://i.imgur.com/VJCQeqf.jpg','Hogar', 'Disponible',23)
-
-;
+(0, '50ml actúa contra la caries y el sarro','Pasta dentífrica',5.0,'https://i.imgur.com/VJCQeqf.jpg','Hogar', 'Disponible',23);
 
 CREATE TABLE usuarios (
   email varchar(255) not null,
@@ -88,4 +86,4 @@ CREATE TABLE usuarios (
 ) ENGINE=InnoDB;
 
 insert into usuarios values 
-('saulgp1@gmail.com', '$2y$10$hXMV2bGUgf5A5Ez2zHooY.Qu.Tbn2tkS1ICloQJGCW/EWegwepi7i', 'Saul', 'Gonzalez Perez', 'Los Realejos', 38410, 922202122, 'España');
+('admin@admin.com', '$2y$10$hXMV2bGUgf5A5Ez2zHooY.Qu.Tbn2tkS1ICloQJGCW/EWegwepi7i', 'Saul', 'Gonzalez Perez', 'Puerto de la Cruz. Calle Las Cabezas', 12345, 922202122, 'España');
