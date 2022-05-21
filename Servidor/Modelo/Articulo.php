@@ -26,7 +26,7 @@
         }
 
         public function getAtributos(){
-            return $this->atributos;
+            return $this->atributos; 
         }
     }
 
