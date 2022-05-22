@@ -16,6 +16,7 @@
                   <p class="text-muted">{{Articulo.estado}}</p>
                   <p class="card-text">{{Articulo.descripcion}}</p>
                   <button class="btn btn-primary" (click)="agregarAlCarrito(Articulo)" *ngIf="Articulo.estado == 'Disponible'; else notAvailable">Añadir al carrito <i class="fa fa-cart-plus" style="font-size: 24px;"></i> </button>
+                  <button class="btn" (click)="volverPaginaAnterior()"><i class="fa fa-undo" aria-hidden="true"></i> Volver</button>
                   <ng-template #notAvailable>
                     <button class="btn btn-secondary" disabled>Sin stock</button>
                   </ng-template>

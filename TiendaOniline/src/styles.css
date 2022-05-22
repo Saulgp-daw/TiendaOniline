@@ -2,6 +2,7 @@
 :root{
   --primario: rgb(56, 114, 238);
   --text: black;
+  --text-white: white;
   --secundario: rgb(186, 208, 247);
   --otro: rgb(199, 217, 247);
   --secundario-impar:  rgb(163, 191, 240);
@@ -81,6 +82,7 @@ input{
 
 .btn{
   background-color: var(--primario) !important;
+  color: var(--text-white) !important;
 }
 
 .btn:hover{

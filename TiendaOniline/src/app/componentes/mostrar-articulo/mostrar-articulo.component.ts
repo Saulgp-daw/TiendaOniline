@@ -48,4 +48,8 @@ export class MostrarArticuloComponent implements OnInit {
     }, 2000);
   }
 
+  volverPaginaAnterior():void{
+    window.history.back();
+  }
+
 }
