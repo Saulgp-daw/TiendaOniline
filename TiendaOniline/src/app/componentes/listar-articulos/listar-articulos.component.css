@@ -33,7 +33,7 @@ img{
 .img__description_layer{
   position: absolute;
   padding: 76px;
-  background: rgba(35, 122, 57, 0.6);
+  background: var(--img-hover);
   width: 14.6em;
   text-align: center;
   color: white;

@@ -126,10 +126,10 @@ export class RegistroComponent implements OnInit {
     var mensaje_error = document.createElement("p");
     mensaje_error.textContent = mensaje;
     mensaje_error.id = idMensaje;
-    mensaje_error.style.color = "rgba(239, 12, 127, 1)";
+    mensaje_error.style.color = "rgb(255, 0, 76)";
     mensaje_error.className = "mensaje_error";
     this.insertAfter(mensaje_error, elementoErroneo);
-    elementoErroneo.style.borderColor = "rgba(239, 12, 127, 1)";
+    elementoErroneo.style.borderColor = "rgb(255, 0, 76)";
   }
 
   //introduce un elemento después de otro
