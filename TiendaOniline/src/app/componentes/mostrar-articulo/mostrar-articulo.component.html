@@ -12,7 +12,7 @@
                 </div>
                 <div class="col">
                   <h5 class="card-title">{{Articulo.nombre}}</h5>
-                  <p class="text-muted">{{Articulo.precio}} €</p>
+                  <p class="text-muted">{{Articulo.precio}} € - Stock: {{Articulo.stock}}</p>
                   <p class="text-muted">{{Articulo.estado}}</p>
                   <p class="card-text">{{Articulo.descripcion}}</p>
                   <button class="btn btn-primary" (click)="agregarAlCarrito(Articulo)" *ngIf="Articulo.estado == 'Disponible'; else notAvailable">Añadir al carrito <i class="fa fa-cart-plus" style="font-size: 24px;"></i> </button>

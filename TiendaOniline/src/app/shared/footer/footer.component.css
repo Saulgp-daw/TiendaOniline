@@ -9,5 +9,5 @@ footer{
     padding-right: 0px;
     overflow:hidden;
     bottom: 0;
-    position: relative;
+    position: absolute;
 }
