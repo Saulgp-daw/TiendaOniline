@@ -77,7 +77,7 @@ export class PerfilUsuarioComponent implements OnInit {
       mensaje.remove();
     });
 
-    if (this.validarCampos()) {
+    if (this.validarCamposBorrar()) {
       this.resultado = await lastValueFrom(this.crudArticuloService.borrarUsuario(this.formularioDeModificacion.value));
       this.mensajeDelServidor();
     }
@@ -135,6 +135,19 @@ export class PerfilUsuarioComponent implements OnInit {
     setTimeout(() => {
       notificacion!.className = "";
     }, 3000);
+  }
+
+  validarCamposBorrar(): boolean {
+    var contrasenha = document.getElementById("contrasenha");
+    var confirmar_contrasenha = document.getElementById("confirmar_contrasenha");
+
+    var mensaje = "";
+    var camposValidos = true;
+    if ((<HTMLInputElement>contrasenha).value != (<HTMLInputElement>confirmar_contrasenha).value || (<HTMLInputElement>contrasenha).value.trim() == "") {
+      this.agregarMensajeError("mensaje_contrasenha", "Las contraseñas no coinciden o están vacías", contrasenha);
+      camposValidos = false;
+    }
+    return camposValidos;
   }
 
   /**
